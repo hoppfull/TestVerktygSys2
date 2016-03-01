@@ -1,0 +1,36 @@
+html{
+	font-family: sans-serif, serif;
+}
+
+body{
+    margin:0px;
+}
+
+header{
+    text-align: center;
+}
+
+main{
+    margin: 30px;
+}
+
+main div, form input[type="submit"]{
+    text-align: center;
+    margin: auto;
+}
+
+.questionBox{
+    max-width: 300px;
+    background-color: salmon;
+    padding: 5px 20px;
+    margin-bottom: 10px;
+    text-align: center;
+    
+    /*centers the element*/
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.questionBox p{
+    text-align: right;
+}

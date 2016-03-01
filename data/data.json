@@ -1,0 +1,19 @@
+{
+    "artists": [
+        {
+            "question": "Eric Clapton",
+            "bio": "Gitarrist i Cream.",
+            "score":"1"
+        },
+        {
+            "question": "George Harrison",
+            "bio": "Gitarrist i Beatles.",
+            "score":"4"
+        },
+        {
+            "question": "Jimmy Page",
+            "bio": "Gitarrist i Led Zeppelin.",
+            "score":"13"
+        }
+    ]
+}
