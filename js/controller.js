@@ -2,8 +2,8 @@
 (function() {
     angular.module("indexApp").controller("MainController", function($scope, $http) {
         $http.get('data/data.json').success(function(response) {
-            $scope.questions = response.questions;
-            $scope.time = response.data.time;
+            $scope.questions = response;
+            $scope.time = response.time;
         });
         
         $scope.questionType = function(type){
