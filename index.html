@@ -8,6 +8,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
         <link rel="stylesheet" href="CSS/unsemantic-grid-responsive-tablet.css" />
         <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+        <script src="js/app.js"></script>
+        <script src="js/controller.js"></script>
     </head>
     <body ng-app="indexApp" ng-controller="MainController">
         <div class="grid-container">
@@ -20,14 +22,22 @@
             </header>
             
             <main>
+                {{2+10}}
+                {{questions.length}}
                 <form ng-submit="">
-                    <article class="question-box" ng-repeat="question in questions">
+                    <div class="question-box" ng-repeat="question in questions">
+                        {{question.type}}
                         <h1>Question {{$index + 1}}</h1>
                         <table>
                             <tbody>
+                                <tr><td><input type="checkbox" name="" value=""/> For testting purposes: </td></tr>
+                                <tr><td><input type="checkbox" name="" value=""/> For testing purposes: </td></tr>
+                                <tr><td><input type="checkbox" name="" value=""/> For testing purposes: </td></tr>
+                                <!--
                                 <tr ng-repeat="answer in question">
                                     <td><input type="{{getQuestionType()}}" name="question{{$index}}" value="answer.points"/>For testing purposes: {{answer.text}}</td>
                                 </tr>
+                                -->
                                 <!--ng-repeat question in artist
                                 <tr><td><input type="{{getQuestionType()}}" name="question{{$index}}" value=""/> For testing purposes: {{artist.question}}</td></tr>
                                 <tr><td><input type="{{getQuestionType()}}" name="question{{$index}}" value=""/> For testing purposes: {{artist.question}}</td></tr>
@@ -36,7 +46,7 @@
                             </tbody>
                         </table>
                         <p>Score: {{artist.score}}</p>
-                    </article>
+                    </div>
                     <input type="submit" value="Skicka in"/>
                 </form>
                 <div>{{left()}} frågor kvar att besvara</div>
@@ -45,7 +55,6 @@
             <footer></footer>
         </div>
         
-        <script src="js/app.js"></script>
-        <script src="js/controller.js"></script>
+        
     </body>
 </html>

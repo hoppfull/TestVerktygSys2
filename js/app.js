@@ -1,1 +1,3 @@
-var indexApp = angular.module("indexApp", []);
+(function() {
+    var indexApp = angular.module("indexApp", []);
+}());
