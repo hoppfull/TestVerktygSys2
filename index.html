@@ -27,22 +27,12 @@
                         <h1>{{question.question}}</h1>
                         <table>
                             <tbody>
-                                <tr><td><input type="{{question.type}}" name="" value=""/></td></tr>
-                                <tr><td><input type="checkbox" name="" value=""/> For testing purposes: </td></tr>
-                                <tr><td><input type="checkbox" name="" value=""/> For testing purposes: </td></tr>
-                                <!--
-                                <tr ng-repeat="answer in question">
-                                    <td><input type="{{getQuestionType()}}" name="question{{$index}}" value="answer.points"/>For testing purposes: {{answer.text}}</td>
-                                </tr>
-                                -->
-                                <!--ng-repeat question in artist
-                                <tr><td><input type="{{getQuestionType()}}" name="question{{$index}}" value=""/> For testing purposes: {{artist.question}}</td></tr>
-                                <tr><td><input type="{{getQuestionType()}}" name="question{{$index}}" value=""/> For testing purposes: {{artist.question}}</td></tr>
-                                <tr><td><input type="{{getQuestionType()}}" name="question{{$index}}" value=""/> For testing purposes: {{artist.question}}</td></tr>
-                                -->
+                                <tr><td><input type="{{questionType(question.type)}}" name="" value=""/>For testing purposes:</td></tr>
+                                <tr><td><input type="checkbox" name="" value=""/>For testing purposes:</td></tr>
+                                <tr><td><input type="checkbox" name="" value=""/>For testing purposes:</td></tr>
                             </tbody>
                         </table>
-                        <p>Score: {{artist.score}}</p>
+                        <p>Score: {{question.score}}</p>
                     </div>
                     <input type="submit" value="Skicka in"/>
                 </form>

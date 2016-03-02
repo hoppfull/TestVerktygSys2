@@ -5,5 +5,9 @@
             $scope.questions = response.questions;
             $scope.time = response.data.time;
         });
+        
+        $scope.questionType = function(type){
+            return "checkbox";
+        }
     });
 }());
