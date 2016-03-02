@@ -21,11 +21,12 @@
             
             <main>
                 <form ng-submit="">
-                    <div class="questionBox" ng-repeat="artist in artists">
+                    <div class="question-box" ng-repeat="artist in artists">
                         <h1>Question {{$index + 1}}</h1>
                         <table>
                             <tbody>
-                                <tr><td><input type="checkbox" name="question{{$index}}" value=""/> For testing purposes: {{artist.question}}</td></tr>
+                                <!--ng-repeat question in artist-->
+                                <tr><td><input type="{{getQuestionType}}" name="question{{$index}}" value=""/> For testing purposes: {{artist.question}}</td></tr>
                                 <tr><td><input type="checkbox" name="question{{$index}}" value=""/> For testing purposes: {{artist.question}}</td></tr>
                                 <tr><td><input type="checkbox" name="question{{$index}}" value=""/> For testing purposes: {{artist.question}}</td></tr>
                             </tbody>
