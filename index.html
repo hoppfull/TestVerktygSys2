@@ -22,15 +22,12 @@
             </header>
             
             <main>
-                {{2+10}}
-                {{questions.length}}
                 <form ng-submit="">
                     <div class="question-box" ng-repeat="question in questions">
-                        {{question.type}}
-                        <h1>Question {{$index + 1}}</h1>
+                        <h1>{{question.question}}</h1>
                         <table>
                             <tbody>
-                                <tr><td><input type="checkbox" name="" value=""/> For testting purposes: </td></tr>
+                                <tr><td><input type="{{question.type}}" name="" value=""/></td></tr>
                                 <tr><td><input type="checkbox" name="" value=""/> For testing purposes: </td></tr>
                                 <tr><td><input type="checkbox" name="" value=""/> For testing purposes: </td></tr>
                                 <!--
