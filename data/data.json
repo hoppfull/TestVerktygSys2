@@ -1,19 +1,34 @@
 {
-    "artists": [
-        {
-            "question": "Eric Clapton",
-            "bio": "Gitarrist i Cream.",
-            "score":"1"
-        },
-        {
-            "question": "George Harrison",
-            "bio": "Gitarrist i Beatles.",
-            "score":"4"
-        },
-        {
-            "question": "Jimmy Page",
-            "bio": "Gitarrist i Led Zeppelin.",
-            "score":"13"
-        }
-    ]
+    "questions":[
+    {
+        "type": "SingleChoice",
+        "question": "1+2=?",
+        "answers": [{"points": 1, "RightAns": "3", "WrongAns1": "5", "WrongAns2": "12"}]             
+    },
+    {
+        "type": "MultiChoice",
+        "question": "Vilka tal är mindre än 5",
+        "answers": {},
+        "points": 0        
+    },
+    {
+        "type": "SingleChoice",
+        "question": "6+6=?",
+        "answers": {},
+        "points": 0        
+    },
+    {
+        "type": "MultiChoice",
+        "question": "Vilka tal är jämna?",
+        "answers": {},
+        "points": 0        
+    },
+    {
+        "type": "SingleChoice",
+        "question": "2+4=?",
+        "answers": {},
+        "points": 0        
+    } 
+],
+"time": 20000
 }
