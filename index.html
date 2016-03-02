@@ -20,18 +20,22 @@
             
             <main>
                 <form ng-submit="">
-                    <div class="question-box" ng-repeat="artist in artists">
+                    <article class="question-box" ng-repeat="question in questions">
                         <h1>Question {{$index + 1}}</h1>
                         <table>
                             <tbody>
-                                <!--ng-repeat question in artist-->
-                                <tr><td><input type="{{getQuestionType}}" name="question{{$index}}" value=""/> For testing purposes: {{artist.question}}</td></tr>
-                                <tr><td><input type="checkbox" name="question{{$index}}" value=""/> For testing purposes: {{artist.question}}</td></tr>
-                                <tr><td><input type="checkbox" name="question{{$index}}" value=""/> For testing purposes: {{artist.question}}</td></tr>
+                                <tr ng-repeat="answer in question">
+                                    <td><input type="{{getQuestionType()}}" name="question{{$index}}" value="answer.points"/>For testing purposes: {{answer.text}}</td>
+                                </tr>
+                                <!--ng-repeat question in artist
+                                <tr><td><input type="{{getQuestionType()}}" name="question{{$index}}" value=""/> For testing purposes: {{artist.question}}</td></tr>
+                                <tr><td><input type="{{getQuestionType()}}" name="question{{$index}}" value=""/> For testing purposes: {{artist.question}}</td></tr>
+                                <tr><td><input type="{{getQuestionType()}}" name="question{{$index}}" value=""/> For testing purposes: {{artist.question}}</td></tr>
+                                -->
                             </tbody>
                         </table>
                         <p>Score: {{artist.score}}</p>
-                    </div>
+                    </article>
                     <input type="submit" value="Skicka in"/>
                 </form>
                 <div>{{left()}} frågor kvar att besvara</div>
