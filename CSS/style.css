@@ -19,7 +19,7 @@ main div, form input[type="submit"]{
     margin: auto;
 }
 
-.questionBox{
+.question-box{
     max-width: 300px;
     background-color: salmon;
     padding: 5px 20px;
@@ -31,6 +31,6 @@ main div, form input[type="submit"]{
     margin-right: auto;
 }
 
-.questionBox p{
+.question-box p{
     text-align: right;
 }
