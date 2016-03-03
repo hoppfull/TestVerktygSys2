@@ -1,7 +1,7 @@
 /// <reference path="app.js" />
 (function() {
     angular.module("indexApp").controller("MainController", function($scope, $http) {
-        $http.get('data/data.json').success(function(response) {
+        $http.get('data/questioner.json').success(function(response) {
             $scope.questions = response.questions;
             $scope.time = response.time;
         });
