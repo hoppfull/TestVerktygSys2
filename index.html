@@ -26,10 +26,9 @@
                     <div class="question-box" ng-repeat="question in questions">
                         <h1>{{question.question}}</h1>
                         <table>
-                            <tbody>
-                                <tr><td><input type="{{questionType(question.type)}}" name="" value=""/>For testing purposes:</td></tr>
-                                <tr><td><input type="checkbox" name="" value=""/>For testing purposes:</td></tr>
-                                <tr><td><input type="checkbox" name="" value=""/>For testing purposes:</td></tr>
+                            <tbody ng-repeat="answers in question.answers">
+                                <tr><td><input type="{{questionType(question.type)}}" name="" value=""/>{{answers.answerText}}</td></tr>
+                               
                             </tbody>
                         </table>
                         <p>Score: {{question.score}}</p>
