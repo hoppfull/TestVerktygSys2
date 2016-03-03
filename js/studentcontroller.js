@@ -1,4 +1,4 @@
 /// <reference path="mainApp.js" />
-mainApp.controller('studentController', function($scope) {
+angular.module(appName).controller('studentController', function($scope) {
     
 });

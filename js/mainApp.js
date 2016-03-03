@@ -1,5 +1,5 @@
-var mainApp = (function (pages) { // Author: Bjorn
-    var mainApp = angular.module('mainApp', ['ngRoute']);
+(function () { // Author: Bjorn
+    var mainApp = angular.module(appName, ['ngRoute']);
 
     mainApp.controller('mainController', function ($scope) {
 
@@ -14,6 +14,4 @@ var mainApp = (function (pages) { // Author: Bjorn
         });
         $routeProvider.otherwise({ redirectTo: '/login' });
     });
-    
-    return mainApp;
-})(['login', 'teacher', 'student', 'admin']);
+})();

@@ -1,4 +1,4 @@
 /// <reference path="mainApp.js" />
-mainApp.controller('loginController', function($scope) {
-    
+angular.module(appName).controller('loginController', function($scope) {
+    $scope.xs = ["tripp", "trapp", "trull"];
 });
