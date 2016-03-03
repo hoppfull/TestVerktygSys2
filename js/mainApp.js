@@ -1,6 +1,10 @@
 var mainApp = (function (pages) { // Author: Bjorn
-    var mainApp = angular.module('mainApp' ['ngRoute']);
-    
+    var mainApp = angular.module('mainApp', ['ngRoute']);
+
+    mainApp.controller('mainController', function ($scope) {
+
+    });
+
     mainApp.config(function ($routeProvider) {
         pages.forEach(function (page) {
             $routeProvider.when('/' + page, {
@@ -8,7 +12,7 @@ var mainApp = (function (pages) { // Author: Bjorn
                 controller: page + 'Controller'
             });
         });
-        $routeProvider.otherwise({redirectTo: '/login'});
+        $routeProvider.otherwise({ redirectTo: '/login' });
     });
     
     return mainApp;

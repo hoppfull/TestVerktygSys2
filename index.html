@@ -5,13 +5,19 @@
 <head>
     <meta charset="utf-8">
     <title>Bjorns version</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/master.css">
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-route.min.js"></script>
+    
+    <script src="js/mainApp.js"></script>
+    <script src="js/adminController.js"></script>
+    <script src="js/loginController.js"></script>
+    <script src="js/studentController.js"></script>
+    <script src="js/teacherController.js"></script>
 </head>
 
-<body ng-app="mainApp" ng-controller="loginController">
+<body ng-app="mainApp" ng-controller="mainController">
     <ng-view></ng-view>
 </body>
 
