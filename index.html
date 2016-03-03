@@ -1,46 +1,18 @@
-<!DOCTYPE html>
+<!doctype html>
 
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>Iteration 1</title>
-        <link rel="stylesheet" href="CSS/style.css">
-        <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
-        <link rel="stylesheet" href="CSS/unsemantic-grid-responsive-tablet.css" />
-        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
-        <script src="js/app.js"></script>
-        <script src="js/studentcontroller.js"></script>
-    </head>
-    <body ng-app="indexApp" ng-controller="MainController">
-        <div class="grid-container">
-            <nav></nav>
-            
-            <header>
-                <h1>Prov</h1>
-                <h2>Webbutveckling</h2>
-                <h3>Todays Date</h3>
-            </header>
-            
-            <main>
-                <form ng-submit="">
-                    <div class="question-box" ng-repeat="question in questions">
-                        <h1>{{question.question}}</h1>
-                        <table>
-                            <tbody ng-repeat="answers in question.answers">
-                                <tr><td><input type="{{questionType(question.type)}}" name="" value=""/>{{answers.answerText}}</td></tr>
-                               
-                            </tbody>
-                        </table>
-                        <p>Score: {{question.score}}</p>
-                    </div>
-                    <input type="submit" value="Skicka in"/>
-                </form>
-                <div>{{left()}} frågor kvar att besvara</div>
-            </main>
-            
-            <footer></footer>
-        </div>
-        
-        
-    </body>
+
+<head>
+    <meta charset="utf-8">
+    <title>Bjorns version</title>
+    <link rel="stylesheet" href="css/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-route.min.js"></script>
+</head>
+
+<body ng-app="mainApp" ng-controller="loginController">
+    <ng-view></ng-view>
+</body>
+
 </html>
