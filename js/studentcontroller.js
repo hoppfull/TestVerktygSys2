@@ -9,5 +9,7 @@
         $scope.questionType = function(type){
             return type=="SingleChoice"?"radio":"checkbox";
         }
+        
     });
 }());
+
