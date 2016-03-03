@@ -3,31 +3,51 @@
     {
         "type": "SingleChoice",
         "question": "1+2=?",
-        "answers": [{"points": 1, "RightAns": "3", "WrongAns1": "5", "WrongAns2": "12"}]             
+        "answers": [
+            {"answerText": "3", "points": 1}, 
+            {"answerText": "2", "points": -1},
+            {"answerText": "23", "points": -1}
+        ]            
     },
     {
         "type": "MultiChoice",
-        "question": "Vilka tal är mindre än 5",
-        "answers": {},
-        "points": 0        
+        "question": "Vilka tal är mindre än 10",
+        "answers": [
+            {"answerText": "3", "points": 1}, 
+            {"answerText": "45", "points": -1},
+            {"answerText": "8", "points": 1},
+            {"answerText": "23", "points": -1},
+            {"answerText": "1", "points": 1} 
+            ]      
     },
     {
         "type": "SingleChoice",
-        "question": "6+6=?",
-        "answers": {},
-        "points": 0        
+        "question": "10+2=?",
+        "answers": [
+            {"answerText": "11", "points": -1}, 
+            {"answerText": "12", "points": 1},
+            {"answerText": "16", "points": -1} 
+            ]        
     },
     {
         "type": "MultiChoice",
-        "question": "Vilka tal är jämna?",
-        "answers": {},
-        "points": 0        
+        "question": "Vilka tal är större än 100",
+        "answers": [
+            {"answerText": "101", "points": 1}, 
+            {"answerText": "45", "points": -1},
+            {"answerText": "120", "points": 1},
+            {"answerText": "67", "points": -1},
+            {"answerText": "180", "points": 1} 
+            ]        
     },
     {
         "type": "SingleChoice",
-        "question": "2+4=?",
-        "answers": {},
-        "points": 0        
+        "question": "10+10=?",
+        "answers": [
+            {"answerText": "25", "points": -1}, 
+            {"answerText": "11", "points": -1},            
+            {"answerText": "20", "points": 1}           
+            ]        
     } 
 ],
 "time": 20000
