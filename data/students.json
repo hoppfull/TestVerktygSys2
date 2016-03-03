@@ -1,3 +1,61 @@
-//namn efternamn personnummer
-
-//olika test han tagit
+{
+    "student": [
+        {
+            "namn": "Kalle",
+            "password": "1234",
+            "email": "Kalle@gmail.com",
+            "exam": [
+                {
+                    "name": "Webb",
+                    "grade": "G"
+                },
+                {
+                    "name": "Math",
+                    "grade": "IG"
+                },
+                {
+                    "name": "Swedish",
+                    "grade": "VG"
+                }
+            ]
+        },
+        {
+            "namn": "Orjan",
+            "password": "1234",
+            "email": "Orjan@gmail.com",
+            "exam": [
+                {
+                    "name": "Webb",
+                    "grade": "G"
+                },
+                {
+                    "name": "Math",
+                    "grade": "VG"
+                },
+                {
+                    "name": "Swedish",
+                    "grade": "VG"
+                }
+            ]
+        },
+        {
+            "namn": "Gud",
+            "password": "1234",
+            "email": "Gud@gmail.com",
+            "exam": [
+                {
+                    "name": "Webb",
+                    "grade": "IG"
+                },
+                {
+                    "name": "Math",
+                    "grade": "IG"
+                },
+                {
+                    "name": "Swedish",
+                    "grade": "IG"
+                }
+            ]
+        }
+    ]
+}

@@ -7,7 +7,7 @@
         });
         
         $scope.questionType = function(type){
-            return "checkbox";
+            return type=="SingleChoice" ? "radio" : "checkbox";
         }
     });
 }());
