@@ -1,0 +1,24 @@
+{
+    "admins" : [
+    {
+        "username": "Olaf Svensson",
+        "password": "123456",        
+        "tests": [
+            {"test": "math", "startdate": "2016-05-01","deadline":"2016-05-10"}, 
+            {"test": "swedish", "date": "2016-01-01","deadline":"2016-01-05"},
+            {"test": "physics", "date": "2016-02-01","deadline":"2016-02-05"}
+        ]
+                    
+    },
+    {
+        "username":"Snow White",
+        "password":"324568",
+        "tests":[
+            {"test": "math", "date": "2016-03-01","deadline":"2016-03-05"},
+            {"test": "swedish", "date": "2016-05-05","deadline":"2016-05-05"},
+            {"test": "chemical", "date": "2016-05-10","deadline":"2016-06-05"}
+        ]
+    }
+]
+}
+   
