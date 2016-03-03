@@ -1,0 +1,8 @@
+{
+    "teachers": [
+        {"name":"Kalle", "pass":"kalle"},
+        {"name":"Mimmi", "pass":"mimmi"},
+        {"name":"Janne", "pass":"janne"},
+        {"name":"Kajsa", "pass":"kajsa"}
+    ]
+}
