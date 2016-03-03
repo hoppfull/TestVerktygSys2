@@ -1,2 +1,16 @@
 
 @import url("style.css");
+@import "popup.css";
+@import "buttons.css";
+@import "adminbuttons.css";
+@import "debugging.css";
+@import "general.css";
+@import "img.css";
+@import "layout.css";
+@import "login.css";
+@import "mediaquery.css";
+@import "questionform.css";
+@import "quickmeny.css";
+@import "studentbuttons.css";
+@import "techerbuttons.css";
+@import "text.css";
