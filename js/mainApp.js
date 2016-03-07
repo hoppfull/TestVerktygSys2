@@ -4,7 +4,16 @@
     mainApp.controller('mainController', function ($scope) {
 
     });
-
+    
+    mainApp.service('loginService', function() {
+        var username;
+        var password;
+        return {
+            username: username,
+            password: password
+        };
+    });
+    
     mainApp.config(function ($routeProvider) {
         pages.forEach(function (page) {
             $routeProvider.when('/' + page, {

@@ -1,6 +1,7 @@
 <h1>Välkommen till testverktyg för grupp 2</h1>
 <form>
-    Username:<input type="text" />
-    Password:<input type="text" />
-    <input type="submit" value="Login" />
+    Username:<input type="text" ng-required="true" ng-model="username" />
+    Password:<input type="text" ng-required="true" ng-model="password" />
+    <input type="submit" value="Login" ng-click="login();" />
+    {{loginError}}
 </form>

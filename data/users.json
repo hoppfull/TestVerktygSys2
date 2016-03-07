@@ -1,0 +1,49 @@
+{
+    "users" : [
+        {
+            "username": "Kalle",
+            "password": "kalle",
+            "type" : "teacher"
+        },
+        {
+            "username": "Mimmi",
+            "password": "mimmi",
+            "type" : "teacher"
+        },
+        {
+            "username": "Janne",
+            "password": "janne",
+            "type" : "teacher"
+        },
+        {
+            "username": "Kajsa",
+            "password": "kajsa",
+            "type" : "teacher"
+        },
+        {
+            "username": "Karius",
+            "password": "karius",
+            "type" : "admin"
+        },
+        {
+            "username": "Baktus",
+            "password": "baktus",
+            "type" : "admin"
+        },
+        {
+            "username": "Knatte",
+            "password": "knatte",
+            "type" : "student"
+        },
+        {
+            "username": "Fnatte",
+            "password": "fnatte",
+            "type" : "student"
+        },
+        {
+            "username": "Tjatte",
+            "password": "tjatte",
+            "type" : "student"
+        }
+    ]
+}

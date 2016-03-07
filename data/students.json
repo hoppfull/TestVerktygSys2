@@ -1,3 +1,16 @@
-//namn efternamn personnummer
-
-//olika test han tagit
+{
+    "students": [
+        {
+            "username": "Knatte",
+            "password": "knatte"
+        },
+        {
+            "username": "Fnatte",
+            "password": "fnatte"
+        },
+        {
+            "username": "Tjatte",
+            "password": "tjatte"
+        }
+    ]
+}
