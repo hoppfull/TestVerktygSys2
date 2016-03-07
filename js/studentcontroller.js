@@ -1,5 +1,5 @@
 /// <reference path="mainApp.js" />
 angular.module(appName).controller('studentController', function($scope, $http, loginService) {
-    $scope.username = loginService.username;
+    $scope.username = loginService.user.username;
     $scope.logout = loginService.logout;
 });

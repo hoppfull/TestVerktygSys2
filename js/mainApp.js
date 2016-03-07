@@ -6,17 +6,14 @@
     });
 
     mainApp.service('loginService', function () {
-        var username = '';
-        var password = '';
+        var user = null;
         
         var logout = function () {
-            username = '';
-            password = '';
+            user = null;
             location.href = '#/';
         };
         return {
-            username: username,
-            password: password,
+            user: user,
             logout: logout
         };
     });
