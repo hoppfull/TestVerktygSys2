@@ -47,3 +47,6 @@
         }
     ]
 }
+/* Tjenare grabbar. Denna datastruktur används av 'logincontroller2.js'
+som är ett enklare alternativ till den struktur vi byggt för tillfället.
+*/

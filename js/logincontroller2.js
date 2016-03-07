@@ -14,3 +14,7 @@ angular.module(appName).controller('loginController', function ($scope, $http, l
         });
     };
 });
+/* Tjenare grabbar! Detta är ett alternativ till logincontroller.js
+Mycket enklare kod och logik. Mer utökningsbar osv... Detta kräver dock en enklare
+datastruktur för att fungera. (Se 'data/users.json')
+*/
