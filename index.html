@@ -25,6 +25,16 @@
 
 <body ng-app="mainApp" ng-controller="mainController">
     <ng-view></ng-view>
+    <!-- Author: Bjorn -->
+    <button ng-click="showPopup = true">popup</button>
+    <section ng-show="showPopup" class="popup-shade">
+        <content class="popup-window">
+            <header>
+                <h3>This is a popup</h3>
+                <button ng-click="showPopup = false">Close</button>
+            </header>
+        </content>
+    </section>
 </body>
 
 </html>
