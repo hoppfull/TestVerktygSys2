@@ -4,16 +4,23 @@
     mainApp.controller('mainController', function ($scope) {
 
     });
-    
-    mainApp.service('loginService', function() {
-        var username;
-        var password;
+
+    mainApp.service('loginService', function () {
+        var username = '';
+        var password = '';
+        
+        var logout = function () {
+            username = '';
+            password = '';
+            location.href = '#/';
+        };
         return {
             username: username,
-            password: password
+            password: password,
+            logout: logout
         };
     });
-    
+
     mainApp.config(function ($routeProvider) {
         pages.forEach(function (page) {
             $routeProvider.when('/' + page, {
