@@ -11,5 +11,15 @@
         }
         
     });
+    angular.module("indexApp").controller('timeController',function($scope, $timeout,$interval){
+        $scope.startTime = new Date().toLocaleTimeString();
+        $scope.timeLeft = 60;
+        $timeout(function(){
+            $interval(function(){
+                $scope.timeLeft -=1;
+            },1000)
+            $scope.timeLeft="You gonna die!!!"
+        },60000)
+    })
 }());
 
