@@ -1,0 +1,34 @@
+{
+    "users": [
+        {
+            "username": "Kalle",
+            "password": "kalle",
+            "type": "admin"
+        },
+        {
+            "username": "Mimmi",
+            "password": "mimmi",
+            "type": "admin"
+        },
+        {
+            "username": "Karius",
+            "password": "karius",
+            "type": "student"
+        },
+        {
+            "username": "Baktus",
+            "password": "baktus",
+            "type": "student"
+        },
+        {
+            "username": "Frankrike",
+            "password": "frankrike",
+            "type": "teacher"
+        },
+        {
+            "username": "England",
+            "password": "england",
+            "type": "teacher"
+        }
+    ]
+}

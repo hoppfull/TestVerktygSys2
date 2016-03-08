@@ -1,8 +1,8 @@
 {
     "teachers": [
-        {"name":"Kalle", "pass":"kalle"},
-        {"name":"Mimmi", "pass":"mimmi"},
-        {"name":"Janne", "pass":"janne"},
-        {"name":"Kajsa", "pass":"kajsa"}
+        {"name":"Kalle", "pass":"kalle", "type":"teacher"},
+        {"name":"Mimmi", "pass":"mimmi", "type":"teacher"},
+        {"name":"Janne", "pass":"janne", "type":"teacher"},
+        {"name":"Kajsa", "pass":"kajsa", "type":"teacher"}
     ]
 }
