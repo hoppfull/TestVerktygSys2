@@ -1,10 +1,10 @@
 (function () {
-    var mainApp = angular.module("mainApp", ['ngRoute']);
+    var indexApp = angular.module("indexApp", ['ngRoute']);
 
-    mainApp.controller('mainController', function ($scope) {
+    indexApp.controller('mainController', function ($scope) {
     });
 
-    mainApp.config(function ($routeProvider) {
+    indexApp.config(function ($routeProvider) {
         $routeProvider
             .when('/login', {
                 templateUrl: 'html/login.html',

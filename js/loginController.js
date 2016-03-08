@@ -1,5 +1,5 @@
 (function () {
-    angular.module("mainApp").controller('loginController', function ($scope) {
+    angular.module("indexApp").controller('loginController', function ($scope) {
 
     });
 })();
