@@ -5,31 +5,40 @@
     "students":[
     {
         "username": "Sune",
-        "password": "1234",        
-        "exams": [
-            {"exam": "WebApp", "grade": "G"}, 
-            {"exam": "Swedish", "grade": "VG"},
-            {"exam": "Math", "grade": "G"}
+        "password": "1234", 
+        "type": "student",        
+        "exam": [
+            {"name": "Fysik", "grade": "G", "status": "done", "availableFrom": "2016-05-12","availableUntil": "2016-05-13", "teacher": "Jerry"},
+            {"name": "Fysik", "grade": "G", "status": "done", "availableFrom": "2016-05-12","availableUntil": "2016-05-13", "teacher": "Jerry"},
+            {"name": "Fysik", "grade": "", "status": "ready", "availableFrom": "2016-05-12","availableUntil": "2016-05-13", "teacher": "Jerry"},
+            {"name": "Fysik", "grade": "", "status": "undone", "availableFrom": "2016-05-12","availableUntil": "2016-05-13", "teacher": "Jerry"}
+            
+            
         ]
+       
                     
     },
      {
         "username": "Kalle",
-        "password": "1234",        
-        "exams": [
-            {"exam": "WebApp", "grade": "VG"}, 
-            {"exam": "Swedish", "grade": "IG"},
-            {"exam": "Math", "grade": "IG"}
+        "password": "1234", 
+        "type": "student",       
+        "exam": [
+            {"name": "Fysik", "grade": "G", "status": "done", "availableFrom": "2016-05-12","availableUntil": "2016-05-13", "teacher": "Jerry"},
+            {"name": "Fysik", "grade": "G", "status": "done", "availableFrom": "2016-05-12","availableUntil": "2016-05-13", "teacher": "Jerry"},
+            {"name": "Fysik", "grade": "", "status": "ready", "availableFrom": "2016-05-12","availableUntil": "2016-05-13", "teacher": "Jerry"},
+            {"name": "Fysik", "grade": "", "status": "undone", "availableFrom": "2016-05-12","availableUntil": "2016-05-13", "teacher": "Jerry"}
         ]
                     
     },
      {
         "username": "Gud",
-        "password": "1234",        
-        "exams": [
-            {"exam": "WebApp", "grade": "IG"}, 
-            {"exam": "Swedish", "grade": "G"},
-            {"exam": "Math", "grade": "IG"}
+        "password": "1234",
+        "type": "student",         
+        "exam": [
+            {"name": "Fysik", "grade": "G", "status": "done", "availableFrom": "2016-05-12","availableUntil": "2016-05-13", "teacher": "Jerry"},
+            {"name": "Fysik", "grade": "G", "status": "done", "availableFrom": "2016-05-12","availableUntil": "2016-05-13", "teacher": "Jerry"},
+            {"name": "Fysik", "grade": "", "status": "ready", "availableFrom": "2016-05-12","availableUntil": "2016-05-13", "teacher": "Jerry"},
+            {"name": "Fysik", "grade": "", "status": "undone", "availableFrom": "2016-05-12","availableUntil": "2016-05-13", "teacher": "Jerry"}
         ]
                     
     }
