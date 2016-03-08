@@ -3,6 +3,20 @@
     
     indexApp.controller('mainController', function ($scope) {
     });
+    
+    indexApp.service('loginService', function() {
+        var user = null;
+        
+        var logout = function() {
+            user = null;
+            location.href = '';
+        };
+        
+        return {
+            user: user,
+            logout: logout
+        };
+    });
 
     indexApp.config(function ($routeProvider) { 
         $routeProvider
