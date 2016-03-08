@@ -3,9 +3,7 @@
     angular.module("indexApp").controller("studentController", function($scope, $http, $interval) {
         $http.get('../data/questioner.json').success(function(response) {
             $scope.questions = response.questions;
-<<<<<<< HEAD
 
-=======
             $scope.time = response.time;
             
             
@@ -19,7 +17,6 @@
                     }
                 },1000) 
             }
->>>>>>> refs/remotes/origin/master
         });
         
         $scope.questionType = function(type){
