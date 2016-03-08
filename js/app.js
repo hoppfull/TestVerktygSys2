@@ -19,7 +19,7 @@
                 controller: 'studentController'
             })
             .when('/teacher', {
-                templateUrl: 'html/student.html',
+                templateUrl: 'html/teacher.html',
                 controller: 'teacherController'
             })
             .otherwise({ redirectTo: '/login' });
