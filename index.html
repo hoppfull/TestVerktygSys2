@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" ng-app="loginApp">
 
 <head>
     <meta charset="UTF-8">
@@ -9,35 +9,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
     <link rel="stylesheet" href="lib/unsemantic-grid-responsive-tablet.css" />
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+    <script src="js/login.js"></script>
+
 </head>
 
-<body>
-    <div class="grid-container">
-        <nav></nav>
+<body ng-controller="mainController">
+    <nav></nav>
+    <main>
+        {{4+4}}
+        <ul>
+            <li><a href="#">Student</a></li>
+            <li><a href="#Teacher">Teacher</a></li>
+            <li><a href="#Admin">Admin</a></li>
+        </ul>
 
-        <main>
-            <button>
-                <a href="html/student.html">
-                Student    
-                </a>
-            </button>
-            <button>
-                <a href="html/teacher.html">
-                  Teacher
-                  </a>
-            </button>
-            <button>
-                <a href="html/admin.html">
-                  Admin
-                  </a>
-            </button>
 
-        </main>
+        <section>
+            <article id="main">
+                {{3+3}} {{message}}
+            </article>
+        </section>
+    </main>
 
-        <footer>
+    <footer>
 
-        </footer>
-    </div>
+    </footer>
 
 
 </body>

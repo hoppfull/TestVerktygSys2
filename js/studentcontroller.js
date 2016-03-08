@@ -3,7 +3,7 @@
     angular.module("indexApp").controller("studentController", function($scope, $http) {
         $http.get('../data/questioner.json').success(function(response) {
             $scope.questions = response.questions;
-            $scope.time = response.time;
+
         });
         
         $scope.questionType = function(type){
