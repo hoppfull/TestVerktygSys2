@@ -1,3 +1,37 @@
 //namn efternamn personnummer
 
 //olika test han tagit
+{
+    "students":[
+    {
+        "username": "Sune",
+        "password": "1234",        
+        "exams": [
+            {"exam": "WebApp", "grade": "G"}, 
+            {"exam": "Swedish", "grade": "VG"},
+            {"exam": "Math", "grade": "G"}
+        ]
+                    
+    },
+     {
+        "username": "Kalle",
+        "password": "1234",        
+        "exams": [
+            {"exam": "WebApp", "grade": "VG"}, 
+            {"exam": "Swedish", "grade": "IG"},
+            {"exam": "Math", "grade": "IG"}
+        ]
+                    
+    },
+     {
+        "username": "Gud",
+        "password": "1234",        
+        "exams": [
+            {"exam": "WebApp", "grade": "IG"}, 
+            {"exam": "Swedish", "grade": "G"},
+            {"exam": "Math", "grade": "IG"}
+        ]
+                    
+    }
+        ]
+}
