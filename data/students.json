@@ -1,17 +1,14 @@
-//namn efternamn personnummer
-
-//olika test han tagit
 {
     "students":[
     {
         "username": "Sune",
-        "password": "1234", 
+        "password": "1232224", 
         "type": "student",        
-        "exam": [
-            {"name": "Fysik", "grade": "G", "status": "done", "availableFrom": "2016-05-12","availableUntil": "2016-05-13", "teacher": "Jerry"},
-            {"name": "Fysik", "grade": "G", "status": "done", "availableFrom": "2016-05-12","availableUntil": "2016-05-13", "teacher": "Jerry"},
+        "exams": [
+            {"name": "Fysik", "grade": "G", "status": "ready", "availableFrom": "2016-05-12","availableUntil": "2016-05-13", "teacher": "Jerry"},
+            {"name": "Math", "grade": "VG", "status": "done", "availableFrom": "2016-05-12","availableUntil": "2016-05-13", "teacher": "Jerry"},
             {"name": "Fysik", "grade": "", "status": "ready", "availableFrom": "2016-05-12","availableUntil": "2016-05-13", "teacher": "Jerry"},
-            {"name": "Fysik", "grade": "", "status": "undone", "availableFrom": "2016-05-12","availableUntil": "2016-05-13", "teacher": "Jerry"}
+            {"name": "Swedish", "grade": "", "status": "started", "availableFrom": "2016-05-12","availableUntil": "2016-05-13", "teacher": "Jerry"}
             
             
         ]
@@ -22,11 +19,11 @@
         "username": "Kalle",
         "password": "1234", 
         "type": "student",       
-        "exam": [
-            {"name": "Fysik", "grade": "G", "status": "done", "availableFrom": "2016-05-12","availableUntil": "2016-05-13", "teacher": "Jerry"},
-            {"name": "Fysik", "grade": "G", "status": "done", "availableFrom": "2016-05-12","availableUntil": "2016-05-13", "teacher": "Jerry"},
-            {"name": "Fysik", "grade": "", "status": "ready", "availableFrom": "2016-05-12","availableUntil": "2016-05-13", "teacher": "Jerry"},
-            {"name": "Fysik", "grade": "", "status": "undone", "availableFrom": "2016-05-12","availableUntil": "2016-05-13", "teacher": "Jerry"}
+        "exams": [
+			{"name": "Fysik", "grade": "G", "status": "done", "availableFrom": "2016-05-12","availableUntil": "2016-05-13", "teacher": "Jerry"},
+			{"name": "Math", "grade": "VG", "status": "done", "availableFrom": "2016-05-12","availableUntil": "2016-05-13", "teacher": "Jerry"},
+			{"name": "Fysik", "grade": "", "status": "ready", "availableFrom": "2016-05-12","availableUntil": "2016-05-13", "teacher": "Jerry"},
+			{"name": "Swedish", "grade": "", "status": "undone", "availableFrom": "2016-05-12","availableUntil": "2016-05-13", "teacher": "Jerry"}
         ]
                     
     },
@@ -34,7 +31,7 @@
         "username": "Gud",
         "password": "1234",
         "type": "student",         
-        "exam": [
+        "exams": [
             {"name": "Fysik", "grade": "G", "status": "done", "availableFrom": "2016-05-12","availableUntil": "2016-05-13", "teacher": "Jerry"},
             {"name": "Fysik", "grade": "G", "status": "done", "availableFrom": "2016-05-12","availableUntil": "2016-05-13", "teacher": "Jerry"},
             {"name": "Fysik", "grade": "", "status": "ready", "availableFrom": "2016-05-12","availableUntil": "2016-05-13", "teacher": "Jerry"},
