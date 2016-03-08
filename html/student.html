@@ -11,7 +11,7 @@
         <script src="../js/app.js"></script>
         <script src="../js/studentController.js"></script>
     </head>
-    <body ng-app="indexApp" ng-controller="studentController timeController">
+    <body ng-app="indexApp" ng-controller="studentController">
         <div class="grid-container">
             <nav></nav>
             {{2+2}}
@@ -21,7 +21,7 @@
                 <h3>{{}}Todays Date</h3>
             </header>
             
-            <main>
+            <main ng-controller="timeController">
                 <form ng-submit="">
                     <div class="question-box" ng-repeat="question in questions">
                         <h1>{{question.question}}</h1>
@@ -32,11 +32,12 @@
                             </tbody>
                         </table>
                         <p>Score: {{question.score}}</p>
-                        <p>{{startTime}}</p>
-                        <p>{{timeLeft}}</p>
+                        
                     </div>
                     <input type="submit" value="Skicka in"/>
                 </form>
+                <p>{{startTime}}</p>
+                <p>{{timeLeft}}</p>
                 <div>{{}}AmoutOfQLeft() frågor kvar att besvara</div>
             </main>
             

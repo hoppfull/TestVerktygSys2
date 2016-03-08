@@ -11,15 +11,17 @@
         }
         
     });
-    angular.module("indexApp").controller('timeController',function($scope, $timeout,$interval){
+    angular.module("indexApp").controller('timeController',function($scope, $interval){
         $scope.startTime = new Date().toLocaleTimeString();
-        $scope.timeLeft = 60;
-        $timeout(function(){
-            $interval(function(){
-                $scope.timeLeft -=1;
-            },1000)
-            $scope.timeLeft="You gonna die!!!"
-        },60000)
-    })
+        $scope.timeLeft = 10;
+        
+        $interval(function(){
+            if($scope.timeLeft>0){
+                $scope.timeLeft-=1;
+            }else{
+                $scope.timeLeft="You gonna die!!!";
+            }
+        },1000);            
+    });    
 }());
 

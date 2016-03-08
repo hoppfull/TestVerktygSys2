@@ -1,21 +1,25 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" ng-app="indexApp">
 
 <head>
-    <meta charset="UTF-8">
-    <title>Iteration 1</title>
-    <link rel="stylesheet" href="CSS/style.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
-    <link rel="stylesheet" href="lib/unsemantic-grid-responsive-tablet.css" />
-    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+        <meta charset="UTF-8">
+        <title>Iteration 1</title>
+        <link rel="stylesheet" href="../CSS/style.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
+        <link rel="stylesheet" href="../lib/unsemantic-grid-responsive-tablet.css" />
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+        <script src="../js/app.js"></script>
+        <script src="../js/studentController.js"></script>
+        <script src="../js/loginController.js"></script>
 </head>
 
 <body>
     <div class="grid-container">
         <nav></nav>
 
-        <main>
+        <main ng-view>
+            <!---
             <button>
                 <a href="html/student.html">
                 Student    
@@ -31,7 +35,9 @@
                   Admin
                   </a>
             </button>
-
+            -->
+            
+            
         </main>
 
         <footer>
