@@ -6,39 +6,22 @@
     <meta charset="UTF-8">
     <title>Iteration 1</title>
     <link rel="stylesheet" href="CSS/style.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
-    <link rel="stylesheet" href="lib/unsemantic-grid-responsive-tablet.css" />
-    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />    
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">  
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-route.min.js"></script>      
+    <script src="js/app.js"></script>
+    <script src="js/loginController.js"></script>
+    <script src="js/studentController.js"></script>
+    <script src="js/adminController.js"></script>
+    <script src="js/teacherController.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>    
+    
 </head>
 
-<body>
-    <div class="grid-container">
-        <nav></nav>
-
-        <main>
-            <button>
-                <a href="html/student.html">
-                Student    
-                </a>
-            </button>
-            <button>
-                <a href="html/teacher.html">
-                  Teacher
-                  </a>
-            </button>
-            <button>
-                <a href="html/admin.html">
-                  Admin
-                  </a>
-            </button>
-
-        </main>
-
-        <footer>
-
-        </footer>
-    </div>
-
+<body ng-app="indexApp" ng-controller="mainController">
+    <ng-view></ng-view>
 
 </body>
 
