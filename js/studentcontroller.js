@@ -1,9 +1,13 @@
 /// <reference path="app.js" />
 (function() {
     angular.module("indexApp").controller("studentController", function($scope, $http, $interval) {
+		
+		/*
+		Would be great to be able to separate users and questionnaire data
+		*/
+		
 		$http.get('../data/questioner.json').success(function(response) {
             $scope.questions = response.questions;
-
             $scope.time = response.time;
             
             $scope.startTime = new Date().toLocaleTimeString();      
@@ -17,6 +21,7 @@
                 },1000) 
             }
         });
+		
 		$http.get('../data/students.json').success(function(response) {
 			$scope.user = response.students.find(item=>item.username==="Sune");
 		});
