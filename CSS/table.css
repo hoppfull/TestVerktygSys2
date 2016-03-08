@@ -1,0 +1,36 @@
+
+.table-max-height-250
+{
+    height: 250px;
+    overflow: scroll;
+}
+.table-max-height-400
+{
+    height: 400px;
+    overflow: scroll;
+}
+.table-max-height-120
+{
+    height: 120px;
+    overflow: scroll;
+}
+.table-max-height-200
+{
+   height: 200px; 
+   overflow: scroll; 
+}
+.table-max-height-300
+{   
+    height: 300px;
+    overflow: scroll;
+}
+.table-max-height-500
+{
+    height: 500px;
+    overflow: scroll;
+    
+}
+.testtest
+{
+    background: blue;
+}
