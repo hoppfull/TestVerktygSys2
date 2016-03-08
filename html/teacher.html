@@ -1,0 +1,24 @@
+<button type="button" id="logout-button">Log out</button>
+<div id="main-teacher-panel">
+    <input type="text" placeholder="Filtrera efter prov">
+    <input type="text" placeholder="Filtrera efter namn">
+    <input type="checkbox" value="checked">Only completed tests<br>
+    <div class="workspace" ng-repeat="">
+        <ul>
+            <li><a ng-href="{{provlänkar}}">exprov01</a></li>
+        </ul>
+    </div>
+    <div class="button-place">
+        <button type="button" id="redigera-button" class="button">Redigera</button>
+        <button type="button" id="ta-bort-button" class="button">Ta bort</button>
+        <button type="button" id="skicka-till-admin" class="button">Skicka till admin</button>
+    </div>
+    <button type="button" id="lägg-till-prov" class="button">Lägg till prov</button>
+    <input type="text" placeholder="Namn på prov">
+    <button class="btn btn-default dropdown-toggle" type="button" id="klass" data-toggle="dropdown">Klass
+    <span class="caret"></span></button>
+    <ul class="dropdown-menu" role="menu" aria-labelledby="menu1" ng-repeat="">
+      <li role="presentation"><a role="menuitem" ng-href="{{#}}">HTML</a></li>      
+    </ul>
+        
+    
