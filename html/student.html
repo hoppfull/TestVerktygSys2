@@ -1,45 +1,86 @@
 
 
-    <div class="container">
-        <h2>Studentsida</h2>
-        <!-- Trigger the modal with a button -->
-        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Gör provet!</button>
-        <p>FUCK YEAH SADJASDJADJ JSDJKSAJ
-            <p>
-                <!-- Modal -->
-                <div class="modal fade" id="myModal" role="dialog">
-                    <div class="modal-dialog">
+		<main>
+			<h1>Aktuella prov</h1>
+			<table>
+				<thead>
+					<tr>
+						<th>Provnamn</th>
+						<th>Tillgängligt</th>
+						<th>Slutdatum</th>
+						<th>Status</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="exam in exams">
+						<td>{{exam.name}}</td>
+						<td>{{exam.availableFrom}}</td>
+						<td>{{exam.availableUntil}}</td>
+						
+						<!--OPEN MODAL HERE-->
+						<td><button>{{exam.status}}</button></td>
+					</tr>
+				</tbody>
+			</table>
 
-                        <!-- Modal content-->
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <h4 class="modal-title">Modal Header</h4>
-                            </div>
-                            <div class="modal-body">
-                                <form ng-submit="">
-                                    <div class="question-box" ng-repeat="question in questions">
-                                        <h1>{{question.question}}</h1>
-                                        <table>
-                                            <tbody ng-repeat="answers in question.answers">
-                                                <tr>
-                                                    <td><input type="{{questionType(question.type)}}" name="" value="" />{{answers.answerText}}</td>
-                                                </tr>
+			<h1>Historik</h1>
+			<table>
+				<thead>
+					<tr>
+						<th>Provnamn</th>
+						<th>Betyg</th>
+						<th>Kurs</th>
+						<th>Slutdatum</th>
+						<th>Lärare</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="oldExam in oldExams">
+						<td>{{oldExam.name}}</td>
+						<td>{{oldExam.grade}}</td>
+						<td>{{oldExam.course}}</td>
+						<td>{{oldExam.endDate}}</td>
+						<td>{{oldExam.teacher}}</td>
+					</tr>
+				</tbody>
+			</table>
+		</main>
+			<!-- Trigger the modal with a button -->
+			<!--
+			<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Gör provet!</button>
+			<p>FUCK YEAH SADJASDJADJ JSDJKSAJ<p>
+				<!-- Modal -->
+			<!--
+				<div class="modal fade" id="myModal" role="dialog">
+					<div class="modal-dialog">
+						<!-- Modal content-->
+			<!--
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
+								<h4 class="modal-title">Modal Header</h4>
+							</div>
+							<div class="modal-body">
+								<form ng-submit="">
+									<div class="question-box" ng-repeat="question in questions">
+										<h1>{{question.question}}</h1>
+										<table>
+											<tbody ng-repeat="answers in question.answers">
+												<tr>
+													<td><input type="{{questionType(question.type)}}" name="" value="" />{{answers.answerText}}</td>
+												</tr>
+											</tbody>
+										</table>
+										<p>Score: {{question.score}}</p>
+									</div>
+									<input type="submit" value="Skicka in" />
+								</form>
+								<div>{{}}AmoutOfQLeft() frågor kvar att besvara</div>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+							</div>
+						</div>
+					</div>
+				</div>-->
 
-                                            </tbody>
-                                        </table>
-                                        <p>Score: {{question.score}}</p>
-                                    </div>
-                                    <input type="submit" value="Skicka in" />
-                                </form>
-                                <div>{{}}AmoutOfQLeft() frågor kvar att besvara</div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
-    </div>
