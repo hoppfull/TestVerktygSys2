@@ -1,4 +1,4 @@
-<section class="container" ng-controller="teacherController">
+<section class="container">
     <article class="row">
         <h1 class="col-md-8">Welcome to teacher page</h1>
         <button type="button" class="btn btn-danger logout-button col-md-4" ng-click="logout()">Log out</button>
@@ -23,7 +23,7 @@
             </thead>
         <tbody>
         <tr ng-repeat="item in p">
-            <td>{{item.username}}</td>
+            <td><input type="date">{{item.username}}</td>
             <td>{{item.examName}}</td>
             <td>{{item.availableFrom}}</td>
             <td>{{item.availableUntil}}</td>
