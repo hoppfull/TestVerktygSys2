@@ -22,19 +22,31 @@
                     dataService.addUser(teacher);
                 });
             });
+            $http.get('../data/questioner.json').success(function (response) {
+                response.quizzes.forEach(quiz => {
+                    dataService.addQuiz(quiz);
+                });
+            });
         })();
     });
 
     indexApp.service('dataService', function () {
         var users = [];
+        var quizzes = [];
 
         var addUser = function (user) {
             users.push(user);
         };
+        
+        var addQuiz = function(quiz) {
+            quizzes.push(quiz);
+        }
 
         return {
             users: users,
-            addUser: addUser
+            addUser: addUser,
+            quizzes: quizzes,
+            addQuiz: addQuiz
         };
     });
 
