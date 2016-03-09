@@ -44,45 +44,45 @@
         },
         {
             "occupation": "Teacher",
-            "firstName": "a",
-            "lastName": "b",
-            "username": "abc",
-            "password": "abc01"
+            "firstName": "Mimmi",
+            "lastName": "Pigg",
+            "username": "MimPig",
+            "password": "MimPig01"
         },
         {
             "occupation": "Teacher",
-            "firstName": "a",
-            "lastName": "b",
-            "username": "abc",
-            "password": "abc02"
+            "firstName": "Toy",
+            "lastName": "Rus",
+            "username": "ToyRus",
+            "password": "ToyRus02"
         },
         {
             "occupation": "Teacher",
-            "firstName": "a",
-            "lastName": "b",
-            "username": "abc",
-            "password": "abc03"
+            "firstName": "Ona",
+            "lastName": "Bundo",
+            "username": "OnaBun",
+            "password": "BunOna03"
         },
         {
-            "occupation": "Teacher",
-            "firstName": "a",
-            "lastName": "b",
-            "username": "abc",
-            "password": "abc04"
+            "occupation": "Student",
+            "firstName": "Fröken",
+            "lastName": "Anna",
+            "username": "FroAnn",
+            "password": "FroAnn04"
         },
         {
             "occupation": "Admin",
-            "firstName": "z",
-            "lastName": "x",
-            "username": "zxc",
-            "password": "zxc01"
+            "firstName": "Tommy",
+            "lastName": "Svensson",
+            "username": "TomSve",
+            "password": "TomSve01"
         },
         {
             "occupation": "Admin",
-            "firstName": "z",
-            "lastName": "x",
-            "username": "zxc",
-            "password": "zxc02"
+            "firstName": "Linda",
+            "lastName": "Anka",
+            "username": "LinAnk",
+            "password": "LinAnk02"
         }
     ]
 }

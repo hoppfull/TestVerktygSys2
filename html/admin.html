@@ -44,12 +44,12 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="teacher in teachers">
-                        <td>Uppfinnar</td>
-                        <td>Jocke</td>
-                        <td>Fysik</td>
+                    <tr ng-repeat="teacher in users" ng-if="teacher.occupation == 'Teacher'">
+                        <td>{{teacher.firstName}}</td>
+                        <td>{{teacher.lastName}}</td>
+                        <td>{{}}</td>
                         <td>{{teacher.username}}</td>
-                        <td>Brankelfnatt</td>
+                        <td>{{teacher.password}}</td>
                     </tr>
                 </tbody>
             </table>
@@ -65,11 +65,11 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>Joakim</td>
-                        <td>Von Anka</td>
-                        <td>JoaVon01</td>
-                        <td>F2s31asc340</td>
+                    <tr ng-repeat="admin in users" ng-if="admin.occupation == 'Admin'">
+                        <td>{{admin.firstName}}</td>
+                        <td>{{admin.lastName}}</td>
+                        <td>{{admin.username}}</td>
+                        <td>{{admin.password}}</td>
                     </tr>
                 </tbody>
             </table>
