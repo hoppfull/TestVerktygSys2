@@ -1,60 +1,108 @@
 {
-    "questions":[
-    {
-        "type": "SingleChoice",
-        "question": "1+2=?",
-        "score": 1,
-        "answers": [
-            {"answerText": " 3", "points": 1}, 
-            {"answerText": " 2", "points": -1},
-            {"answerText": "23", "points": -1}
-        ]
-                    
-    },
-    {
-        "type": "MultiChoice",
-        "question": "Vilka tal är mindre än 10",
-        "score": 3,
-        "answers": [
-            {"answerText": " 3", "points": 1}, 
-            {"answerText": "45", "points": -1},
-            {"answerText": " 8", "points": 1},
-            {"answerText": "23", "points": -1},
-            {"answerText": " 1", "points": 1} 
-            ]      
-    },
-    {
-        "type": "SingleChoice",
-        "question": "10+2=?",
-        "score": 2,
-        "answers": [
-            {"answerText": "11", "points": -1}, 
-            {"answerText": "12", "points": 1},
-            {"answerText": "16", "points": -1} 
-            ]        
-    },
-    {
-        "type": "MultiChoice",
-        "question": "Vilka tal är större än 100",
-        "score": 3,
-        "answers": [
-            {"answerText": "101", "points": 1}, 
-            {"answerText": " 45", "points": -1},
-            {"answerText": "120", "points": 1},
-            {"answerText": " 67", "points": -1},
-            {"answerText": "180", "points": 1} 
-            ]        
-    },
-    {
-        "type": "SingleChoice",
-        "question": "10+10=?",
-        "score": 1,
-        "answers": [
-            {"answerText": "25", "points": -1}, 
-            {"answerText": "11", "points": -1},            
-            {"answerText": "20", "points": 1}           
-            ]        
-    } 
-],
-"time": 10
+    "quizes": [
+        {
+            "time": 10,
+            "subject": "mathematics",
+            "questions": [
+                {
+                    "type": "SingleChoice",
+                    "question": "1+2=?",
+                    "score": 1,
+                    "answers": [
+                        {
+                            "answerText": " 3",
+                            "points": 1
+                        },
+                        {
+                            "answerText": " 2",
+                            "points": -1
+                        },
+                        {
+                            "answerText": "23",
+                            "points": -1
+                        }
+                    ]
+                },
+                {
+                    "type": "MultiChoice",
+                    "question": "Vilka tal är mindre än 10",
+                    "score": 3,
+                    "answers": [
+                        {
+                            "answerText": " 3",
+                            "points": 1
+                        },
+                        {
+                            "answerText": "45",
+                            "points": -1
+                        },
+                        {
+                            "answerText": " 8",
+                            "points": 1
+                        },
+                        {
+                            "answerText": "23",
+                            "points": -1
+                        },
+                        {
+                            "answerText": " 1",
+                            "points": 1
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "time": 20,
+            "subject": "physics",
+            "questions": [
+                {
+                    "type": "SingleChoice",
+                    "question": "Vilket av alternativen är en färg?",
+                    "score": 1,
+                    "answers": [
+                        {
+                            "answerText": "Bil?",
+                            "points": -1
+                        },
+                        {
+                            "answerText": "Grön?",
+                            "points": 1
+                        },
+                        {
+                            "answerText": "Belgiska manövern i stilla havet?",
+                            "points": -1
+                        }
+                    ]
+                },
+                {
+                    "type": "MultiChoice",
+                    "question": "Vilka uttalanden är sanna?",
+                    "score": 3,
+                    "answers": [
+                        {
+                            "answerText": "Sanning",
+                            "points": 1
+                        },
+                        {
+                            "answerText": "Falskhet",
+                            "points": -1
+                        },
+                        {
+                            "answerText": "5 < 10",
+                            "points": 1
+                        },
+                        {
+                            "answerText": "Bilar är fordon",
+                            "points": 1
+                        },
+                        {
+                            "answerText": "Hejsan",
+                            "points": -1
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
 }
