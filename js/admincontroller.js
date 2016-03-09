@@ -15,6 +15,7 @@
         $scope.sendTest = function() {
         $window.alert("Proven är skickade");
       };
+      
 $scope.removeRow = function (testIndex) {
     $scope.tests.splice(testIndex, 1);
 }
