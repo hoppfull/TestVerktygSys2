@@ -75,8 +75,49 @@
             </table>
         </article>
     </article>
-    <button> Lägg till användare</button>
-    <button class="pull-right"> Ta bort användare</button>
+    <button type="button type" class="btn btn-info btn-lg" data-toggle="modal" data-target="#AddUser"> Lägg till användare</button>
+    <article class="modal" id="AddUser" role="dialog">
+        <article class="modal-dialog">
+            <article class="modal-content">
+                <article class="modal-header">
+                    <h6>Skapa Användare</h6>
+                </article>
+                <article class="modal-body">
+                    <form>
+                        <select ng-model="_occupation">
+                            <option value="Student">Student</option>
+                            <option value="Teacher">Lärare</option>
+                            <option value="Admin">Administratör</option>
+                        </select>
+                        <br>
+                        <p>
+                            Förnamn :
+                        </p>
+                        <input ng-model="_firstName" type="text" required>
+                        <br>
+                        <p>
+                            Efternamn :
+                        </p>
+                        <input ng-model="_lastName" type="text">
+                        <br>
+                        <p>
+                            Användarnamn :
+                        </p>
+                        <input ng-model="_userName" type="text">
+                        <br>
+                        <p>
+                            Lösenord :
+                        </p>
+                        <input ng-model="_password" type="text">
+                    </form>
+                </article>
+                <article class="modal-footer">
+                    <button ng-click="addUser()" type="button" class="btn btn-default" data-dismiss="modal">Klar</button>
+                </article>
+            </article>
+        </article>
+    </article>
+    <button type="button type" class="pull-right btn btn-info btn-lg"> Ta bort användare</button>
 </section>
 <section class="col-md-6 ">
     <h2> Hej Hej {{3+3}}</h2>
@@ -142,7 +183,6 @@
                     </td>
                     <td><input type="button" class="btn btn-primary" value="Ta bort" data-ng-click="removeRow(testIndex)" /></td>
                 </tr>
-
             </tbody>
         </table>
 
