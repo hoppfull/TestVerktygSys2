@@ -1,15 +1,17 @@
-<link rel="stylesheet" href="../CSS/login.css">
+
+
+
 <div class="container">
     <div class="loginpage">
-        <form class="form" method="post" action="#">
+        <form class="form" action="/">
             <label>Username :</label>
-            <input type="text" name="dname" id="name">
-
+            <input type="text" id="username" ng-model="username">
             <label>Password :</label>
-            <input type="password" name="password" id="password">
-
-            <label class="error" id="error"></label>
-            <input type="button" name="login" id="loginid" value="Login">
+            <input type="password" id="password" ng-model="password">
+            <label class="error">{{ error }}</label>   
+                   
+            <input id="login" type="button" value="Login" ng-click="login()">
         </form>
     </div>
 </div>
+
