@@ -13,7 +13,7 @@
                     "teacher": "Jerry"
                 },
                 {
-                    "name": "Fysik",
+                    "name": "Fysik1",
                     "grade": "G",
                     "status": "done",
                     "availableFrom": "2016-05-12",
@@ -21,7 +21,7 @@
                     "teacher": "Jerry"
                 },
                 {
-                    "name": "Fysik",
+                    "name": "Fysik2",
                     "grade": "",
                     "status": "ready",
                     "availableFrom": "2016-05-12",
@@ -29,7 +29,7 @@
                     "teacher": "Jerry"
                 },
                 {
-                    "name": "Fysik",
+                    "name": "Fysik3",
                     "grade": "",
                     "status": "undone",
                     "availableFrom": "2016-05-12",

@@ -1,7 +1,10 @@
 (function() {
-    angular.module("indexApp").controller("teacherController", function($scope, $http) {
-        $http.get('../data/teacher.json').success(function(response) {
-            $scope.teachers = response.teachers;
-        });   
+    angular.module("indexApp").controller("teacherController", function($scope, dataService, $location) {
+        var students = dataService.users.filter(user => user.type === "student");
+        $scope.students = students;
+        $scope.exams = students.exam;
+        
+        
+        
     });
 }());
