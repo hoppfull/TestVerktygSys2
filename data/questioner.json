@@ -1,6 +1,8 @@
 {
     "quizzes": [
         {
+            "author": "Björn",
+            "name": "exProv01",
             "time": 10,
             "subject": "mathematics",
             "questions": [
@@ -53,6 +55,8 @@
             ]
         },
         {
+            "author": "Minh",
+            "name": "mitt prov",
             "time": 20,
             "subject": "physics",
             "questions": [

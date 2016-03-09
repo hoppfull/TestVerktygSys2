@@ -6,13 +6,18 @@
 
 <section class="container main-teacher-layout">
     <article class="row">
-        <p class="col-md-4"><input type="text" placeholder="Filtrera efter prov" class="text-box"></p>
-        <p class="col-md-4"><input type="text" placeholder="Filtrera efter namn" class="text-box"></p>
-        <p class="col-md-4"><input type="checkbox" value="checked">Only completed tests</p>
+        <p class="col-md-4">
+            <input type="text" placeholder="Filtrera efter prov" class="text-box">
+        </p>
+        <p class="col-md-4">
+            <input type="text" placeholder="Filtrera efter namn" class="text-box">
+        </p>
+        <p class="col-md-4">
+            <input type="checkbox" value="checked">Only completed tests</p>
     </article>
-    
+
     <article class="row">
-        <table class="table table-hover max-height-test-panel">
+        <!--<table class="table table-hover max-height-test-panel">
             <thead>
                 <tr>
                     <th>Student</th>
@@ -27,11 +32,33 @@
             <td>{{item.examName}}</td>
             <td>{{item.availableFrom}}</td>
             <td>{{item.availableUntil}}</td>
-        </tr>        
+        </tr>       
         </tbody>
+        </table>-->
+        <table class="table table-hover max-height-test-panel">
+            <thead>
+                <tr>
+                    <th>Quiz</th>
+                    <th>Ämne</th>
+                    <th>Tid</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="quiz in quizzes">
+                    <td>{{quiz.name}}</td>
+                    <td>{{quiz.subject}}</td>
+                    <td>{{quiz.time + ' sekunder'}}</td>
+                </tr>
+                <!--<tr ng-repeat="item in p">
+            <td>{{item.username}}</td>
+            <td>{{item.examName}}</td>
+            <td>{{item.availableFrom}}</td>
+            <td>{{item.availableUntil}}</td>
+        </tr>-->
+            </tbody>
         </table>
     </article>
-    
+
     <article class="row">
         <div class="btn-group btn-group-justified">
             <div class="btn-group">
@@ -45,19 +72,19 @@
             </div>
         </div>
     </article>
-    
+
     <article class="row">
         <button type="button" id="lägg-till-prov" class="btn btn-primary col-md-4">Lägg till prov</button>
-        <p class="col-md-4"><input type="text" placeholder="Namn på prov" class="col-md-12 text-box"></p>
+        <p class="col-md-4">
+            <input type="text" placeholder="Namn på prov" class="col-md-12 text-box">
+        </p>
         <div class="dropdown col-md-4">
             <button class="btn btn-default dropdown-toggle col-md-8" type="button" id="menu1" data-toggle="dropdown">Klass <span class="caret"></span></button>
             <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
                 <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Math</a></li>
                 <li role="presentation"><a role="menuitem" tabindex="-1" href="#">CSS</a></li>
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">JavaScript</a></li>                
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">JavaScript</a></li>
             </ul>
         </div>
     </article>
 </section>
-
-    
