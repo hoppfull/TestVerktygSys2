@@ -13,7 +13,6 @@
                         location.href = '#/' + user.type;
                     }
                 }
-
             };
         });
     });
