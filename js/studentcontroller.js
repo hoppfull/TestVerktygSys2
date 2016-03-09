@@ -34,6 +34,7 @@
 		
 		$http.get('../data/students.json').success(function (response) {
 			$scope.user = response.students.find(item => item.username === "Sune");
+			alert($scope.user.exams.length);
 		});
 
 		$scope.questionType = function (type) {
