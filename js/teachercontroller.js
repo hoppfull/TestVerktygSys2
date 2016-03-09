@@ -15,13 +15,14 @@
         if (loginService.user != null) {
             $scope.loggedIn = true;
             $scope.TeacherName = loginService.user.username;
+            $scope.quizzes = dataService.quizzes.filter(quiz => quiz.author === loginService.user.username);
+            
             $scope.logout = function () {
                 loginService.logout();
             };
         }
 
 
-        $scope.quizzes = dataService.quizzes;
         var deletebutton = function (x) {
 
         }
