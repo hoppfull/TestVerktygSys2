@@ -46,7 +46,9 @@
 									<div class="question-box" ng-repeat="question in questions">
 										<h1>{{question.questionText}}</h1>
 										<p ng-repeat="answers in question.answers">
-											<input class="answer-alternative" type="{{questionType(question.type)}}" name="{{$parent.$index}}"/>{{answers.answerText}}
+											
+											<input id="answerId{{$parent.$index}}{{$index}}" class="answer-alternative" type="{{questionType(question.type)}}" name="{{$parent.$index}}"><label  for="answerId{{$parent.$index}}{{$index}}">{{answers.answerText}}</label>
+											
 										</p>
 										<h6>Maxpoäng: {{question.score}}</h6>
 									</div>
@@ -55,7 +57,8 @@
 									don't know why don't care anymore.
 									Can at least be moved outside of form if wanted
 									-->
-									<input type="submit" value="Skicka in" form="question-form">
+									<p>{{totalPoints}}</p>
+									<input id="btn-submit" type="submit" value="Skicka in" form="question-form">
 								</form>
 								
 							</div>
@@ -93,41 +96,3 @@
 		</tbody>
 	</table>
 </main>
-<!-- Trigger the modal with a button -->
-<!--
-<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Gör provet!</button>
-<p>FUCK YEAH SADJASDJADJ JSDJKSAJ<p>
-<!-- Modal -->
-<!--
-<div class="modal fade" id="myModal" role="dialog">
-<div class="modal-dialog">
-<!-- Modal content-->
-<!--
-<div class="modal-content">
-<div class="modal-header">
-<button type="button" class="close" data-dismiss="modal">&times;</button>
-<h4 class="modal-title">Modal Header</h4>
-</div>
-<div class="modal-body">
-<form ng-submit="">
-<div class="question-box" ng-repeat="question in questions">
-<h1>{{question.question}}</h1>
-<table>
-<tbody ng-repeat="answers in question.answers">
-<tr>
-<td><input type="{{questionType(question.type)}}" name="" value="" />{{answers.answerText}}</td>
-</tr>
-</tbody>
-</table>
-<p>Score: {{question.score}}</p>
-</div>
-<input type="submit" value="Skicka in" />
-</form>
-<div>{{}}AmoutOfQLeft() frågor kvar att besvara</div>
-</div>
-<div class="modal-footer">
-<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-</div>
-</div>
-</div>
-</div>-->

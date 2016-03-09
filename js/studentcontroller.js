@@ -20,6 +20,7 @@
 		
 		$scope.startTest = function(){
 			$scope.currentDate = new Date();
+			$("#btn-submit").show(); //to make sure
 			
 			$http.get('../data/questioner.json').success(function(response) {
 				$scope.questions = response.questions;
@@ -41,6 +42,8 @@
 		$scope.submit = function() {
 			var htmlAnswers = document.getElementsByClassName("answer-alternative");
 			var jsonAnswers = [];
+			var points = 0;
+			//var totalPoints = 0;
 			
 			for(var i = 0; i < $scope.questions.length; i++){
 				for(var j = 0; j < $scope.questions[i].answers.length; j++){
@@ -48,28 +51,51 @@
 				}
 			}
 			
-			for(var i = 0; i < htmlAnswers.length; i++){
-				
+			for(var j = 0; j < htmlAnswers.length; j++){
+
+				//var allCorrect = false;
+				var currentQuestionBox = $(htmlAnswers[j]).parent().parent();
+
 				/*if added in case we want other kinds of answer alternatives*/
-				if(htmlAnswers[i].type==="radio" || htmlAnswers[i].type==="checkbox"){
-					
-					if(htmlAnswers[i].checked && (jsonAnswers[i].points > 0)){
+				if(htmlAnswers[j].type==="radio" || htmlAnswers[j].type==="checkbox"){
 
-						//alert("right");
-						htmlAnswers[i].style.color = "green";
+					if(htmlAnswers[j].checked && (jsonAnswers[j].points > 0)){
+						$(htmlAnswers[j]).parent().css("background-color", "green");
+						points += jsonAnswers[j].points;
+						//allCorrect = true;
 					}
-					else if((htmlAnswers[i].checked && (jsonAnswers[i].points < 0)) ||
-							(!htmlAnswers[i].checked && (jsonAnswers[i].points > 0))){
-
-						//alert("wront");
-						htmlAnswers[i].style.color = "red";
-						//htmlAnswers[i].css("background-color", "red");
+					else if((htmlAnswers[j].checked && (jsonAnswers[j].points < 0)) || 
+							(!htmlAnswers[j].checked && (jsonAnswers[j].points > 0))){
+						
+						if(jsonAnswers[j].points<0){
+							points += jsonAnswers[j].points;	
+						}
+						else{
+							points -= jsonAnswers[j].points;
+						}
+						
+						if(htmlAnswers[j].checked && (jsonAnswers[j].points < 0)){
+							$(htmlAnswers[j]).parent().css("background-color", "red");
+						}
+						else if(!htmlAnswers[j].checked && (jsonAnswers[j].points > 0)){
+							$(htmlAnswers[j]).parent().css("background-color", "yellow");
+						}
 					}
 				}
+				
+				//$(currentQuestionBox).css("background-color", allCorrect ? "green" : "gray");
+				
+				/*
+				$scope.$watch("currentQuestionBox", function(){
+					if(points<0)
+						points=0;
+					
+					totalPoints += points;
+				});*/
 			}
-			
-			//alert($scope.questions.length);
-			
+			$scope.totalPoints = points;
+			$("#btn-submit").hide();
+			//här hade vi sparat resultatet i en databas och tickat det här inlägget som "done"
 		};
     });    
 }());
