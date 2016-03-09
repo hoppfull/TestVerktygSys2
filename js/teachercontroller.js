@@ -6,15 +6,15 @@
             $scope.TeacherName = loginService.user.username;
             updateQuizList();
 
-            $scope.myFunc = function() {
-                console.log(dataService.removeQuiz('hej', 'Minh'));
-                updateQuizList();
-            };
-
             $scope.logout = function() {
                 loginService.logout();
             };
-
+            
+            $scope.removeQuiz = function(name, author) {
+                dataService.removeQuiz(name, author);
+                updateQuizList();
+            };
+            
             $scope.newQuizSubmit = function() {
                 var newQuiz = {
                     author: $scope.TeacherName,

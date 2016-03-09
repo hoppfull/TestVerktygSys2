@@ -19,7 +19,7 @@
             $http.get('../data/teachers.json').success(function(response) {
                 response.teachers.forEach(teacher => {
                     teacher.type = "teacher";
-                    console.log(dataService.addUser(teacher));
+                    dataService.addUser(teacher);
                 });
             });
             $http.get('../data/questioner.json').success(function(response) {
