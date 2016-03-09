@@ -55,7 +55,7 @@
 
         var logout = function () {
             user = null;
-            location.href = '';
+            location.href = '#/';
         };
 
         return {
