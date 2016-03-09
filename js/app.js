@@ -40,7 +40,7 @@
         
         var addQuiz = function(quiz) {
             quizzes.push(quiz);
-        }
+        };
 
         return {
             users: users,
