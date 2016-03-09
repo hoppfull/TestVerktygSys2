@@ -11,6 +11,10 @@
             $scope.tests = response.TEST;
 
         })
+        $http.get('../data/questioner.json').success(function (response) {
+			$scope.questions = response.questions;
+			
+		});
 
         $scope.sendTest = function() {
             $window.alert("Proven är skickade");
