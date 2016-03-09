@@ -1,5 +1,5 @@
-(function() {
-    angular.module("indexApp").controller("teacherController", function($scope, dataService, $location) {
+(function () {
+    angular.module("indexApp").controller("teacherController", function ($scope, dataService, loginService) {
         /*var students = dataService.users.filter(user => user.type === "student");
 
         var x = [];
@@ -11,9 +11,18 @@
         })));
 
         $scope.p = x; */
-        
+        $scope.loggedIn = false;
+        if (loginService.user != null) {
+            $scope.loggedIn = true;
+            $scope.TeacherName = loginService.user.username;
+            $scope.logout = function () {
+                loginService.logout();
+            };
+        }
+
+
         $scope.quizzes = dataService.quizzes;
-        var deletebutton = function(x) {
+        var deletebutton = function (x) {
 
         }
     });
