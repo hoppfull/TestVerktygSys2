@@ -84,7 +84,7 @@
                 </article>
                 <article class="modal-body">
                     <form>
-                        <select>
+                        <select ng-model="_occupation">
                             <option value="Student">Student</option>
                             <option value="Teacher">Lärare</option>
                             <option value="Admin">Administratör</option>
@@ -93,26 +93,26 @@
                         <p>
                             Förnamn :
                         </p>
-                        <input name="firstName" value="test" type="text">
+                        <input ng-model="_firstName" type="text" required>
                         <br>
                         <p>
                             Efternamn :
                         </p>
-                        <input name="lastName" type="text">
+                        <input ng-model="_lastName" type="text">
                         <br>
                         <p>
                             Användarnamn :
                         </p>
-                        <input name="username" type="text">
+                        <input ng-model="_userName" type="text">
                         <br>
                         <p>
                             Lösenord :
                         </p>
-                        <input name="password" type="text">
+                        <input ng-model="_password" type="text">
                     </form>
                 </article>
-                <article class="modal-footer">  
-                    <button type="submit" class="btn btn-default" data-dismiss="modal">Klar</button>
+                <article class="modal-footer">
+                    <button ng-click="addUser()" type="button" class="btn btn-default" data-dismiss="modal">Klar</button>
                 </article>
             </article>
         </article>
