@@ -52,19 +52,13 @@
             </div>
         </article>
 
-        <article class="row">
-            <button type="button" id="lägg-till-prov" class="btn btn-primary col-md-4">Lägg till prov</button>
-            <p class="col-md-4">
-                <input type="text" placeholder="Namn på prov" class="col-md-12 text-box">
-            </p>
-            <div class="dropdown col-md-4">
-                <button class="btn btn-default dropdown-toggle col-md-8" type="button" id="menu1" data-toggle="dropdown">Klass <span class="caret"></span></button>
-                <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Math</a></li>
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">CSS</a></li>
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">JavaScript</a></li>
-                </ul>
-            </div>
+        <article>
+            <form ng-submit="newQuizSubmit();" class="row">
+                <input class="col-md-3 col-xs-3" type="text" ng-required="true" ng-model="newQuizName" placeholder="Namn">
+                <input class="col-md-3 col-xs-3" type="text" ng-required="true" ng-model="newQuizSubject" placeholder="Ämne">
+                <input class="col-md-3 col-xs-3" type="number" ng-required="true" ng-model="newQuizTime" placeholder="Tid">
+                <input class="col-md-3 col-xs-3" type="submit" value="Lägg till nytt prov">
+            </form>
         </article>
     </section>
 </div>
