@@ -8,10 +8,17 @@
         });   
         $http.get('../data/users.json').success(function(response) {
             $scope.users = response.users;
+            $scope.tests = response.TEST;
+            
         })
         
         $scope.sendTest = function() {
         $window.alert("Proven är skickade");
       };
+$scope.removeRow = function (testIndex) {
+    $scope.tests.splice(testIndex, 1);
+}
+
+
     });
 }());

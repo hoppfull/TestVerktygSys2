@@ -92,27 +92,29 @@
                 </tr>
             </thead>
             <tbody class="">
-                <tr>
+                <tr ng-repeat="(testIndex, tests) in tests">
                     <td>
-                        exprov01
+                        {{tests.examName}}
                     </td>
+
                     <td>
                         <select>
                             <option value="">2015-01-01</option>
                         </select>
-
                     </td>
+
                     <td>
                         <select>
-                            <option value="">2016-01-01</option>
+                            <option value="">2015-01-01</option>
                         </select>
                     </td>
+
                     <td>
-                        9B
+                        {{tests.class}}
                     </td>
                     <td>
-
                         <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Skicka</button>
+
                         <!-- Modal -->
                         <div class="modal fade" id="myModal" role="dialog">
                             <div class="modal-dialog">
@@ -126,92 +128,25 @@
                                         <form ng-submit="">
                                             <div class="" ng-repeat="student in users" ng-if="student.occupation == 'Student'">
                                                 <form>
-                                                    <input type="checkbox"> 
-                                                    {{student.firstName}} 
-                                                    {{student.lastName}} 
+                                                    <input type="checkbox"> {{student.firstName}} {{student.lastName}}
                                                 </form>
                                             </div>
-                                            
                                             <input type="button" value="Skicka ut prov" ng-click="sendTest(send);" />
                                         </form>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </td>
+                    <td><input type="button" class="btn btn-primary" value="Ta bort" data-ng-click="removeRow(testIndex)" /></td>
                 </tr>
-                <tr>
-                    <td>
-                        exprov02
-                    </td>
-                    <td>
-                        <select>
-                            <option value="">2015-01-01</option>
-                        </select>
 
-                    </td>
-                    <td>
-                        <select>
-                            <option value="">2016-01-01</option>
-                        </select>
-                    </td>
-                    <td>
-                        9A
-                    </td>
-                    <td>
-                        <button type="">Skicka</button>
-                    </td>
-                </tr>
-                </tr>
-                <tr>
-                    <td>
-                        exprov04
-                    </td>
-                    <td>
-                        <select>
-                            <option value="">2015-01-01</option>
-                        </select>
-
-                    </td>
-                    <td>
-                        <select>
-                            <option value="">2016-01-01</option>
-                        </select>
-                    </td>
-                    <td>
-                        9D
-                    </td>
-                    <td>
-                        <button type="">Skicka</button>
-                    </td>
-                </tr>
-                </tr>
-                <tr>
-                    <td>
-                        exprov05
-                    </td>
-                    <td>
-                        <select>
-                            <option value="">2015-01-01</option>
-                        </select>
-
-                    </td>
-                    <td>
-                        <select>
-                            <option value="">2016-01-01</option>
-                        </select>
-                    </td>
-                    <td>
-                        9C
-                    </td>
-                    <td>
-                        <button type="">Skicka</button>
-                    </td>
-                </tr>
             </tbody>
         </table>
+
     </article>
 </section>

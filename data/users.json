@@ -84,5 +84,24 @@
             "username": "LinAnk",
             "password": "LinAnk02"
         }
+    ],
+    
+    "TEST": [
+        {
+            "examName": "Webb",
+            "class": "7B"
+        },
+        {
+            "examName": "Stuff",
+            "class": "4B"
+        },
+        {
+            "examName": "Fysik",
+            "class": "9B"
+        },
+        {
+            "examName": "Swedish",
+            "class": "8B"
+        }
     ]
 }
