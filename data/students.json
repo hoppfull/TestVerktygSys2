@@ -5,7 +5,7 @@
     "students":[
     {
         "username": "Sune",
-        "password": "1234", 
+        "password": "Sune", 
         "type": "student",        
         "exam": [
             {"name": "Fysik", "grade": "G", "status": "done", "availableFrom": "2016-05-12","availableUntil": "2016-05-13", "teacher": "Jerry"},
@@ -20,7 +20,7 @@
     },
      {
         "username": "Kalle",
-        "password": "1234", 
+        "password": "Kalle", 
         "type": "student",       
         "exam": [
             {"name": "Fysik", "grade": "G", "status": "done", "availableFrom": "2016-05-12","availableUntil": "2016-05-13", "teacher": "Jerry"},
@@ -32,7 +32,7 @@
     },
      {
         "username": "Gud",
-        "password": "1234",
+        "password": "Gud",
         "type": "student",         
         "exam": [
             {"name": "Fysik", "grade": "G", "status": "done", "availableFrom": "2016-05-12","availableUntil": "2016-05-13", "teacher": "Jerry"},
