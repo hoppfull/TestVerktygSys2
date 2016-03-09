@@ -12,34 +12,14 @@
     <section class="container main-teacher-layout">
         <article class="row">
             <p class="col-md-4">
-                <input type="text" placeholder="Filtrera efter prov" class="text-box">
+                <input type="text" placeholder="Filtrera efter quiz" class="text-box" ng-model="searchQuiz">
             </p>
             <p class="col-md-4">
-                <input type="text" placeholder="Filtrera efter namn" class="text-box">
-            </p>
-            <p class="col-md-4">
-                <input type="checkbox" value="checked">Only completed tests</p>
+                <input type="text" placeholder="Filtrera efter ämne" class="text-box" ng-model="searchSubject">
+            </p>            
         </article>
 
         <article class="row">
-            <!--<table class="table table-hover max-height-test-panel">
-            <thead>
-                <tr>
-                    <th>Student</th>
-                    <th>Prov</th>
-                    <th>Från</th>
-                    <th>Till</th>
-                </tr>
-            </thead>
-        <tbody>
-        <tr ng-repeat="item in p">
-            <td>{{item.username}}</td>
-            <td>{{item.examName}}</td>
-            <td>{{item.availableFrom}}</td>
-            <td>{{item.availableUntil}}</td>
-        </tr>       
-        </tbody>
-        </table>-->
             <table class="table table-hover max-height-test-panel">
                 <thead>
                     <tr>
@@ -49,17 +29,11 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="quiz in quizzes">
+                    <tr ng-repeat="quiz in quizzes | filter: {name: searchQuiz} | filter: {subject: searchSubject}">
                         <td>{{quiz.name}}</td>
                         <td>{{quiz.subject}}</td>
                         <td>{{quiz.time + ' sekunder'}}</td>
                     </tr>
-                    <!--<tr ng-repeat="item in p">
-            <td>{{item.username}}</td>
-            <td>{{item.examName}}</td>
-            <td>{{item.availableFrom}}</td>
-            <td>{{item.availableUntil}}</td>
-        </tr>-->
                 </tbody>
             </table>
         </article>
