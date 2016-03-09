@@ -9,6 +9,11 @@
         
         $http.get('../data/admins.json').success(function(response) {
             $scope.admins = response.admins;
+           
         });   
+        $http.get('../data/users.json').success(function(response) {
+            $scope.users = response.users;
+        })
+        
     });
 }());

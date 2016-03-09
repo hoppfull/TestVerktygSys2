@@ -1,0 +1,88 @@
+{
+    "users": [
+        {
+            "occupation": "Student",
+            "firstName": "Kalle",
+            "lastName": "Anka",
+            "username": "KalAnk",
+            "password": "KalAnk01"
+        },
+        {
+            "occupation": "Student",
+            "firstName": "Mark",
+            "lastName": "Fläskberg",
+            "username": "MarFla",
+            "password": "MarFla01"
+        },
+        {
+            "occupation": "Student",
+            "firstName": "Musse",
+            "lastName": "Pigg",
+            "username": "MusPig",
+            "password": "MusPig01"
+        },
+        {
+            "occupation": "Student",
+            "firstName": "Lille",
+            "lastName": "Skutt",
+            "username": "LilSku",
+            "password": "LilSku01"
+        },
+        {
+            "occupation": "Teacher",
+            "firstName": "Joakim",
+            "lastName": "Von Anka",
+            "username": "JoaVon",
+            "password": "JoaVon01"
+        },
+        {
+            "occupation": "Student",
+            "firstName": "Spider",
+            "lastName": "Man",
+            "username": "SpiMan",
+            "password": "SpiMan01"
+        },
+        {
+            "occupation": "Teacher",
+            "firstName": "a",
+            "lastName": "b",
+            "username": "abc",
+            "password": "abc01"
+        },
+        {
+            "occupation": "Teacher",
+            "firstName": "a",
+            "lastName": "b",
+            "username": "abc",
+            "password": "abc02"
+        },
+        {
+            "occupation": "Teacher",
+            "firstName": "a",
+            "lastName": "b",
+            "username": "abc",
+            "password": "abc03"
+        },
+        {
+            "occupation": "Teacher",
+            "firstName": "a",
+            "lastName": "b",
+            "username": "abc",
+            "password": "abc04"
+        },
+        {
+            "occupation": "Admin",
+            "firstName": "z",
+            "lastName": "x",
+            "username": "zxc",
+            "password": "zxc01"
+        },
+        {
+            "occupation": "Admin",
+            "firstName": "z",
+            "lastName": "x",
+            "username": "zxc",
+            "password": "zxc02"
+        }
+    ]
+}

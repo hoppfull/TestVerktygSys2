@@ -66,6 +66,18 @@
                 templateUrl: 'html/student.html',
                 controller: 'studentController'
             })
+            .when('/studentTab',{
+                templateUrl: 'html/admin.html',
+                controller: 'adminController'
+            })
+            .when('/teacherTab',{
+                templateUrl: 'html/admin.html',
+                controller: 'adminController'
+            })
+             .when('/adminTab',{
+                templateUrl: 'html/admin.html',
+                controller: 'adminController'
+            })
             .when('/teacher', {
                 templateUrl: 'html/teacher.html',
                 controller: 'teacherController'

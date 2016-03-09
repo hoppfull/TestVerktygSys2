@@ -21,12 +21,12 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>Kalle</td>
-                        <td>Anka</td>
-                        <td>9B</td>
-                        <td>KalAnk01</td>
-                        <td>Kajsa_Anka</td>
+                    <tr ng-repeat="student in users" ng-if="student.occupation == 'Student'">
+                        <td>{{student.firstName}}</td>
+                        <td>{{student.lastName}}</td>
+                        <td>{{}}</td>
+                        <td>{{student.username}}</td>
+                        <td>{{student.password}}</td>
                     </tr>
                 </tbody>
             </table>
@@ -44,11 +44,11 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
+                    <tr ng-repeat="teacher in teachers">
                         <td>Uppfinnar</td>
                         <td>Jocke</td>
                         <td>Fysik</td>
-                        <td>UppJoc01</td>
+                        <td>{{teacher.username}}</td>
                         <td>Brankelfnatt</td>
                     </tr>
                 </tbody>
