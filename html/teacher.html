@@ -22,13 +22,11 @@
                 </tr>
             </thead>
         <tbody>
-        <tr ng-repeat="item in students">
+        <tr ng-repeat="item in p">
             <td>{{item.username}}</td>
-            <div ng-repeat="x in exams">
-            <td>{{x.name}}</td>
-            <td>{{x.availableFrom}}</td>
-            <td>{{x.availableUntil}}</td>
-            </div>
+            <td>{{item.examName}}</td>
+            <td>{{item.availableFrom}}</td>
+            <td>{{item.availableUntil}}</td>
         </tr>        
         </tbody>
         </table>
