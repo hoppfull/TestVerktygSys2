@@ -75,8 +75,49 @@
             </table>
         </article>
     </article>
-    <button> Lägg till användare</button>
-    <button class="pull-right"> Ta bort användare</button>
+    <button type="button type" class="btn btn-info btn-lg" data-toggle="modal" data-target="#AddUser"> Lägg till användare</button>
+    <article class="modal" id="AddUser" role="dialog">
+        <article class="modal-dialog">
+            <article class="modal-content">
+                <article class="modal-header">
+                    <h6>Skapa Användare</h6>
+                </article>
+                <article class="modal-body">
+                    <form>
+                        <select>
+                            <option value="Student">Student</option>
+                            <option value="Teacher">Lärare</option>
+                            <option value="Admin">Administratör</option>
+                        </select>
+                        <br>
+                        <p>
+                            Förnamn :
+                        </p>
+                        <input name="firstName" value="test" type="text">
+                        <br>
+                        <p>
+                            Efternamn :
+                        </p>
+                        <input name="lastName" type="text">
+                        <br>
+                        <p>
+                            Användarnamn :
+                        </p>
+                        <input name="username" type="text">
+                        <br>
+                        <p>
+                            Lösenord :
+                        </p>
+                        <input name="password" type="text">
+                    </form>
+                </article>
+                <article class="modal-footer">  
+                    <button type="submit" class="btn btn-default" data-dismiss="modal">Klar</button>
+                </article>
+            </article>
+        </article>
+    </article>
+    <button type="button type" class="pull-right btn btn-info btn-lg"> Ta bort användare</button>
 </section>
 <section class="col-md-6 ">
     <h2> Hej Hej {{3+3}}</h2>
@@ -126,12 +167,10 @@
                                         <form ng-submit="">
                                             <div class="" ng-repeat="student in users" ng-if="student.occupation == 'Student'">
                                                 <form>
-                                                    <input type="checkbox"> 
-                                                    {{student.firstName}} 
-                                                    {{student.lastName}} 
+                                                    <input type="checkbox"> {{student.firstName}} {{student.lastName}}
                                                 </form>
                                             </div>
-                                            
+
                                             <input type="button" value="Skicka ut prov" ng-click="sendTest(send);" />
                                         </form>
                                     </div>
@@ -141,74 +180,6 @@
                                 </div>
                             </div>
                         </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        exprov02
-                    </td>
-                    <td>
-                        <select>
-                            <option value="">2015-01-01</option>
-                        </select>
-
-                    </td>
-                    <td>
-                        <select>
-                            <option value="">2016-01-01</option>
-                        </select>
-                    </td>
-                    <td>
-                        9A
-                    </td>
-                    <td>
-                        <button type="">Skicka</button>
-                    </td>
-                </tr>
-                </tr>
-                <tr>
-                    <td>
-                        exprov04
-                    </td>
-                    <td>
-                        <select>
-                            <option value="">2015-01-01</option>
-                        </select>
-
-                    </td>
-                    <td>
-                        <select>
-                            <option value="">2016-01-01</option>
-                        </select>
-                    </td>
-                    <td>
-                        9D
-                    </td>
-                    <td>
-                        <button type="">Skicka</button>
-                    </td>
-                </tr>
-                </tr>
-                <tr>
-                    <td>
-                        exprov05
-                    </td>
-                    <td>
-                        <select>
-                            <option value="">2015-01-01</option>
-                        </select>
-
-                    </td>
-                    <td>
-                        <select>
-                            <option value="">2016-01-01</option>
-                        </select>
-                    </td>
-                    <td>
-                        9C
-                    </td>
-                    <td>
-                        <button type="">Skicka</button>
                     </td>
                 </tr>
             </tbody>
