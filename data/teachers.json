@@ -1,8 +1,20 @@
 {
     "teachers": [
-        {"name":"Kalle", "pass":"kalle"},
-        {"name":"Mimmi", "pass":"mimmi"},
-        {"name":"Janne", "pass":"janne"},
-        {"name":"Kajsa", "pass":"kajsa"}
+        {
+            "username": "Kalle",
+            "password": "kalle"
+        },
+        {
+            "username": "Mimmi",
+            "password": "mimmi"
+        },
+        {
+            "username": "Janne",
+            "password": "janne"
+        },
+        {
+            "username": "Kajsa",
+            "password": "kajsa"
+        }
     ]
 }

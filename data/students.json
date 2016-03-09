@@ -1,46 +1,119 @@
-//namn efternamn personnummer
-
-//olika test han tagit
 {
-    "students":[
-    {
-        "username": "Sune",
-        "password": "Sune", 
-        "type": "student",        
-        "exam": [
-            {"name": "Fysik", "grade": "G", "status": "done", "availableFrom": "2016-05-12","availableUntil": "2016-05-13", "teacher": "Jerry"},
-            {"name": "Fysik", "grade": "G", "status": "done", "availableFrom": "2016-05-12","availableUntil": "2016-05-13", "teacher": "Jerry"},
-            {"name": "Fysik", "grade": "", "status": "ready", "availableFrom": "2016-05-12","availableUntil": "2016-05-13", "teacher": "Jerry"},
-            {"name": "Fysik", "grade": "", "status": "undone", "availableFrom": "2016-05-12","availableUntil": "2016-05-13", "teacher": "Jerry"}
-            
-            
-        ]
-       
-                    
-    },
-     {
-        "username": "Kalle",
-        "password": "Kalle", 
-        "type": "student",       
-        "exam": [
-            {"name": "Fysik", "grade": "G", "status": "done", "availableFrom": "2016-05-12","availableUntil": "2016-05-13", "teacher": "Jerry"},
-            {"name": "Fysik", "grade": "G", "status": "done", "availableFrom": "2016-05-12","availableUntil": "2016-05-13", "teacher": "Jerry"},
-            {"name": "Fysik", "grade": "", "status": "ready", "availableFrom": "2016-05-12","availableUntil": "2016-05-13", "teacher": "Jerry"},
-            {"name": "Fysik", "grade": "", "status": "undone", "availableFrom": "2016-05-12","availableUntil": "2016-05-13", "teacher": "Jerry"}
-        ]
-                    
-    },
-     {
-        "username": "Gud",
-        "password": "Gud",
-        "type": "student",         
-        "exam": [
-            {"name": "Fysik", "grade": "G", "status": "done", "availableFrom": "2016-05-12","availableUntil": "2016-05-13", "teacher": "Jerry"},
-            {"name": "Fysik", "grade": "G", "status": "done", "availableFrom": "2016-05-12","availableUntil": "2016-05-13", "teacher": "Jerry"},
-            {"name": "Fysik", "grade": "", "status": "ready", "availableFrom": "2016-05-12","availableUntil": "2016-05-13", "teacher": "Jerry"},
-            {"name": "Fysik", "grade": "", "status": "undone", "availableFrom": "2016-05-12","availableUntil": "2016-05-13", "teacher": "Jerry"}
-        ]
-                    
-    }
-        ]
+    "students": [
+        {
+            "username": "Sune",
+            "password": "1234",
+            "exam": [
+                {
+                    "name": "Fysik",
+                    "grade": "G",
+                    "status": "done",
+                    "availableFrom": "2016-05-12",
+                    "availableUntil": "2016-05-13",
+                    "teacher": "Jerry"
+                },
+                {
+                    "name": "Fysik",
+                    "grade": "G",
+                    "status": "done",
+                    "availableFrom": "2016-05-12",
+                    "availableUntil": "2016-05-13",
+                    "teacher": "Jerry"
+                },
+                {
+                    "name": "Fysik",
+                    "grade": "",
+                    "status": "ready",
+                    "availableFrom": "2016-05-12",
+                    "availableUntil": "2016-05-13",
+                    "teacher": "Jerry"
+                },
+                {
+                    "name": "Fysik",
+                    "grade": "",
+                    "status": "undone",
+                    "availableFrom": "2016-05-12",
+                    "availableUntil": "2016-05-13",
+                    "teacher": "Jerry"
+                }
+            ]
+        },
+        {
+            "username": "Kalle",
+            "password": "1234",
+            "exam": [
+                {
+                    "name": "Fysik",
+                    "grade": "G",
+                    "status": "done",
+                    "availableFrom": "2016-05-12",
+                    "availableUntil": "2016-05-13",
+                    "teacher": "Jerry"
+                },
+                {
+                    "name": "Fysik",
+                    "grade": "G",
+                    "status": "done",
+                    "availableFrom": "2016-05-12",
+                    "availableUntil": "2016-05-13",
+                    "teacher": "Jerry"
+                },
+                {
+                    "name": "Fysik",
+                    "grade": "",
+                    "status": "ready",
+                    "availableFrom": "2016-05-12",
+                    "availableUntil": "2016-05-13",
+                    "teacher": "Jerry"
+                },
+                {
+                    "name": "Fysik",
+                    "grade": "",
+                    "status": "undone",
+                    "availableFrom": "2016-05-12",
+                    "availableUntil": "2016-05-13",
+                    "teacher": "Jerry"
+                }
+            ]
+        },
+        {
+            "username": "Gud",
+            "password": "1234",
+            "exam": [
+                {
+                    "name": "Fysik",
+                    "grade": "G",
+                    "status": "done",
+                    "availableFrom": "2016-05-12",
+                    "availableUntil": "2016-05-13",
+                    "teacher": "Jerry"
+                },
+                {
+                    "name": "Fysik",
+                    "grade": "G",
+                    "status": "done",
+                    "availableFrom": "2016-05-12",
+                    "availableUntil": "2016-05-13",
+                    "teacher": "Jerry"
+                },
+                {
+                    "name": "Fysik",
+                    "grade": "",
+                    "status": "ready",
+                    "availableFrom": "2016-05-12",
+                    "availableUntil": "2016-05-13",
+                    "teacher": "Jerry"
+                },
+                {
+                    "name": "Fysik",
+                    "grade": "",
+                    "status": "undone",
+                    "availableFrom": "2016-05-12",
+                    "availableUntil": "2016-05-13",
+                    "teacher": "Jerry"
+                }
+            ]
+        }
+    ]
+
 }
