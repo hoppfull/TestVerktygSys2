@@ -1,5 +1,5 @@
 (function() {
-    angular.module("indexApp").controller("adminController", function($scope, $http, dataService) {
+    angular.module("indexApp").controller("adminController", function($scope, $http, dataService, $window) {
         /* Example: using dataService: */
         // get all teachers:
         var teachers = dataService.users.filter(user => user.type === "teacher");
@@ -15,5 +15,8 @@
             $scope.users = response.users;
         })
         
+        $scope.sendTest = function() {
+        $window.alert("Proven är skickade");
+      };
     });
 }());
