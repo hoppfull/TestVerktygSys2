@@ -71,9 +71,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                        <tr ng-repeat="admin in users | filter: {lastName: searchName }" ng-if="admin.occupation == 'Admin'" ng-click="removeRow($index)">
-                            >>>>>>> 2a1e4ed22b9a77a8fc471b68a149326960de5cde
-                            <td>{{admin.firstName}}</td>
+                        <tr ng-repeat="admin in users | filter: {lastName: searchName }" ng-if="admin.occupation == 'Admin'" ng-click="removeRow($index)">                            <td>{{admin.firstName}}</td>
                             <td>{{admin.lastName}}</td>
                             <td>{{admin.username}}</td>
                             <td>{{admin.password}}</td>
