@@ -1,5 +1,5 @@
 (function () {
-    var indexApp = angular.module("indexApp", ['ngRoute']);
+    var indexApp = angular.module("indexApp", ['ngRoute'], ['ui.bootstrap']);
 
     indexApp.controller('mainController', function ($scope, $http, dataService) {
         (function () { // Author: bjorn
@@ -61,6 +61,7 @@
             .when('/admin', {
                 templateUrl: 'html/admin.html',
                 controller: 'adminController'
+                
             })
             .when('/student', {
                 templateUrl: 'html/student.html',

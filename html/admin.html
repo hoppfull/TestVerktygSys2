@@ -1,19 +1,19 @@
 <h1>Välkommen : {{name}} </h1>
 <section class="col-md-6">
-   
+
     <h2>Användare</h2>
-     <article class="row">
-            <p class="col-md-4">
-                <input type="text" placeholder="Filtrera efter efternamn" class="text-box" ng-model="searchName">
-            </p>                     
-        </article>
+    <article class="row">
+        <p class="col-md-4">
+            <input type="text" placeholder="Filtrera efter efternamn" class="text-box" ng-model="searchName">
+        </p>
+    </article>
 
     <ul class="nav nav-tabs">
         <li class="active"><a data-toggle="tab" href="#studentTab">Student</a></li>
         <li><a data-toggle="tab" href="#teacherTab">Lärare</a></li>
         <li><a data-toggle="tab" href="#adminTab">Administratör</a></li>
     </ul>
-    
+
     <article class="tab-content table-max-height-400">
 
         <article id="studentTab" class="tab-pane fade in active ">
@@ -139,16 +139,25 @@
                     <th>Skicka ut</th>
                 </tr>
             </thead>
-            <tbody class="">
+            <tbody >
                 <tr ng-repeat="(testIndex, tests) in tests">
                     <td>
                         {{tests.examName}}
+
                     </td>
 
                     <td>
-                        <select>
-                            <option value="">2015-01-01</option>
-                        </select>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p class="input-group">
+                                    <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="dt" is-open="opened" min="minDate" max="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+                                    <span class="input-group-btn">
+                <button class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+              </span>
+                                </p>
+                            </div>
+                        </div>
+
                     </td>
                     <td>
                         <select>
@@ -160,54 +169,54 @@
                         {{tests.class}}
                     </td>
                     <td>
-					<!--TRIGGER MODAL HERE-->
-					<button ng-click="startTest()" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#examModal">
+                        <!--TRIGGER MODAL HERE-->
+                        <button ng-click="startTest()" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#examModal">
 					Provet
 					</button>
-				</td>
+                    </td>
 
-				<!--MODAL-->
-				<!--role är det som gör att ett fönster öppnas upp, säger vad elementet ska behandlas som-->
-				<div id="examModal" class="modal fade" role="dialog">
-					<div class="modal-dialog">
+                    <!--MODAL-->
+                    <!--role är det som gör att ett fönster öppnas upp, säger vad elementet ska behandlas som-->
+                    <div id="examModal" class="modal fade" role="dialog">
+                        <div class="modal-dialog">
 
-						<!--MODAL CONTENT-->
-						<div class="modal-content">
-						
-							<!--HEADER-->
-							<div class="modal-header">
-								<button type="button" class="close" data-dismiss="modal">&times;</button>
-								<!--TODO. Hämta namn på prov. Bekräftar att det är rätt öppnat-->
-								<h1 class="modal-title">Prov</h1>
-								
-							</div>
-							
-							<!--BODY-->
-							<div class="modal-body">
-								<!--QUESTION FORM-->
-								<form id="question-form" ng-submit="submit()">
-									<div class="question-box" ng-repeat="question in questions">
-										<h1>{{question.questionText}}</h1>
-										<p ng-repeat="answers in question.answers">
-											
-											<input id="answerId{{$parent.$index}}{{$index}}" class="answer-alternative" type="{{questionType(question.type)}}" name="{{$parent.$index}}"><label  for="answerId{{$parent.$index}}{{$index}}">{{answers.answerText}}</label>
-											
-										</p>
-										<h6>Maxpoäng: {{question.score}}</h6>
-									</div>
-									
-									
-								</form>
-								
-							</div>
-							
-							<!--FOOTER-->
-							<div class="modal-footer">
-								<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-							</div>
-						</div>
-					</div>
-				</div>
+                            <!--MODAL CONTENT-->
+                            <div class="modal-content">
+
+                                <!--HEADER-->
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <!--TODO. Hämta namn på prov. Bekräftar att det är rätt öppnat-->
+                                    <h1 class="modal-title">Prov</h1>
+
+                                </div>
+
+                                <!--BODY-->
+                                <div class="modal-body">
+                                    <!--QUESTION FORM-->
+                                    <form id="question-form" ng-submit="submit()">
+                                        <div class="question-box" ng-repeat="question in questions">
+                                            <h1>{{question.questionText}}</h1>
+                                            <p ng-repeat="answers in question.answers">
+
+                                                <input id="answerId{{$parent.$index}}{{$index}}" class="answer-alternative" type="{{questionType(question.type)}}" name="{{$parent.$index}}"><label for="answerId{{$parent.$index}}{{$index}}">{{answers.answerText}}</label>
+
+                                            </p>
+                                            <h6>Maxpoäng: {{question.score}}</h6>
+                                        </div>
+
+
+                                    </form>
+
+                                </div>
+
+                                <!--FOOTER-->
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <td>
                         <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#sendModal">Skicka</button>
 
