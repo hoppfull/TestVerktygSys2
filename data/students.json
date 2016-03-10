@@ -7,8 +7,8 @@
         "exams": [
             {"name": "Fysik", "grade": "G", "status": "ready", "availableFrom": "2016-05-12","availableUntil": "2016-05-13", "teacher": "Jerry"},
             {"name": "Math", "grade": "VG", "status": "done", "availableFrom": "2016-05-12","availableUntil": "2016-05-13", "teacher": "Jerry"},
-            {"name": "Fysik", "grade": "", "status": "ready", "availableFrom": "2016-05-12","availableUntil": "2016-05-13", "teacher": "Jerry"},
-            {"name": "Swedish", "grade": "", "status": "started", "availableFrom": "2016-05-12","availableUntil": "2016-05-13", "teacher": "Jerry"}
+            {"name": "Fysik", "grade": "VG", "status": "ready", "availableFrom": "2016-05-12","availableUntil": "2016-05-13", "teacher": "Jerry"},
+            {"name": "Swedish", "grade": "VG", "status": "started", "availableFrom": "2016-05-12","availableUntil": "2016-05-13", "teacher": "Jerry"}
             
             
         ]
@@ -22,8 +22,8 @@
         "exams": [
 			{"name": "Fysik", "grade": "G", "status": "done", "availableFrom": "2016-05-12","availableUntil": "2016-05-13", "teacher": "Jerry"},
 			{"name": "Math", "grade": "VG", "status": "done", "availableFrom": "2016-05-12","availableUntil": "2016-05-13", "teacher": "Jerry"},
-			{"name": "Fysik", "grade": "", "status": "ready", "availableFrom": "2016-05-12","availableUntil": "2016-05-13", "teacher": "Jerry"},
-			{"name": "Swedish", "grade": "", "status": "undone", "availableFrom": "2016-05-12","availableUntil": "2016-05-13", "teacher": "Jerry"}
+			{"name": "Fysik", "grade": "VG", "status": "ready", "availableFrom": "2016-05-12","availableUntil": "2016-05-13", "teacher": "Jerry"},
+			{"name": "Swedish", "grade": "IG", "status": "undone", "availableFrom": "2016-05-12","availableUntil": "2016-05-13", "teacher": "Jerry"}
         ]
                     
     },
@@ -34,8 +34,8 @@
         "exams": [
             {"name": "Fysik", "grade": "G", "status": "done", "availableFrom": "2016-05-12","availableUntil": "2016-05-13", "teacher": "Jerry"},
             {"name": "Fysik", "grade": "G", "status": "done", "availableFrom": "2016-05-12","availableUntil": "2016-05-13", "teacher": "Jerry"},
-            {"name": "Fysik", "grade": "", "status": "ready", "availableFrom": "2016-05-12","availableUntil": "2016-05-13", "teacher": "Jerry"},
-            {"name": "Fysik", "grade": "", "status": "undone", "availableFrom": "2016-05-12","availableUntil": "2016-05-13", "teacher": "Jerry"}
+            {"name": "Fysik", "grade": "IG", "status": "ready", "availableFrom": "2016-05-12","availableUntil": "2016-05-13", "teacher": "Jerry"},
+            {"name": "Fysik", "grade": "VG", "status": "undone", "availableFrom": "2016-05-12","availableUntil": "2016-05-13", "teacher": "Jerry"}
         ]
                     
     }

@@ -1,12 +1,19 @@
 <h1>Välkommen : {{name}} </h1>
 <section class="col-md-6">
-    <h2>Random1</h2>
+
+    <h2>Användare</h2>
+    <article class="row">
+        <p class="col-md-4">
+            <input type="text" placeholder="Filtrera efter efternamn" class="text-box" ng-model="searchName">
+        </p>
+    </article>
 
     <ul class="nav nav-tabs">
         <li class="active"><a data-toggle="tab" href="#studentTab">Student</a></li>
         <li><a data-toggle="tab" href="#teacherTab">Lärare</a></li>
         <li><a data-toggle="tab" href="#adminTab">Administratör</a></li>
     </ul>
+
     <article class="tab-content table-max-height-400">
 
         <article id="studentTab" class="tab-pane fade in active ">
@@ -21,7 +28,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="student in users" ng-if="student.occupation == 'Student'" ng-click="removeRow($index)">
+                    <tr ng-repeat="student in users | filter: {lastName: searchName }" ng-if="student.occupation == 'Student'" ng-click="removeRow($index)">
                         <td>{{student.firstName}}</td>
                         <td>{{student.lastName}}</td>
                         <td>{{}}</td>
@@ -43,7 +50,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="teacher in users" ng-if="teacher.occupation == 'Teacher'" ng-click="removeRow($index)" >
+                    <tr ng-repeat="teacher in users | filter: {lastName: searchName }" ng-if="teacher.occupation == 'Teacher'" ng-click="removeRow($index)">
                         <td>{{teacher.firstName}}</td>
                         <td>{{teacher.lastName}}</td>
                         <td>{{}}</td>
@@ -64,12 +71,13 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="admin in users" ng-if="admin.occupation == 'Admin'" ng-click="removeRow($index)">
-                        <td>{{admin.firstName}}</td>
-                        <td>{{admin.lastName}}</td>
-                        <td>{{admin.username}}</td>
-                        <td>{{admin.password}}</td>
-                    </tr>
+                        <tr ng-repeat="admin in users | filter: {lastName: searchName }" ng-if="admin.occupation == 'Admin'" ng-click="removeRow($index)">
+                            >>>>>>> 2a1e4ed22b9a77a8fc471b68a149326960de5cde
+                            <td>{{admin.firstName}}</td>
+                            <td>{{admin.lastName}}</td>
+                            <td>{{admin.username}}</td>
+                            <td>{{admin.password}}</td>
+                        </tr>
                 </tbody>
             </table>
         </article>
@@ -119,7 +127,7 @@
     <button ng-click="deleteUser()" id="button" type="button type" class="pull-right btn btn-info btn-lg"> Ta bort användare</button>
 </section>
 <section class="col-md-6 ">
-    <h2> Hej Hej {{3+3}}</h2>
+    <h2>Prov att dela ut</h2>
     <article class="table-max-height-400">
         <table class="table table-hover">
             <thead>
@@ -152,10 +160,60 @@
                         {{tests.class}}
                     </td>
                     <td>
-                        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Skicka</button>
+                        <!--TRIGGER MODAL HERE-->
+                        <button ng-click="startTest()" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#examModal">
+                            Provet
+                        </button>
+                    </td>
+
+                    <!--MODAL-->
+                    <!--role är det som gör att ett fönster öppnas upp, säger vad elementet ska behandlas som-->
+                    <div id="examModal" class="modal fade" role="dialog">
+                        <div class="modal-dialog">
+
+                            <!--MODAL CONTENT-->
+                            <div class="modal-content">
+
+                                <!--HEADER-->
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <!--TODO. Hämta namn på prov. Bekräftar att det är rätt öppnat-->
+                                    <h1 class="modal-title">Prov</h1>
+
+                                </div>
+
+                                <!--BODY-->
+                                <div class="modal-body">
+                                    <!--QUESTION FORM-->
+                                    <form id="question-form" ng-submit="submit()">
+                                        <div class="question-box" ng-repeat="question in questions">
+                                            <h1>{{question.questionText}}</h1>
+                                            <p ng-repeat="answers in question.answers">
+
+                                                <input id="answerId{{$parent.$index}}{{$index}}" class="answer-alternative" type="{{questionType(question.type)}}" name="{{$parent.$index}}">
+                                                <label for="answerId{{$parent.$index}}{{$index}}">{{answers.answerText}}</label>
+
+                                            </p>
+                                            <h6>Maxpoäng: {{question.score}}</h6>
+                                        </div>
+
+
+                                    </form>
+
+                                </div>
+
+                                <!--FOOTER-->
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <td>
+                        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#sendModal">Skicka</button>
 
                         <!-- Modal -->
-                        <div class="modal fade" id="myModal" role="dialog">
+                        <div class="modal fade" id="sendModal" role="dialog">
                             <div class="modal-dialog">
                                 <!-- Modal content-->
                                 <div class="modal-content">
@@ -175,7 +233,6 @@
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-
                                     </div>
                                 </div>
                             </div>

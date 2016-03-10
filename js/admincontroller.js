@@ -13,15 +13,19 @@
             $scope.tests = response.TEST;
 
         })
+        $http.get('../data/questioner.json').success(function (response) {
+			$scope.questions = response.questions;
+			
+		});
 
         $scope.sendTest = function() {
-
             $window.alert("Proven är skickade");
         };
+
         $scope.removeRow = function(testIndex) {
             $scope.tests.splice(testIndex, 1);
-        }
-
+        };
+        
         $scope.addUser = function() {
             $scope.users.push({
                 occupation: $scope._occupation,
@@ -36,6 +40,7 @@
             $scope._userName = "";
             $scope._password = "";
         };
+<<<<<<< HEAD
         $scope.userToRemove;
         $scope.removeRow = function(hash) {
             $scope.userToRemove = hash;
@@ -43,6 +48,12 @@
         $scope.deleteUser = function() {
             $scope.users.splice($scope.userToRemove, 1);
         }
+=======
+$scope.questionType = function (type) {
+			return type === "SingleChoice" ? "radio" : "checkbox";
+		};
+
+>>>>>>> 2a1e4ed22b9a77a8fc471b68a149326960de5cde
 
     });
 } ());
