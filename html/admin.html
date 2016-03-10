@@ -1,4 +1,5 @@
 <h1>Välkommen : {{name}} </h1>
+    <button ng-click="AdminLogout()" id="LogOut" type="button type" class="pull-right btn btn-info btn-lg"> Logout</button>
 <section class="col-md-6">
 
     <h2>Användare</h2>
@@ -17,7 +18,7 @@
     <article class="tab-content table-max-height-400">
 
         <article id="studentTab" class="tab-pane fade in active ">
-            <table class="table table-hover">
+            <table class="table table-hover" id="userTable">
                 <thead>
                     <tr>
                         <th>Förnamn</th>
@@ -28,7 +29,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="student in users | filter: {lastName: searchName }" ng-if="student.occupation == 'Student'">
+                    <tr ng-repeat="student in users | filter: {lastName: searchName }" ng-if="student.occupation == 'Student'" ng-click="removeRow($index)">
                         <td>{{student.firstName}}</td>
                         <td>{{student.lastName}}</td>
                         <td>{{}}</td>
@@ -39,7 +40,6 @@
             </table>
         </article>
         <article id="teacherTab" class="tab-pane fade">
-
             <table class="table table-hover">
                 <thead>
                     <tr>
@@ -51,7 +51,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="teacher in users | filter: {lastName: searchName }" ng-if="teacher.occupation == 'Teacher'">
+                    <tr ng-repeat="teacher in users | filter: {lastName: searchName }" ng-if="teacher.occupation == 'Teacher'" ng-click="removeRow($index)">
                         <td>{{teacher.firstName}}</td>
                         <td>{{teacher.lastName}}</td>
                         <td>{{}}</td>
@@ -72,7 +72,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="admin in users | filter: {lastName: searchName }" ng-if="admin.occupation == 'Admin'">
+                    <tr ng-repeat="admin in users | filter: {lastName: searchName }" ng-if="admin.occupation == 'Admin'" ng-click="removeRow($index)">
                         <td>{{admin.firstName}}</td>
                         <td>{{admin.lastName}}</td>
                         <td>{{admin.username}}</td>
@@ -124,10 +124,16 @@
             </article>
         </article>
     </article>
-    <button type="button type" class="pull-right btn btn-info btn-lg"> Ta bort användare</button>
+    <button ng-click="deleteUser()" id="button" type="button type" class="pull-right btn btn-info btn-lg"> Ta bort användare</button>
 </section>
 <section class="col-md-6 ">
     <h2>Prov att dela ut</h2>
+    <h3>Sök</h3>
+    <article class="row">
+        <p class="col-md-4">
+            <input type="text" placeholder="Filtrera på Namn" class="text-box" ng-model="searchTests">
+        </p>
+    </article>
     <article class="table-max-height-400">
         <table class="table table-hover">
             <thead>
@@ -139,8 +145,13 @@
                     <th>Skicka ut</th>
                 </tr>
             </thead>
+<<<<<<< HEAD
             <tbody >
                 <tr ng-repeat="(testIndex, tests) in tests">
+=======
+            <tbody class="">
+                <tr ng-repeat="(testIndex, tests) in tests  | filter: {examName: searchTests }">
+>>>>>>> fa167d692d42eabde7761e923e3aa10819c59a96
                     <td>
                         {{tests.examName}}
 
@@ -171,8 +182,13 @@
                     <td>
                         <!--TRIGGER MODAL HERE-->
                         <button ng-click="startTest()" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#examModal">
+<<<<<<< HEAD
 					Provet
 					</button>
+=======
+                            Provet
+                        </button>
+>>>>>>> fa167d692d42eabde7761e923e3aa10819c59a96
                     </td>
 
                     <!--MODAL-->
@@ -199,7 +215,12 @@
                                             <h1>{{question.questionText}}</h1>
                                             <p ng-repeat="answers in question.answers">
 
+<<<<<<< HEAD
                                                 <input id="answerId{{$parent.$index}}{{$index}}" class="answer-alternative" type="{{questionType(question.type)}}" name="{{$parent.$index}}"><label for="answerId{{$parent.$index}}{{$index}}">{{answers.answerText}}</label>
+=======
+                                                <input id="answerId{{$parent.$index}}{{$index}}" class="answer-alternative" type="{{questionType(question.type)}}" name="{{$parent.$index}}">
+                                                <label for="answerId{{$parent.$index}}{{$index}}">{{answers.answerText}}</label>
+>>>>>>> fa167d692d42eabde7761e923e3aa10819c59a96
 
                                             </p>
                                             <h6>Maxpoäng: {{question.score}}</h6>
@@ -246,7 +267,9 @@
                             </div>
                         </div>
                     </td>
-                    <td><input type="button" class="btn btn-primary" value="Ta bort" data-ng-click="removeRow(testIndex)" /></td>
+                    <td>
+                        <input type="button" class="btn btn-primary" value="Ta bort" data-ng-click="removeRow(testIndex)" />
+                    </td>
                 </tr>
             </tbody>
         </table>

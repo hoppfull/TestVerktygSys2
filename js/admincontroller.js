@@ -1,7 +1,14 @@
+<<<<<<< HEAD
 (function() {   
     angular.module("indexApp").controller("adminController", function($scope, $http, dataService, $window, $location) {
 
+=======
+(function() {
+    angular.module("indexApp").controller("adminController", function($scope, $http, dataService, $window, loginService) {
+>>>>>>> fa167d692d42eabde7761e923e3aa10819c59a96
         /* Example: using dataService: */
+
+
         // get all teachers:
         $http.get('../data/admins.json').success(function(response) {
             $scope.admins = response.admins;
@@ -39,6 +46,7 @@
             $scope._userName = "";
             $scope._password = "";
         };
+<<<<<<< HEAD
         $scope.questionType = function(type) {
             return type === "SingleChoice" ? "radio" : "checkbox";
         };            
@@ -60,6 +68,28 @@
   $scope.disabled = function(date, mode) {
     return ( mode === 'day' && ( date.getDay() === 0 || date.getDay() === 6 ) );
   };
+=======
+        $scope.userToRemove;
+        $scope.removeRow = function(hash) {
+            $scope.userToRemove = hash;
+        };
+        $scope.deleteUser = function() {
+            if ($scope.userToRemove != null) {
+                $scope.users.splice($scope.userToRemove, 1);
+                $scope.userToRemove = null;
+            }
+            
+        }
+        $scope.questionType = function(type) {
+            return type === "SingleChoice" ? "radio" : "checkbox";
+        };
+      /*  setTimeout(function(){
+            loginService.logout();
+        }, 3000);*/
+        $scope.AdminLogout = function(){
+            loginService.logout();
+        }
+>>>>>>> fa167d692d42eabde7761e923e3aa10819c59a96
 
   $scope.toggleMin = function() {
     $scope.minDate = ( $scope.minDate ) ? null : new Date();
@@ -82,9 +112,14 @@
  
  
     });
+<<<<<<< HEAD
   
 
 } ());
 
  
  
+=======
+} ());
+
+>>>>>>> fa167d692d42eabde7761e923e3aa10819c59a96
