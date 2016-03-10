@@ -1,0 +1,112 @@
+{
+    "quizzes": [
+        {
+            "author": "Björn",
+            "name": "exProv01",
+            "time": 10,
+            "subject": "mathematics",
+            "questions": [
+                {
+                    "type": "SingleChoice",
+                    "question": "1+2=?",
+                    "score": 1,
+                    "answers": [
+                        {
+                            "answerText": " 3",
+                            "points": 1
+                        },
+                        {
+                            "answerText": " 2",
+                            "points": -1
+                        },
+                        {
+                            "answerText": "23",
+                            "points": -1
+                        }
+                    ]
+                },
+                {
+                    "type": "MultiChoice",
+                    "question": "Vilka tal är mindre än 10",
+                    "score": 3,
+                    "answers": [
+                        {
+                            "answerText": " 3",
+                            "points": 1
+                        },
+                        {
+                            "answerText": "45",
+                            "points": -1
+                        },
+                        {
+                            "answerText": " 8",
+                            "points": 1
+                        },
+                        {
+                            "answerText": "23",
+                            "points": -1
+                        },
+                        {
+                            "answerText": " 1",
+                            "points": 1
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "author": "Minh",
+            "name": "mitt prov",
+            "time": 20,
+            "subject": "physics",
+            "questions": [
+                {
+                    "type": "SingleChoice",
+                    "question": "Vilket av alternativen är en färg?",
+                    "score": 1,
+                    "answers": [
+                        {
+                            "answerText": "Bil?",
+                            "points": -1
+                        },
+                        {
+                            "answerText": "Grön?",
+                            "points": 1
+                        },
+                        {
+                            "answerText": "Belgiska manövern i stilla havet?",
+                            "points": -1
+                        }
+                    ]
+                },
+                {
+                    "type": "MultiChoice",
+                    "question": "Vilka uttalanden är sanna?",
+                    "score": 3,
+                    "answers": [
+                        {
+                            "answerText": "Sanning",
+                            "points": 1
+                        },
+                        {
+                            "answerText": "Falskhet",
+                            "points": -1
+                        },
+                        {
+                            "answerText": "5 < 10",
+                            "points": 1
+                        },
+                        {
+                            "answerText": "Bilar är fordon",
+                            "points": 1
+                        },
+                        {
+                            "answerText": "Hejsan",
+                            "points": -1
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

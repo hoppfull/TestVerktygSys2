@@ -1,24 +1,54 @@
-<button type="button" id="logout-button">Log out</button>
-<div id="main-teacher-panel">
-    <input type="text" placeholder="Filtrera efter prov">
-    <input type="text" placeholder="Filtrera efter namn">
-    <input type="checkbox" value="checked">Only completed tests<br>
-    <div class="workspace" ng-repeat="">
-        <ul>
-            <li><a ng-href="{{provlänkar}}">exprov01</a></li>
-        </ul>
-    </div>
-    <div class="button-place">
-        <button type="button" id="redigera-button" class="button">Redigera</button>
-        <button type="button" id="ta-bort-button" class="button">Ta bort</button>
-        <button type="button" id="skicka-till-admin" class="button">Skicka till admin</button>
-    </div>
-    <button type="button" id="lägg-till-prov" class="button">Lägg till prov</button>
-    <input type="text" placeholder="Namn på prov">
-    <button class="btn btn-default dropdown-toggle" type="button" id="klass" data-toggle="dropdown">Klass
-    <span class="caret"></span></button>
-    <ul class="dropdown-menu" role="menu" aria-labelledby="menu1" ng-repeat="">
-      <li role="presentation"><a role="menuitem" ng-href="{{#}}">HTML</a></li>      
-    </ul>
-        
-    
+<div ng-show="!loggedIn">
+    <h1>Error! Not logged in!</h1>
+</div>
+
+<div ng-show="loggedIn">
+    <section class="container">
+        <article class="row">
+            <h1 class="col-md-8">Welcome teacher {{TeacherName}}</h1>
+            <button type="button" class="btn btn-danger logout-button col-md-4" ng-click="logout()">Log out</button>
+    </section>
+
+    <section class="container main-teacher-layout">
+        <article class="row">
+            <p class="col-md-4">
+                <input type="text" placeholder="Filtrera efter quiz" class="text-box" ng-model="searchQuiz">
+            </p>
+            <p class="col-md-4">
+                <input type="text" placeholder="Filtrera efter ämne" class="text-box" ng-model="searchSubject">
+            </p>            
+        </article>
+
+        <article class="row">
+            <table class="table table-hover max-height-test-panel">
+                <thead>
+                    <tr class="row">
+                        <th class="col-md-3 col-xs-3">Quiz</th>
+                        <th class="col-md-3 col-xs-3">Ämne</th>
+                        <th class="col-md-3 col-xs-3">Tid</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr  class="row" ng-repeat="quiz in quizzes | filter: {name: searchQuiz} | filter: {subject: searchSubject}">
+                        <td class="col-md-3 col-xs-3" >{{quiz.name}}</td>
+                        <td class="col-md-3 col-xs-3" >{{quiz.subject}}</td>
+                        <td class="col-md-3 col-xs-3" >{{quiz.time + ' sekunder'}}</td>
+                        <td class="col-md-1 col-xs-1" ><button>Redigera</button></td>
+                        <td class="col-md-1 col-xs-1" ><button ng-click="removeQuiz(quiz.name, quiz.author);">X</button></td>
+                        <td class="col-md-1 col-xs-1" ><button>Skicka</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </article>
+
+        <article>
+            <form ng-submit="newQuizSubmit();" class="row">
+                <input class="col-md-3 col-xs-3" type="text" ng-required="true" ng-model="newQuizName" placeholder="Namn">
+                <input class="col-md-3 col-xs-3" type="text" ng-required="true" ng-model="newQuizSubject" placeholder="Ämne">
+                <input class="col-md-3 col-xs-3" type="number" ng-required="true" ng-model="newQuizTime" placeholder="Tid">
+                <input class="col-md-3 col-xs-3" type="submit" value="Lägg till nytt prov">
+                <p>{{addQuizMsg}}</p>
+            </form>
+        </article>
+    </section>
+</div>
