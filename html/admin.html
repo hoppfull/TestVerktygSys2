@@ -1,12 +1,19 @@
 <h1>Välkommen : {{name}} </h1>
 <section class="col-md-6">
+   
     <h2>Användare</h2>
+     <article class="row">
+            <p class="col-md-4">
+                <input type="text" placeholder="Filtrera efter efternamn" class="text-box" ng-model="searchName">
+            </p>                     
+        </article>
 
     <ul class="nav nav-tabs">
         <li class="active"><a data-toggle="tab" href="#studentTab">Student</a></li>
         <li><a data-toggle="tab" href="#teacherTab">Lärare</a></li>
         <li><a data-toggle="tab" href="#adminTab">Administratör</a></li>
     </ul>
+    
     <article class="tab-content table-max-height-400">
 
         <article id="studentTab" class="tab-pane fade in active ">
@@ -21,7 +28,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="student in users" ng-if="student.occupation == 'Student'">
+                    <tr ng-repeat="student in users | filter: {lastName: searchName }" ng-if="student.occupation == 'Student'">
                         <td>{{student.firstName}}</td>
                         <td>{{student.lastName}}</td>
                         <td>{{}}</td>
@@ -44,7 +51,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="teacher in users" ng-if="teacher.occupation == 'Teacher'">
+                    <tr ng-repeat="teacher in users | filter: {lastName: searchName }" ng-if="teacher.occupation == 'Teacher'">
                         <td>{{teacher.firstName}}</td>
                         <td>{{teacher.lastName}}</td>
                         <td>{{}}</td>
@@ -65,7 +72,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="admin in users" ng-if="admin.occupation == 'Admin'">
+                    <tr ng-repeat="admin in users | filter: {lastName: searchName }" ng-if="admin.occupation == 'Admin'">
                         <td>{{admin.firstName}}</td>
                         <td>{{admin.lastName}}</td>
                         <td>{{admin.username}}</td>
