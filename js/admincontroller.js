@@ -45,7 +45,11 @@
             $scope.userToRemove = hash;
         };
         $scope.deleteUser = function() {
-            $scope.users.splice($scope.userToRemove, 1);
+            if ($scope.userToRemove != null) {
+                $scope.users.splice($scope.userToRemove, 1);
+                $scope.userToRemove = null;
+            }
+            
         }
         $scope.questionType = function(type) {
             return type === "SingleChoice" ? "radio" : "checkbox";
