@@ -1,6 +1,8 @@
 (function() {
     angular.module("indexApp").controller("adminController", function($scope, $http, dataService, $window) {
         /* Example: using dataService: */
+
+
         // get all teachers:
         $http.get('../data/admins.json').success(function(response) {
             $scope.admins = response.admins;
@@ -34,7 +36,14 @@
             $scope._userName = "";
             $scope._password = "";
         };
-
+        $scope.userToRemove;
+        $scope.removeRow = function(hash) {
+            $scope.userToRemove = hash;
+        };
+        $scope.deleteUser = function() {
+            $scope.users.splice($scope.userToRemove, 1);
+        }
 
     });
 } ());
+

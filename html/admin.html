@@ -10,7 +10,7 @@
     <article class="tab-content table-max-height-400">
 
         <article id="studentTab" class="tab-pane fade in active ">
-            <table class="table table-hover">
+            <table class="table table-hover" id="userTable">
                 <thead>
                     <tr>
                         <th>Förnamn</th>
@@ -21,7 +21,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="student in users" ng-if="student.occupation == 'Student'">
+                    <tr ng-repeat="student in users" ng-if="student.occupation == 'Student'" ng-click="removeRow($index)">
                         <td>{{student.firstName}}</td>
                         <td>{{student.lastName}}</td>
                         <td>{{}}</td>
@@ -32,7 +32,6 @@
             </table>
         </article>
         <article id="teacherTab" class="tab-pane fade">
-
             <table class="table table-hover">
                 <thead>
                     <tr>
@@ -44,7 +43,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="teacher in users" ng-if="teacher.occupation == 'Teacher'">
+                    <tr ng-repeat="teacher in users" ng-if="teacher.occupation == 'Teacher'" ng-click="removeRow($index)" >
                         <td>{{teacher.firstName}}</td>
                         <td>{{teacher.lastName}}</td>
                         <td>{{}}</td>
@@ -65,7 +64,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="admin in users" ng-if="admin.occupation == 'Admin'">
+                    <tr ng-repeat="admin in users" ng-if="admin.occupation == 'Admin'" ng-click="removeRow($index)">
                         <td>{{admin.firstName}}</td>
                         <td>{{admin.lastName}}</td>
                         <td>{{admin.username}}</td>
@@ -117,7 +116,7 @@
             </article>
         </article>
     </article>
-    <button type="button type" class="pull-right btn btn-info btn-lg"> Ta bort användare</button>
+    <button ng-click="deleteUser()" id="button" type="button type" class="pull-right btn btn-info btn-lg"> Ta bort användare</button>
 </section>
 <section class="col-md-6 ">
     <h2> Hej Hej {{3+3}}</h2>
@@ -182,7 +181,9 @@
                             </div>
                         </div>
                     </td>
-                    <td><input type="button" class="btn btn-primary" value="Ta bort" data-ng-click="removeRow(testIndex)" /></td>
+                    <td>
+                        <input type="button" class="btn btn-primary" value="Ta bort" data-ng-click="removeRow(testIndex)" />
+                    </td>
                 </tr>
             </tbody>
         </table>
