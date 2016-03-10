@@ -34,6 +34,10 @@
         var users = [];
         var quizzes = [];
 
+        var getUsers = function() {
+            return users;
+        };
+
         var addUser = function(newUser) {
             if (users.find(user => user.username.toLowerCase() === newUser.username.toLowerCase())) {
                 return false;
@@ -52,6 +56,10 @@
                 return false;
             }
         }
+
+        var getQuizzes = function() {
+            return quizzes;
+        };
 
         var addQuiz = function(newQuiz) {
             if (quizzes.find(quiz => quiz.name.toLowerCase() === newQuiz.name.toLowerCase() && quiz.author === newQuiz.author)) {
@@ -73,16 +81,31 @@
         };
 
         return {
-            users: users,
+            getUsers: getUsers,
             addUser: addUser,
-            quizzes: quizzes,
+            removeUser: removeUser,
+            getQuizzes: getQuizzes,
             addQuiz: addQuiz,
             removeQuiz: removeQuiz
         };
     });
 
-    indexApp.service('loginService', function() {
+    indexApp.service('loginService', function(dataService) {
         var user = null;
+
+        var getLoggedInUser = function() {
+            return user;
+        };
+
+        var login = function(username, password) {
+            user = dataService.getUsers().find(user => user.username === username && user.password === password);
+            if (!user) {
+                return false;
+            } else {
+                location.href = '#/' + user.type;
+                return true;
+            }
+        };
 
         var logout = function() {
             user = null;
@@ -90,7 +113,8 @@
         };
 
         return {
-            user: user,
+            getLoggedInUser: getLoggedInUser,
+            login: login,
             logout: logout
         };
     });
