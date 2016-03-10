@@ -7,8 +7,6 @@
 		--Eric
 		*/
 		
-		
-		
 		var decrementTime = function(){
 			if($scope.time>0){
 				$scope.time-=1;
@@ -52,7 +50,7 @@
 			
 			$http.get('../data/questioner.json').success(function(response) {
 				$scope.questions = response.questions;
-				$scope.time = response.time;
+				$scope.time = 5;//response.time; //decomment after testing
 				startCountdown();
 			});
 		};
