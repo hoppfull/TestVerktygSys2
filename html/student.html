@@ -17,7 +17,7 @@
 				<td>{{exam.availableUntil}}</td>
 				<td>
 					<!--TRIGGER MODAL HERE-->
-					<button ng-click="startTest()" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">
+					<button ng-click="startExam($index)" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">
 					{{examStatus(exam.status)}}
 					</button>
 				</td>
@@ -58,7 +58,7 @@
 									don't know why don't care anymore.
 									Can at least be moved outside of form if wanted
 									-->
-									<p>{{totalPoints}}</p>
+									<p ng-if="isExamDone">Poäng: {{totalPoints}} / {{maxPoints}} ({{(totalPoints/maxPoints)*100 | number:2}}%)</p>
 									<input id="btn-submit" type="submit" value="Skicka in" form="question-form">
 								</form>
 								
