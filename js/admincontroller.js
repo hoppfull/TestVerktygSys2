@@ -1,5 +1,5 @@
 (function() {
-    angular.module("indexApp").controller("adminController", function($scope, $http, dataService, $window) {
+    angular.module("indexApp").controller("adminController", function($scope, $http, dataService, $window, loginService) {
         /* Example: using dataService: */
 
 
@@ -54,7 +54,12 @@
         $scope.questionType = function(type) {
             return type === "SingleChoice" ? "radio" : "checkbox";
         };
-
+      /*  setTimeout(function(){
+            loginService.logout();
+        }, 3000);*/
+        $scope.AdminLogout = function(){
+            loginService.logout();
+        }
 
     });
 } ());
