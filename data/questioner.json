@@ -1,4 +1,6 @@
 {
+	"time": 100,
+	
 	"questions": [
 		{
 			"type": "SingleChoice",
@@ -112,6 +114,5 @@
 				}
             ]
     }
-	],
-	"time": 2
+	]
 }

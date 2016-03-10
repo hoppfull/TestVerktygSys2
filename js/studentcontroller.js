@@ -7,9 +7,6 @@
 		--Eric
 		*/
 		
-		/*
-		TIMER
-		*/
 		var decrementTime = function(){
 			if($scope.time>0){
 				$scope.time-=1;
@@ -17,6 +14,7 @@
 			else{
 				$scope.time ="Time out";
 				$scope.submit();
+				$scope.isExamDone = true;
 			}
 		};
 		
@@ -34,7 +32,6 @@
 		
 		$http.get('../data/students.json').success(function (response) {
 			$scope.user = response.students.find(item => item.username === "Sune");
-			
 		});
 
 		$scope.questionType = function (type) {
@@ -45,13 +42,15 @@
 			return status === "ready" ? "Starta" : "Fortsätt";
 		}
 		
-		$scope.startTest = function(){
+		$scope.startExam = function(examIndex){
+			$scope.activeExamIndex = examIndex;
 			$scope.currentDate = new Date();
-			$("#btn-submit").show(); //to make sure
+			$scope.isExamDone = false;
+			$("#btn-submit").show(); //to make sure it gets visible again
 			
 			$http.get('../data/questioner.json').success(function(response) {
 				$scope.questions = response.questions;
-				$scope.time = response.time;
+				$scope.time = 5;//response.time; //decomment after testing
 				startCountdown();
 			});
 		};
@@ -59,12 +58,20 @@
 		$scope.submit = function() {
 			var htmlAnswers = document.getElementsByClassName("answer-alternative");
 			var jsonAnswers = [];
+			loadJson(jsonAnswers); //load questions to check against
 			var currentQuestionIndex = -1;
 			var currentQuestionBox = null;
 			var points = 0;
 			var allCorrect = false;
 			$scope.totalPoints = 0;
-			loadJson(jsonAnswers); //load questions to check against
+			$scope.maxPoints = 0;
+			
+			for(var i = 0; i < jsonAnswers.length; i++){
+				
+				if(jsonAnswers[i].points > 0){	
+					$scope.maxPoints += jsonAnswers[i].points;
+				}
+			}
 			
 			//check if correct answers
 			for(var j = 0; j < htmlAnswers.length; j++){
@@ -80,6 +87,8 @@
 				/*
 				checks correect answers and applies confirmation css
 				if statements added in case we want other kinds of answer alternatives
+				
+				//räknar nåt fel på checkboxes
 				*/
 				if(htmlAnswers[j].type==="radio" || htmlAnswers[j].type==="checkbox"){
 
@@ -121,8 +130,8 @@
 			}
 			$("#btn-submit").hide();
 			//här hade vi sparat resultatet i en databas och tickat det här inlägget som "done"
-			
-			
+			//activeExamIndex
+			$scope.user.exams[$scope.activeExamIndex].status = "done";
 		};
     });    
 }());
