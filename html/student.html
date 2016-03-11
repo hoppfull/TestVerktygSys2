@@ -1,6 +1,11 @@
 <main>
-	<h1>Aktuella prov</h1>
-
+      <article class="row">
+        <p class="col-md-4">
+            <input type="text" placeholder="Filtrera efter testnamn" class="text-box" ng-model="searchExam">
+        </p>
+        </article>
+	<h1>Aktuella prov</h1>      
+    
 	<table>
 		<thead>
 			<tr>
@@ -11,7 +16,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr ng-repeat="exam in user.exams" ng-if="exam.status !=='done'">
+			<tr ng-repeat="exam in user.exams | filter: {name: searchExam }" ng-if="exam.status !=='done'">
 				<td>{{exam.name}}</td>
 				<td>{{exam.availableFrom}}</td>
 				<td>{{exam.availableUntil}}</td>
@@ -87,7 +92,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr ng-repeat="exam in user.exams" ng-if="exam.status === 'done'">
+			<tr ng-repeat="exam in user.exams | filter: {name: searchExam}" ng-if="exam.status === 'done'">
 				<td>{{exam.name}}</td>
 				<td>{{exam.grade}}</td>
 				<td>{{exam.name}}</td>
