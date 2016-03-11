@@ -1,36 +1,38 @@
-
-.table-max-height-250
-{
+.table-max-height-250 {
     height: 250px;
-    overflow: scroll;
+    overflow-y: scroll;
+    overflow-x: hiden;
 }
-.table-max-height-400
-{
+
+.table-max-height-400 {
     height: 400px;
-    overflow: scroll;
+    overflow-y: scroll;
+    overflow-x: hiden;
+    border: solid 1px lightgray;
 }
-.table-max-height-120
-{
+
+.table-max-height-120 {
     height: 120px;
     overflow: scroll;
 }
-.table-max-height-200
-{
-   height: 200px; 
-   overflow: scroll; 
-}
-.table-max-height-300
-{   
-    height: 300px;
+
+.table-max-height-200 {
+    height: 200px;
     overflow: scroll;
 }
-.table-max-height-500
-{
+
+.table-max-height-300 {
+    height: 300px;
+    overflow-y: scroll;
+    overflow-x: hiden;
+    border: solid 1px lightgray;
+}
+
+.table-max-height-500 {
     height: 500px;
     overflow: scroll;
-    
 }
-.testtest
-{
+
+.testtest {
     background: blue;
 }
