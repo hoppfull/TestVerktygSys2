@@ -34,24 +34,22 @@
             "startDate": "", // tilldelas nytt startdatum när student påbörjat prov
             "endDate": "", // tilldelas nytt slutdatum när student påbörjat prov
             "timeLimit": 0,
-            "courseName": "",
             "grade": "", // U, G eller VG
             "gScore": 0,
             "vgScore": 0,
             "questions": [
                 {
                     "text": "", // frågetext
+                    "type": "", // checkbox, radio, ranked
                     "answers": [
                         {
                             "text": "", // svarstext
-                            "type": "", // checkbox, radio, ranked
                             "point": 1, // -1 om fel svar, annars positivt (värderat av author)
                             "checked": false, // endast relevant om type = radio eller checkbox
                             "rank": 1 // endast relevant om type = "ranked"
                         },
                         {
                             "text": "", // svarstext
-                            "type": "", // checkbox, radio, ranked
                             "point": -1, // -1 om fel svar, annars positivt (värderat av author)
                             "checked": false, // endast relevant om type = radio eller checkbox
                             "rank": 0 // endast relevant om type = "ranked"
@@ -60,17 +58,16 @@
                 },
                 {
                     "text": "", // frågetext
+                    "type": "", // checkbox, radio, ranked
                     "answers": [
                         {
                             "text": "", // svarstext
-                            "type": "", // checkbox, radio, ranked
                             "point": 0, // -1 om fel svar, annars positivt (värderat av author)
                             "checked": false, // endast relevant om type = radio eller checkbox
                             "rank": 0 // endast relevant om type = "ranked"
                         },
                         {
                             "text": "", // svarstext
-                            "type": "", // checkbox, radio, ranked
                             "point": 0, // -1 om fel svar, annars positivt (värderat av author)
                             "checked": false, // endast relevant om type = radio eller checkbox
                             "rank": 1 // endast relevant om type = "ranked"
