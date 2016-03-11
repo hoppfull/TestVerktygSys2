@@ -72,12 +72,26 @@
             }
         };
 
+        var removeSingleQuiz = function(name, author, text) {
+            var y = quizzes.indexOf(quizzes.find(quiz => quiz.name === name && quiz.author === author));
+            var i = quizzes[y].questions.indexOf(quizzes[y].questions.find(x => x.question === text));
+            console.log(y);
+            console.log(i);
+            if (0 <= i) {
+                quizzes[y].questions.splice(i, 1);
+                return true;
+            } else {
+                return false;
+            }
+        };
+
         return {
             users: users,
             addUser: addUser,
             quizzes: quizzes,
             addQuiz: addQuiz,
-            removeQuiz: removeQuiz
+            removeQuiz: removeQuiz,
+            removeSingleQuiz: removeSingleQuiz
         };
     });
 

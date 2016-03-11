@@ -16,7 +16,7 @@
             </p>
             <p class="col-md-4">
                 <input type="text" placeholder="Filtrera efter ämne" class="text-box" ng-model="searchSubject">
-            </p>            
+            </p>
         </article>
 
         <article class="row">
@@ -29,13 +29,65 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr  class="row" ng-repeat="quiz in quizzes | filter: {name: searchQuiz} | filter: {subject: searchSubject}">
-                        <td class="col-md-3 col-xs-3" >{{quiz.name}}</td>
-                        <td class="col-md-3 col-xs-3" >{{quiz.subject}}</td>
-                        <td class="col-md-3 col-xs-3" >{{quiz.time + ' sekunder'}}</td>
-                        <td class="col-md-1 col-xs-1" ><button>Redigera</button></td>
-                        <td class="col-md-1 col-xs-1" ><button ng-click="removeQuiz(quiz.name, quiz.author);">X</button></td>
-                        <td class="col-md-1 col-xs-1" ><button>Skicka</button></td>
+                    <tr class="row" ng-repeat="quiz in quizzes | filter: {name: searchQuiz} | filter: {subject: searchSubject}">
+                        <td class="col-md-3 col-xs-3">{{quiz.name}}</td>
+                        <td class="col-md-3 col-xs-3">{{quiz.subject}}</td>
+                        <td class="col-md-3 col-xs-3">{{quiz.time + ' sekunder'}}</td>
+                        <td class="col-md-1 col-xs-1">
+                            <button data-toggle="modal" data-target="#myNewQuizes" ng-click="editTest(quiz)">Redigera</button>
+                        </td>
+                        <article id="myNewQuizes" class="modal fade" role="dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">{{testName}} i {{testTime}} sekunder av {{testAuthor}}</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <form>
+                                        <div class="jumbotron form-group" ng-repeat="question in testQuizes">
+                                            <h1>Fråga:<input type="text" class="form-control" disabled placeholder="{{question.question}}"></h1>
+                                            <div class="form-group" >Typ
+                                                <select class="form-control"disabled>
+                                                    <option>{{question.type}}</option>                                                   >
+                                                </select>
+                                            </div>
+                                            <p ng-repeat="answers in question.answers">Svar:                                                
+                                                <input type="text" class="form-control" disabled placeholder="{{answers.answerText}}"><br>
+                                            </p>
+                                            <h6>Maxpoäng: <input type="number" class="form-control col-md-3" disabled placeholder="{{question.score}}"></h6>
+                                            <button ng-click="removeQuestion(testName,testAuthor,question.question)" type="button" class="btn btn-primary">Ta bort</button>
+                                        </div>                         
+                                    </form>
+                                    <form >
+                                        <div class="jumbotron form-group">
+                                            <h1>Fråga:<input type="text" class="form-control" ng-model="newQuestion"></h1>
+                                            <div class="form-group">Typ
+                                                <select class="form-control" ng-model="newQuestionType">
+                                                    <option>SingleChoice</option>
+                                                    <option>MultiChoice</option>
+                                                </select>
+                                            </div>
+                                            <p>Svar:                                                
+                                                <input type="text" class="form-control" ng-model="newAnswer"><br>
+                                            </p>
+                                            <button type="button" class="btn btn-primary">Lägg till ett svar</button>
+                                            <h6>Maxpoäng: <input type="number" class="form-control col-md-3" ng-model="newPoint"></h6>
+                                            <button ng-click="saveQuestion(testQuizes)" type="button" class="btn btn-primary">Spara</button>
+                                        </div>                         
+                                    </form>                                    
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary" >Lägg till en fråga</button>
+                                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </article>
+                        <td class="col-md-1 col-xs-1">
+                            <button ng-click="removeQuiz(quiz.name, quiz.author);">X</button>
+                        </td>
+                        <td class="col-md-1 col-xs-1">
+                            <button>Skicka</button>
+                        </td>
                     </tr>
                 </tbody>
             </table>
@@ -50,5 +102,7 @@
                 <p>{{addQuizMsg}}</p>
             </form>
         </article>
+
+
     </section>
 </div>
