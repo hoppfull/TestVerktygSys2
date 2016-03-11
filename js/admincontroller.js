@@ -61,6 +61,12 @@
             loginService.logout();
         }
 
+ $scope.hej = function() {
+    $( ".datepicker" ).datepicker();
+  };
+
     });
+    
+   
 } ());
 
