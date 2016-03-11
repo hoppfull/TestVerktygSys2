@@ -1,18 +1,6 @@
 {
-    "subjects": [
-        {
-            "name": "",
-            "startDate": "", // ta bort denna om de inte används
-            "endDate": "" // ta bort denna om de inte används
-        }
-    ],
-    "studentClasses": [ // ta bort denna om de inte används
-        {
-            "name": "", // klassens namn
-            "startDate": "",
-            "endDate": ""
-        }
-    ],
+    "subjects": [], // lista med strängar på kursnamn
+    "studentClasses": [], // lista med strängar på klassnamn
     "users": [
         { // user:
             "username": "",
@@ -30,7 +18,8 @@
             "subject": "", // alternativ på värde definieras tillgängliga värden i subjects
             "authorName": "",
             "studentName": "",
-            "status": "", // done eller ready, begun
+            "status": "", // done, ready eller begun
+            "sentToAdmin": false,
             "startDate": "", // tilldelas nytt startdatum när student påbörjat prov
             "endDate": "", // tilldelas nytt slutdatum när student påbörjat prov
             "timeLimit": 0,

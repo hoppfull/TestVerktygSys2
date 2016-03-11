@@ -1,27 +1,11 @@
 {
     "subjects": [
-        {
-            "name": "Physics",
-            "startDate": "2015-03-20",
-            "endDate": "2016-07-20"
-        },
-        {
-            "name": "Mathematics",
-            "startDate": "2017-03-20",
-            "endDate": "2018-03-20"
-        }
+        "Physics",
+        "Mathematics"
     ],
     "studentClasses": [
-        {
-            "name": "7A",
-            "startDate": "2015-03-20",
-            "endDate": "2017-03-20"
-        },
-        {
-            "name": "9B",
-            "startDate": "2015-03-20",
-            "endDate": "2017-03-20"
-        }
+        "7A-HT15",
+        "9B"
     ],
     "users": [
         {
@@ -71,6 +55,8 @@
             "authorName": "teacher",
             "studentName": "",
             "status": "ready",
+            "sentToAdmin": false,
+            "sentToStudent": false,
             "startDate": "2015-01-01",
             "endDate": "2017-01-01",
             "timeLimit": 10,
@@ -151,6 +137,8 @@
             "authorName": "teacher",
             "studentName": "student",
             "status": "done",
+            "sentToAdmin": true,
+            "sentToStudent": true,
             "startDate": "2015-01-01",
             "endDate": "2017-01-01",
             "timeLimit": 10,
