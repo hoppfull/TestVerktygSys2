@@ -22,7 +22,7 @@
             $window.alert("Proven är skickade");
         };
 
-        $scope.removeRow = function(testIndex) {
+        $scope.removeRowExams = function(testIndex) {
             $scope.tests.splice(testIndex, 1);
         };
 
@@ -41,7 +41,7 @@
             $scope._password = "";
         };
         $scope.userToRemove;
-        $scope.removeRow = function(hash) {
+        $scope.removeRowUser = function(hash) {
             $scope.userToRemove = hash;
         };
         $scope.deleteUser = function() {
