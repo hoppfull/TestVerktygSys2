@@ -1,5 +1,4 @@
 <main>
-<<<<<<< HEAD
       <article class="row">
         <p class="col-md-4">
             <input type="text" placeholder="Filtrera efter testnamn" class="text-box" ng-model="searchExam">
@@ -27,30 +26,7 @@
 					{{examStatus(exam.status)}}
 					</button>
 				</td>
-=======
-    <h1>Aktuella prov</h1>
 
-    <table>
-        <thead>
-            <tr>
-                <th>Provnamn</th>
-                <th>Tillgängligt</th>
-                <th>Slutdatum</th>
-                <th>Status</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr ng-repeat="exam in user.exams" ng-if="exam.status !=='done'">
-                <td>{{exam.name}}</td>
-                <td>{{exam.availableFrom}}</td>
-                <td>{{exam.availableUntil}}</td>
-                <td>
-                    <!--TRIGGER MODAL HERE-->
-                    <button ng-click="startExam($index)" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">
-                        {{examStatus(exam.status)}}
-                    </button>
-                </td>
->>>>>>> SeeHistory
 
                 <!--MODAL-->
                 <!--role är det som gör att ett fönster öppnas upp, säger vad elementet ska behandlas som-->
@@ -106,29 +82,6 @@
         </tbody>
     </table>
 
-<<<<<<< HEAD
-	<h1>Historik</h1>
-	<table>
-		<thead>
-			<tr>
-				<th>Provnamn</th>
-				<th>Betyg</th>
-				<th>Kurs</th>
-				<th>Slutdatum</th>
-				<th>Lärare</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr ng-repeat="exam in user.exams | filter: {name: searchExam}" ng-if="exam.status === 'done'">
-				<td>{{exam.name}}</td>
-				<td>{{exam.grade}}</td>
-				<td>{{exam.name}}</td>
-				<td>{{exam.availableUntil}}</td>
-				<td>{{exam.teacher}}</td>
-			</tr>
-		</tbody>
-	</table>
-=======
     <h1>Historik</h1>
     <table>
         <thead>
@@ -141,7 +94,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="exam in user.exams" ng-if="exam.status === 'done'">
+            <tr ng-repeat="exam in user.exams | filter: {name: searchExam}" ng-if="exam.status === 'done'">
                 <td>{{exam.name}}</td>
                 <td>{{exam.grade}}</td>
                 <td>{{exam.name}}</td>
@@ -169,5 +122,4 @@
             </tr>
         </tbody>
     </table>
->>>>>>> SeeHistory
 </main>
