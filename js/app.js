@@ -43,7 +43,7 @@
 
         var logout = function () {
             user = null;
-            location.href = '';
+            location.href = '#/';
         };
 
         return {
@@ -65,6 +65,18 @@
             .when('/student', {
                 templateUrl: 'html/student.html',
                 controller: 'studentController'
+            })
+            .when('/studentTab',{
+                templateUrl: 'html/admin.html',
+                controller: 'adminController'
+            })
+            .when('/teacherTab',{
+                templateUrl: 'html/admin.html',
+                controller: 'adminController'
+            })
+             .when('/adminTab',{
+                templateUrl: 'html/admin.html',
+                controller: 'adminController'
             })
             .when('/teacher', {
                 templateUrl: 'html/teacher.html',

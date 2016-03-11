@@ -1,38 +1,34 @@
+<<<<<<< HEAD
 html{
 	font-family: sans-serif, serif;
     padding:0;
     margin:0;
+=======
+body {
+    margin: 0px;
+>>>>>>> origin/master
 }
 
-body{
-    margin:0px;
-}
-
-header{
+header {
     text-align: center;
 }
 
-main{
+main {
     margin: 30px;
 }
 
-main div, form input[type="submit"]{
+main div, form input[type="submit"] {
     text-align: center;
     margin: auto;
 }
 
-.question-box{
+.question-box {
     max-width: 300px;
-    background-color: salmon;
+    background-color: #dedede;
     padding: 5px 20px;
     margin-bottom: 10px;
-    text-align: center;
-    
+    text-align: left;
     /*centers the element*/
     margin-left: auto;
     margin-right: auto;
-}
-
-.question-box p{
-    text-align: right;
 }

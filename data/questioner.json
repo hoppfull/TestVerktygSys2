@@ -1,60 +1,118 @@
 {
-    "questions":[
-    {
-        "type": "SingleChoice",
-        "question": "1+2=?",
-        "score": 1,
-        "answers": [
-            {"answerText": " 3", "points": 1}, 
-            {"answerText": " 2", "points": -1},
-            {"answerText": "23", "points": -1}
+	"time": 100,
+	
+	"questions": [
+		{
+			"type": "SingleChoice",
+			"questionText": "1+2=?",
+			"score": 1,
+			"answers": [
+				{
+					"answerText": "3",
+					"points": 1
+				},
+				{
+					"answerText": "2",
+					"points": -1
+				},
+				{
+					"answerText": "23",
+					"points": -1
+				}
         ]
-                    
+
     },
-    {
-        "type": "MultiChoice",
-        "question": "Vilka tal är mindre än 10",
-        "score": 3,
-        "answers": [
-            {"answerText": " 3", "points": 1}, 
-            {"answerText": "45", "points": -1},
-            {"answerText": " 8", "points": 1},
-            {"answerText": "23", "points": -1},
-            {"answerText": " 1", "points": 1} 
-            ]      
+		{
+			"type": "MultiChoice",
+			"questionText": "Vilka tal är mindre än 10",
+			"score": 3,
+			"answers": [
+				{
+					"answerText": "3",
+					"points": 1
+				},
+				{
+					"answerText": "45",
+					"points": -1
+				},
+				{
+					"answerText": "8",
+					"points": 1
+				},
+				{
+					"answerText": "23",
+					"points": -1
+				},
+				{
+					"answerText": "1",
+					"points": 1
+				}
+            ]
     },
-    {
-        "type": "SingleChoice",
-        "question": "10+2=?",
-        "score": 2,
-        "answers": [
-            {"answerText": "11", "points": -1}, 
-            {"answerText": "12", "points": 1},
-            {"answerText": "16", "points": -1} 
-            ]        
+		{
+			"type": "SingleChoice",
+			"questionText": "10+2=?",
+			"score": 2,
+			"answers": [
+				{
+					"answerText": "11",
+					"points": -1
+				},
+				{
+					"answerText": "12",
+					"points": 1
+				},
+				{
+					"answerText": "16",
+					"points": -1
+				}
+            ]
     },
-    {
-        "type": "MultiChoice",
-        "question": "Vilka tal är större än 100",
-        "score": 3,
-        "answers": [
-            {"answerText": "101", "points": 1}, 
-            {"answerText": " 45", "points": -1},
-            {"answerText": "120", "points": 1},
-            {"answerText": " 67", "points": -1},
-            {"answerText": "180", "points": 1} 
-            ]        
+		{
+			"type": "MultiChoice",
+			"questionText": "Vilka tal är större än 100",
+			"score": 3,
+			"answers": [
+				{
+					"answerText": "101",
+					"points": 1
+				},
+				{
+					"answerText": " 45",
+					"points": -1
+				},
+				{
+					"answerText": "120",
+					"points": 1
+				},
+				{
+					"answerText": " 67",
+					"points": -1
+				},
+				{
+					"answerText": "180",
+					"points": 1
+				}
+            ]
     },
-    {
-        "type": "SingleChoice",
-        "question": "10+10=?",
-        "score": 1,
-        "answers": [
-            {"answerText": "25", "points": -1}, 
-            {"answerText": "11", "points": -1},            
-            {"answerText": "20", "points": 1}           
-            ]        
-    } 
-],
-"time": 10
+		{
+			"type": "SingleChoice",
+			"questionText": "10+10=?",
+			"score": 1,
+			"answers": [
+				{
+					"answerText": "25",
+					"points": -1
+				},
+				{
+					"answerText": "11",
+					"points": -1
+				},
+				{
+					"answerText": "20",
+					"points": 1
+				}
+            ]
+    }
+	]
 }

@@ -1,59 +1,60 @@
-@import url(http://fonts.googleapis.com/css?family=Droid+Serif);
-
-div.container{    
-width: 960px;
-height: 610px;
-margin:50px auto;   
-font-family: 'Open Sans', sans-serif;
-position:relative;
-
-}
-div.loginpage{    
-width: 320px;
-float:left;
-padding: 10px 55px 40px;
-background-color: #F0EFDD;
-border: 15px solid white;
-box-shadow: 0 0 10px;
-border-radius: 2px;
-font-size: 13px;
+div.container {
+    width: 960px;
+    height: 610px;
+    margin: 50px auto;
+    position: relative;
 }
 
-.form input[type=text],[type=password] {
-width: 97.7%;
-height: 34px;
-padding-left: 5px;
-margin-bottom: 20px;
-margin-top: 8px;
-box-shadow: 0 0 5px #638F3A;
-border: 2px solid #638F3A;
-color: black;
-font-size: 16px;
+div.loginpage {
+    width: 320px;
+    float: left;
+    padding: 10px 55px 40px;
+    background-color: #F0EFDD;
+    border: 15px solid white;
+    box-shadow: 0 0 10px;
+    border-radius: 2px;
+    font-size: 13px;
 }
-label{
-color: black;
-text-shadow: 0 1px 0 #fff;
-font-size: 14px;
-font-weight: bold;
-}
-.error{
+
+.form input[type=text], [type=password] {
+    width: 97.7%;
+    height: 34px;
+    padding-left: 5px;
+    margin-bottom: 20px;
+    margin-top: 8px;
+    box-shadow: 0 0 5px #638F3A;
+    border: 2px solid #638F3A;
     color: black;
-text-shadow: 0 1px 0 #fff;
-font-size: 14px;
-font-weight: bold;
+    font-size: 16px;
 }
-#loginid {
-font-size: 20px;
-margin-top: 15px;
-background: #2F2A27;
-padding: 7px 35px;
-color: white;
-text-shadow: 0px 1px 0px #13506D;
-font-weight: bold;
-border-radius: 10px;
-cursor: pointer;
-width: 100%;
+
+label {
+    color: black;
+    text-shadow: 0 1px 0 #fff;
+    font-size: 14px;
+    font-weight: bold;
 }
-#loginid:hover{
-background: #638F3A;
+
+.error {
+    color: black;
+    text-shadow: 0 1px 0 #fff;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+#login {
+    font-size: 20px;
+    margin-top: 15px;
+    background: #2F2A27;
+    padding: 7px 35px;
+    color: white;
+    text-shadow: 0px 1px 0px #13506D;
+    font-weight: bold;
+    border-radius: 10px;
+    cursor: pointer;
+    width: 100%;
+}
+
+#loginid:hover {
+    background: #638F3A;
 }
