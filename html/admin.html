@@ -1,4 +1,5 @@
 <h1>Välkommen : {{name}} </h1>
+    <button style="display: inline" ng-click="AdminLogout()" id="LogOut" type="button type" class="pull-right btn btn-info btn-lg"> Logout</button>
 <section class="col-md-6">
 
     <h2>Användare</h2>
@@ -71,11 +72,12 @@
                     </tr>
                 </thead>
                 <tbody>
-                        <tr ng-repeat="admin in users | filter: {lastName: searchName }" ng-if="admin.occupation == 'Admin'" ng-click="removeRow($index)">                            <td>{{admin.firstName}}</td>
-                            <td>{{admin.lastName}}</td>
-                            <td>{{admin.username}}</td>
-                            <td>{{admin.password}}</td>
-                        </tr>
+                    <tr ng-repeat="admin in users | filter: {lastName: searchName }" ng-if="admin.occupation == 'Admin'" ng-click="removeRow($index)">
+                        <td>{{admin.firstName}}</td>
+                        <td>{{admin.lastName}}</td>
+                        <td>{{admin.username}}</td>
+                        <td>{{admin.password}}</td>
+                    </tr>
                 </tbody>
             </table>
         </article>
@@ -126,6 +128,12 @@
 </section>
 <section class="col-md-6 ">
     <h2>Prov att dela ut</h2>
+    <h3>Sök</h3>
+    <article class="row">
+        <p class="col-md-4">
+            <input type="text" placeholder="Filtrera på Namn" class="text-box" ng-model="searchTests">
+        </p>
+    </article>
     <article class="table-max-height-400">
         <table class="table table-hover">
             <thead>
@@ -138,20 +146,16 @@
                 </tr>
             </thead>
             <tbody class="">
-                <tr ng-repeat="(testIndex, tests) in tests">
+                <tr ng-repeat="(testIndex, tests) in tests  | filter: {examName: searchTests }">
                     <td>
                         {{tests.examName}}
                     </td>
 
                     <td>
-                        <select>
-                            <option value="">2015-01-01</option>
-                        </select>
+                        <input ng-click="hej()" type="text" class="datepicker">
                     </td>
                     <td>
-                        <select>
-                            <option value="">2015-01-01</option>
-                        </select>
+                        <input ng-click="hej()" type="text" class="datepicker">
                     </td>
 
                     <td>
