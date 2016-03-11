@@ -177,7 +177,7 @@
     indexApp.service('loginService', function(dataService) {
         var user = null;
 
-        var getLoggedInUser = function() {
+        var getUser = function() {
             return user;
         };
 
@@ -197,7 +197,7 @@
         };
 
         return {
-            getLoggedInUser: getLoggedInUser,
+            getUser: getUser,
             login: login,
             logout: logout
         };
