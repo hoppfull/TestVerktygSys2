@@ -3,7 +3,7 @@ button {
     background-color: teal !important;
   
     border: solid 1px black !important;
-    padding: 5px 5px !important;
+    padding: 1px 5px !important;
 }
 
 button:hover {
