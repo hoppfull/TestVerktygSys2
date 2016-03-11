@@ -2,14 +2,6 @@
     var indexApp = angular.module("indexApp", ['ngRoute']);
 
     indexApp.controller('mainController', function($scope, loginService, dataService) {
-        setTimeout(function() { // TODO: ta bort!!!
-
-            var user = dataService.getUsers().find(user => user.username === 'admin');
-            loginService.login(user);
-
-            console.log(dataService.removeStudentClass('9B'));
-            console.log(dataService.getStudentClasses());
-        }, 100);
     });
 
     indexApp.service('dataService', function($http, loginService) {
@@ -147,7 +139,7 @@
                 console.log("Error: removeExam code 2");
                 return false;
             }
-            
+
             var currentExam = exams.find(exam => exam.name === examName);
             if (!currentExam) {
                 console.log("Error: exam could not be found for removal.");
@@ -186,7 +178,7 @@
                 console.log("Error: removeSubject code 2");
                 return false;
             }
-            
+
             var currentSubject = subjects.find(subject => subject === subjectName);
             if (!currentSubject) {
                 console.log("Error: no such subject exists!");
@@ -211,7 +203,7 @@
                 console.log("Error: removeStudentClass code 2");
                 return false;
             }
-            
+
             var currentStudentClass = studentClasses.find(studentClass => studentClass === studentClassName);
             if (!currentStudentClass) {
                 console.log("Error: no such student class exists!");
@@ -243,7 +235,7 @@
         };
     });
 
-    indexApp.service('loginService', function() {
+    indexApp.service('loginService', function() { // tested: works
         var user = null;
 
         var getUser = function() {
@@ -273,7 +265,7 @@
     });
 
     indexApp.config(function($routeProvider) {
-        /*$routeProvider
+        $routeProvider
             .when('/login', {
                 templateUrl: 'html/login.html',
                 controller: 'loginController'
@@ -302,6 +294,6 @@
                 templateUrl: 'html/teacher.html',
                 controller: 'teacherController'
             })
-            .otherwise({ redirectTo: '/login' });*/
+            .otherwise({ redirectTo: '/login' });
     });
 } ());
