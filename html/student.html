@@ -1,99 +1,119 @@
 <main>
-	<h1>Aktuella prov</h1>
+    <h1>Aktuella prov</h1>
 
-	<table>
-		<thead>
-			<tr>
-				<th>Provnamn</th>
-				<th>Tillgängligt</th>
-				<th>Slutdatum</th>
-				<th>Status</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr ng-repeat="exam in user.exams" ng-if="exam.status !=='done'">
-				<td>{{exam.name}}</td>
-				<td>{{exam.availableFrom}}</td>
-				<td>{{exam.availableUntil}}</td>
-				<td>
-					<!--TRIGGER MODAL HERE-->
-					<button ng-click="startExam($index)" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">
-					{{examStatus(exam.status)}}
-					</button>
-				</td>
+    <table>
+        <thead>
+            <tr>
+                <th>Provnamn</th>
+                <th>Tillgängligt</th>
+                <th>Slutdatum</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="exam in user.exams" ng-if="exam.status !=='done'">
+                <td>{{exam.name}}</td>
+                <td>{{exam.availableFrom}}</td>
+                <td>{{exam.availableUntil}}</td>
+                <td>
+                    <!--TRIGGER MODAL HERE-->
+                    <button ng-click="startExam($index)" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">
+                        {{examStatus(exam.status)}}
+                    </button>
+                </td>
 
-				<!--MODAL-->
-				<!--role är det som gör att ett fönster öppnas upp, säger vad elementet ska behandlas som-->
-				<div id="myModal" class="modal fade" role="dialog">
-					<div class="modal-dialog">
+                <!--MODAL-->
+                <!--role är det som gör att ett fönster öppnas upp, säger vad elementet ska behandlas som-->
+                <div id="myModal" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
 
-						<!--MODAL CONTENT-->
-						<div class="modal-content">
-						
-							<!--HEADER-->
-							<div class="modal-header">
-								<button type="button" class="close" data-dismiss="modal">&times;</button>
-								<!--TODO. Hämta namn på prov. Bekräftar att det är rätt öppnat-->
-								<h1 class="modal-title">Prov</h1>
-								<!--date, just for testing-->
-								<p>{{currentDate | date:'dd/MM/yyyy'}}</p>
-								<p>{{time}}</p>
-							</div>
-							
-							<!--BODY-->
-							<div class="modal-body">
-								<!--QUESTION FORM-->
-								<form id="question-form" ng-submit="submit()">
-									<div class="question-box" ng-repeat="question in questions">
-										<h1>{{question.questionText}}</h1>
-										<p ng-repeat="answers in question.answers">
-											
-											<input id="answerId{{$parent.$index}}{{$index}}" class="answer-alternative" type="{{questionType(question.type)}}" name="{{$parent.$index}}"><label  for="answerId{{$parent.$index}}{{$index}}">{{answers.answerText}}</label>
-											
-										</p>
-										<h6>Maxpoäng: {{question.score}}</h6>
-									</div>
-									<!--
+                        <!--MODAL CONTENT-->
+                        <div class="modal-content">
+
+                            <!--HEADER-->
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <!--TODO. Hämta namn på prov. Bekräftar att det är rätt öppnat-->
+                                <h1 class="modal-title">Prov</h1>
+                                <!--date, just for testing-->
+                                <p>{{currentDate | date:'dd/MM/yyyy'}}</p>
+                                <p>{{time}}</p>
+                            </div>
+
+                            <!--BODY-->
+                            <div class="modal-body">
+                                <!--QUESTION FORM-->
+                                <form id="question-form" ng-submit="submit()">
+                                    <div class="question-box" ng-repeat="question in questions">
+                                        <h1>{{question.questionText}}</h1>
+                                        <p ng-repeat="answers in question.answers">
+
+                                            <input id="answerId{{$parent.$index}}{{$index}}" class="answer-alternative" type="{{questionType(question.type)}}" name="{{$parent.$index}}">
+                                            <label for="answerId{{$parent.$index}}{{$index}}">{{answers.answerText}}</label>
+
+                                        </p>
+                                        <h6>Maxpoäng: {{question.score}}</h6>
+                                    </div>
+                                    <!--
 									I was forced to do the submit this way,
 									don't know why don't care anymore.
 									Can at least be moved outside of form if wanted
 									-->
-									<p ng-if="isExamDone">Poäng: {{totalPoints}} / {{maxPoints}} ({{(totalPoints/maxPoints)*100 | number:2}}%)</p>
-									<input id="btn-submit" type="submit" value="Skicka in" form="question-form">
-								</form>
-								
-							</div>
-							
-							<!--FOOTER-->
-							<div class="modal-footer">
-								<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-							</div>
-						</div>
-					</div>
-				</div>
-			</tr>
-		</tbody>
-	</table>
+                                    <p ng-if="isExamDone">Poäng: {{totalPoints}} / {{maxPoints}} ({{(totalPoints/maxPoints)*100 | number:2}}%)</p>
+                                    <input id="btn-submit" type="submit" value="Skicka in" form="question-form">
+                                </form>
 
-	<h1>Historik</h1>
-	<table>
-		<thead>
-			<tr>
-				<th>Provnamn</th>
-				<th>Betyg</th>
-				<th>Kurs</th>
-				<th>Slutdatum</th>
-				<th>Lärare</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr ng-repeat="exam in user.exams" ng-if="exam.status === 'done'">
-				<td>{{exam.name}}</td>
-				<td>{{exam.grade}}</td>
-				<td>{{exam.name}}</td>
-				<td>{{exam.availableUntil}}</td>
-				<td>{{exam.teacher}}</td>
-			</tr>
-		</tbody>
-	</table>
+                            </div>
+
+                            <!--FOOTER-->
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </tr>
+        </tbody>
+    </table>
+
+    <h1>Historik</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Provnamn</th>
+                <th>Betyg</th>
+                <th>Kurs</th>
+                <th>Slutdatum</th>
+                <th>Lärare</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="exam in user.exams" ng-if="exam.status === 'done'">
+                <td>{{exam.name}}</td>
+                <td>{{exam.grade}}</td>
+                <td>{{exam.name}}</td>
+                <td>{{exam.availableUntil}}</td>
+                <td>{{exam.teacher}}</td>
+                <td>
+                    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#ExamComp">See prov</button>
+                </td>
+                <div id="ExamComp" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h1 class="modal-title">Prov</h1>
+                            </div>
+                            <div class="modal-body">
+                                <!--Add ng-reapet och fyll i med frågor-->
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Stäng</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </tr>
+        </tbody>
+    </table>
 </main>
