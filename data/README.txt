@@ -9,7 +9,7 @@
             "lastName": "",
             "type": "", // admin, student eller teacher
             "studentClass": "", // ta bort denna om de inte används
-            "subjects": [] // lista med objekt definierade i subjects
+            "subjects": [] // lista med strängar definierade i subjects
         }
     ],
     "exams": [

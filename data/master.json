@@ -16,11 +16,7 @@
             "type": "student",
             "studentClass": "7A",
             "subjects": [
-                {
-                    "name": "Physics",
-                    "startDate": "2015-03-20",
-                    "endDate": "2016-07-20"
-                }
+                "Physics"
             ]
         },
         {
@@ -31,11 +27,7 @@
             "type": "teacher",
             "studentClass": "",
             "subjects": [
-                {
-                    "name": "Physics",
-                    "startDate": "2015-03-20",
-                    "endDate": "2016-07-20"
-                }
+                "Physics"
             ]
         },
         {
@@ -137,8 +129,8 @@
             "authorName": "teacher",
             "studentName": "student",
             "status": "done",
-            "sentToAdmin": true,
-            "sentToStudent": true,
+            "sentToAdmin": false,
+            "sentToStudent": false,
             "startDate": "2015-01-01",
             "endDate": "2017-01-01",
             "timeLimit": 10,
