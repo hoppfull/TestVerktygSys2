@@ -3,7 +3,7 @@
     Välkommen {{name}} 
     <button style="display: inline" ng-click="logout()" id="LogOut" type="button type" class="pull-right btn btn-info btn-lg"> Logout</button>
 </h1>
-    <section class="col-md-6">
+    <section class="col-md-12">
         <h2>Användare</h2>
         <p class="col-md-4">
             <input type="text" placeholder="Filtrera efter efternamn" class="text-box" ng-model="filterLastNames">
@@ -113,7 +113,7 @@
             </main>
         </section>
     </section>
-    <section class="col-md-6 ">
+    <section class="col-md-12">
         <h2>Prov att dela ut</h2>
 
         <article class="row">
@@ -131,91 +131,48 @@
                     </tr>
                 </thead>
                 <tbody class="">
-                    <tr ng-repeat="exam in exams | filter: {examName: filterExamNames }">
+                    <tr ng-repeat="exam in exams | filter: {name: filterExamNames}">
                         <td>{{exam.name}}</td>
                         <td>{{exam.startDate}}</td>
                         <td>{{exam.endDate}}</td>
                         <td>
-                            <!--TRIGGER MODAL HERE-->
-                            <button ng-click="showExam(exam)" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#examModal">
-                                Visa prov
-                            </button>
+                            <button ng-click="showExam(exam)" data-toggle="modal" data-target="#showExamModal">Visa prov</button>
                         </td>
-
-                        <!--MODAL-->
-                        <!--role är det som gör att ett fönster öppnas upp, säger vad elementet ska behandlas som-->
-                        <div id="examModal" class="modal fade" role="dialog">
-                            <div class="modal-dialog">
-                                <!--MODAL CONTENT-->
+                        <section id="showExamModal" class="modal fade" role="dialog">
+                            <main class="modal-dialog popupSize">
                                 <div class="modal-content">
-
-                                    <!--HEADER-->
-                                    <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                        <!--TODO. Hämta namn på prov. Bekräftar att det är rätt öppnat-->
-                                        <h1 class="modal-title">Prov {{exam.name}}</h1>
-
-                                    </div>
-
-                                    <!--BODY-->
-                                    <div class="modal-body">
-                                        <!--QUESTION FORM-->
-                                        <form id="question-form" ng-submit="submit()">
-                                            <div class="question-box" ng-repeat="question in exam.questions">
-                                                <h1>{{question.questionText}}</h1>
-                                                <p ng-repeat="answers in question.answers">
-
-                                                    <input id="answerId{{$parent.$index}}{{$index}}" class="answer-alternative" type="{{questionType(question.type)}}" name="{{$parent.$index}}">
-                                                    <label for="answerId{{$parent.$index}}{{$index}}">{{answers.answerText}}</label>
-
-                                                </p>
-                                                <h6>Maxpoäng: {{question.score}}</h6>
-                                            </div>
-
-
-                                        </form>
-
-                                    </div>
-
-                                    <!--FOOTER-->
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <td>
-                            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#sendModal">Skicka</button>
-
-                            <!-- Modal -->
-                            <div class="modal fade" id="sendModal" role="dialog">
-                                <div class="modal-dialog">
-                                    <!-- Modal content-->
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                            <h4 class="modal-title">Elever att skicka till</h4>
-                                        </div>
-                                        <div class="modal-body">
-                                            <form ng-submit="">
-                                                <div class="" ng-repeat="student in users" ng-if="student.occupation == 'Student'">
+                                    <button type="button" class="close" data-dismiss="modal">x</button>
+                                    <h2 class="modal-title">{{examToShow.name}}</h2>
+                                    <article class="modal-body">
+                                        <main ng-repeat="question in examToShow.questions">
+                                            <section>
+                                                <h4>{{question.text}}</h4>
+                                                <div ng-if="question.type !== 'ranked'">
                                                     <form>
-                                                        <input type="checkbox"> {{student.firstName}} {{student.lastName}}
+                                                        <ul>
+                                                            <li ng-repeat="answer in question.answers">
+                                                                <input type="{{question.type}}" name="question.text">{{answer.text}}
+                                                            </li>
+                                                        </ul>
                                                     </form>
                                                 </div>
-                                                <input type="button" value="Skicka ut prov" ng-click="sendTest(send);" />
-                                            </form>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                        </div>
-                                    </div>
+                                                <div ng-if="question.type === 'ranked'">
+                                                    <ul>
+                                                        <li ng-repeat="answer in question.answers">
+                                                            <select>
+                                                                <option ng-repeat="($index, answer) in question.answers" value="{{$index + 1}}">{{$index + 1}}</option>
+                                                            </select>
+                                                            {{answer.text}}
+                                                        </li>
+                                                    </ul>
+
+                                                </div>
+                                            </section>
+                                        </main>
+                                    </article>
                                 </div>
-                            </div>
-                        </td>
-                        <td>
-                            <button type="button" class="btn btn-primary " data-ng-click="removeRowExams(testIndex)" />Ta bort</button>
-                        </td>
+                            </main>
+                        </section>
                     </tr>
                 </tbody>
             </table>

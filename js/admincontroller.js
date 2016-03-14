@@ -2,10 +2,10 @@
     angular.module("indexApp").controller("adminController", function($scope, dataService, loginService) {
         loginService.login(dataService.getUsers().find(user => user.type === 'admin'));
         $scope.name = loginService.getUser().firstName + ' ' + loginService.getUser().lastName;
-        $scope.logout = function () {
+        $scope.logout = function() {
             loginService.logout();
         };
-        
+
         function updateLists() {
             $scope.exams = dataService.getExams().filter(exam => exam.sentToAdmin && !exam.sentToStudent);
             $scope.students = dataService.getUsers().filter(user => user.type === 'student');
@@ -21,13 +21,13 @@
                 }));
         }
 
+        updateLists();
+
         $scope.closeTabs = function() {
             $scope.showStudents = false;
             $scope.showTeachers = false;
             $scope.showAdmins = false;
         };
-
-        updateLists();
 
         $scope.removeUser = function(userName) {
             dataService.removeUser(userName);
@@ -45,17 +45,19 @@
 
             if (dataService.addUser(newUser)) {
                 $("[data-dismiss=modal]").trigger({ type: "click" });
-                
+
                 $scope.newUserName = "";
                 $scope.newUserFirstName = "";
                 $scope.newUserLastName = "";
                 $scope.newUserPassword = "";
                 $scope.newUserStudentClass = "";
-                
+
                 updateLists();
             }
         };
-        
-        
+
+        $scope.showExam = function (exam) {
+            $scope.examToShow = exam;
+        };
     });
 } ());

@@ -1,7 +1,22 @@
-.shade {
-    
+.popup-shade {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width:100vw;
+    height:100vh;
+    background-color:rgba(0, 0, 0, 0.5);
 }
 
-.popup {
+.popup-window {
+    position: absolute;
+    top: 0vw;
+    right:0;
+    left:0;
+    width:80vw;
     
+    background-color: white;
+    border:1px solid black;
+    padding: 20px;
+    box-shadow: 0 0 7px black;
+    margin:auto;
 }
