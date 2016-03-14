@@ -30,10 +30,10 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="student in users | filter: {lastName: searchName }" ng-if="student.occupation == 'Student'" ng-click="removeRowUser($index)">
+                        <tr ng-repeat="student in users | filter: {lastName: searchName }" ng-if="student.type === 'student'" ng-click="removeRowUser($index)">
                             <td>{{student.firstName}}</td>
                             <td>{{student.lastName}}</td>
-                            <td>{{}}</td>
+                            <td></td>
                             <td>{{student.username}}</td>
                             <td>{{student.password}}</td>
                         </tr>
@@ -52,10 +52,10 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="teacher in users | filter: {lastName: searchName }" ng-if="teacher.occupation == 'Teacher'" ng-click="removeRowUser($index)">
+                        <tr ng-repeat="teacher in users | filter: {lastName: searchName }" ng-if="teacher.type === 'teacher'" ng-click="removeRowUser($index)">
                             <td>{{teacher.firstName}}</td>
                             <td>{{teacher.lastName}}</td>
-                            <td>{{}}</td>
+                            <td></td>
                             <td>{{teacher.username}}</td>
                             <td>{{teacher.password}}</td>
                         </tr>
@@ -73,7 +73,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="admin in users | filter: {lastName: searchName }" ng-if="admin.occupation == 'Admin'" ng-click="removeRowUser($index)">
+                        <tr ng-repeat="admin in users | filter: {lastName: searchName }" ng-if="admin.type === 'admin'" ng-click="removeRowUser($index)">
                             <td>{{admin.firstName}}</td>
                             <td>{{admin.lastName}}</td>
                             <td>{{admin.username}}</td>
@@ -93,10 +93,10 @@
                     <article class="modal-body">
                         <form>
                             <select ng-model="_occupation">
-                            <option value="Student">Student</option>
-                            <option value="Teacher">Lärare</option>
-                            <option value="Admin">Administratör</option>
-                        </select>
+                                <option value="Student">Student</option>
+                                <option value="Teacher">Lärare</option>
+                                <option value="Admin">Administratör</option>
+                            </select>
                             <br>
                             <p>
                                 Förnamn :
@@ -165,8 +165,8 @@
                         <td>
                             <!--TRIGGER MODAL HERE-->
                             <button ng-click="startTest()" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#examModal">
-                            Provet
-                        </button>
+                                Provet
+                            </button>
                         </td>
 
                         <!--MODAL-->
