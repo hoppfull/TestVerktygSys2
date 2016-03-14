@@ -53,7 +53,7 @@
                     <tr ng-repeat="teacher in teachers | filter: {lastName: searchName}" ng-click="selectUserName(teacher.username)">
                         <td>{{teacher.firstName}}</td>
                         <td>{{teacher.lastName}}</td>
-                        <td></td>
+                        <td>{{teacher.subjects}}</td>
                         <td>{{teacher.username}}</td>
                         <td>{{teacher.password}}</td>
                         <td>
@@ -87,6 +87,10 @@
         </article>
 
         <button ng-if="showStudents || showTeachers || showAdmins" data-toggle="modal" data-target="#addUserModal">Lägg till användare</button>
+        <select ng-if="showTeachers">
+            <option ng-repeat="subject in subjects" value="{{subject}}">{{subject}}</option>
+        </select>
+        <button ng-if="showTeachers">Lägg till ämne</button>
         <section id="addUserModal" class="modal fade" role="dialog">
             <main class="modal-dialog">
                 <div class="modal-content">

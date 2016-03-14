@@ -2,10 +2,18 @@
     angular.module("indexApp").controller("adminController", function($scope, dataService, loginService) {
         loginService.login(dataService.getUsers().find(user => user.type === 'admin'));
         function updateLists() {
+            $scope.subjects = dataService.getSubjects();
             $scope.students = dataService.getUsers().filter(user => user.type === 'student');
             $scope.admins = dataService.getUsers().filter(user => user.type === 'admin');
-            $scope.teachers = dataService.getUsers().filter(user => user.type === 'teacher');
-            console.log(dataService.getUsers());
+            $scope.teachers = dataService.getUsers()
+                .filter(user => user.type === 'teacher')
+                .map(user => ({
+                    username: user.username,
+                    password: user.password,
+                    firstName: user.firstName,
+                    lastName: user.lastName,
+                    subjects: user.subjects.length === 0 ? "" : user.subjects.reduce((a, b) => a + ', ' + b)
+                }));
         }
 
         $scope.closeTabs = function() {
@@ -34,6 +42,13 @@
 
             if (dataService.addUser(newUser)) {
                 $("[data-dismiss=modal]").trigger({ type: "click" });
+                
+                $scope.newUserName = "";
+                $scope.newUserFirstName = "";
+                $scope.newUserLastName = "";
+                $scope.newUserPassword = "";
+                $scope.newUserStudentClass = "";
+                
                 updateLists();
             }
         };

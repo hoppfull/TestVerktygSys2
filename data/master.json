@@ -1,7 +1,9 @@
 {
     "subjects": [
         "Physics",
-        "Mathematics"
+        "Mathematics",
+        "Biology",
+        "Chemistry"
     ],
     "studentClasses": [
         "7A-HT15",
@@ -27,7 +29,8 @@
             "type": "teacher",
             "studentClass": "",
             "subjects": [
-                "Physics", "Chemistry"
+                "Physics",
+                "Mathematics"
             ]
         },
         {
