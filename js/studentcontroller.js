@@ -1,13 +1,12 @@
 /// <reference path="app.js" />
 (function() {
 	angular.module("indexApp").controller("studentController", function($scope, $http, $interval, dataService, loginService) {
+		var timer = null;
 		$scope.student = dataService.getUsers()
 			.find(item => item.username === "student");
 		$scope.exams = dataService.getExams()
 			.filter(item => item.studentName === "student")
 			.filter(item => item.sentToStudent);
-		var activeExam = null;
-		var timer = null;
 		
 		console.log($scope.student);
 		console.log($scope.exams);
@@ -16,18 +15,14 @@
 			loginService.logout();
 		}
 		
-		$scope.examStatus = function (status) {
+		$scope.btnExamStatus = function (status) {
 			return status === "ready" ? "Starta" : "Fortsätt";
 		}
 		
 		$scope.startExam = function(exam){
-			activeExam = exam;
-			$scope.questions = activeExam.questions;
-			$scope.currentDate = new Date();
 			$scope.isExamDone = false;
-			$scope.time = activeExam.timeLimit;
-			startCountdown();
-			$("#btn-submit").show(); //to make sure it gets visible again
+			setActiveExam(exam);
+			startCountdown($scope.activeExam.timeLimit);
 		};
 		
 		//måste skrivas om helt för att returnera
@@ -36,9 +31,16 @@
 			return type !== "ranked" ? type : "combobox";
 		};
 		
+		var setActiveExam = function(exam){
+			$scope.activeExam = exam;
+			$scope.questions = $scope.activeExam.questions;
+			$scope.examTitle = $scope.activeExam.name;
+		}
+		
 		//TIMER
-		var startCountdown = function(){
-			timer = $interval(decrementTime, 1000, $scope.time+1);
+		var startCountdown = function(timeLimit){
+			$scope.time = timeLimit;
+			timer = $interval(decrementTime, 1000, timeLimit+1);
 		}
 
 		var decrementTime = function(){
@@ -51,145 +53,85 @@
 			}
 		};
 		
-		
 		$scope.submit = function() {
 			var htmlAnswers = document.getElementsByClassName("answer-alternative");
-			var answerIndex = 0;
-			$scope.totalPoints = 0;
-			$scope.maxPoints = 0;
-			$scope.isExamDone = true;
-			$("#btn-submit").hide();
 			$interval.cancel(timer);
-			activeExam.status = "done";
-
-			//quick solution - will change if time - also add ranked support
-			for(var i = 0; i<activeExam.questions.length; i++){
-				for(var j = 0; j<activeExam.questions[i].answers.length; j++){
-					
-					var htmlAnswer = htmlAnswers[answerIndex]; 
-					var jsonAnswer = activeExam.questions[i].answers[j];
+			$scope.activeExam.status = "done";
+			updateExam(htmlAnswers);
+			setGrade();
+			$scope.activeExam = null;
+		}
+		
+		var updateExam = function(htmlAnswers){
+			var answerIndex = 0;
+			var htmlAnswerBox = null;
+			$scope.maxPoints = 0;
+			
+			for(var i = 0; i<$scope.activeExam.questions.length; i++){
+				var points = 0;
 				
-					if(htmlAnswer.type==="radio" || htmlAnswer.type==="checkbox"){
-						jsonAnswer.checked = htmlAnswer.checked ? true : false;
-					}
+				for(var j = 0; j<$scope.activeExam.questions[i].answers.length; j++){
+					
+					var question = $scope.activeExam.questions[i];
+					var jsonAnswer = $scope.activeExam.questions[i].answers[j];
+					var htmlAnswer = htmlAnswers[answerIndex];
+					htmlAnswerBox = $(htmlAnswer).parent().parent();
+					
+					saveAnswer(question, jsonAnswer, htmlAnswer);
+					points += correctQuestion(question, jsonAnswer, htmlAnswer);
+					$scope.maxPoints += (jsonAnswer.point > 0 && question.type != "ranked") ? jsonAnswer.point : 0;
 					answerIndex++;
 				}
-			}
-			
-			//!!!!!!!fortsätt här. Nu är rättningen simpel
-			
-			
-			console.log(dataService.getExams()
-				.filter(item => item.name === activeExam.name));
-			
-			activeExam = null;
-		};
-		
-		/*
-		Would be great to be able to separate users and questionnaire data
-		--Eric
-		*/
-		
-		/*
-		$http.get('../data/students.json').success(function (response) {
-			$scope.user = response.students.find(item => item.username === "Sune");
-		});
-		*/
-		
-		
-		
-		/*
-		var loadJson = function(array){
-			for(var i = 0; i < $scope.questions.length; i++){
-				for(var j = 0; j < $scope.questions[i].answers.length; j++){
-					array.push($scope.questions[i].answers[j]);
+				$scope.activeExam.score += points > 0 ? points : 0;
+				$scope.activeExam.questions[i].score = points > 0 ? points : 0;
+				if($scope.maxPoints === $scope.activeExam.questions[i].score){
+					$(htmlAnswerBox).css("background-color", "green");
 				}
 			}
-		}*/
+			$scope.totalPoints = $scope.activeExam.score;
+		}
 		
-		
-		
-		
-		
-		/*
-		$scope.submit = function() {
-			var htmlAnswers = document.getElementsByClassName("answer-alternative");
-			var jsonAnswers = [];
-			loadJson(jsonAnswers); //load questions to check against
-			var currentQuestionIndex = -1;
-			var currentQuestionBox = null;
-			var points = 0;
-			var allCorrect = false;
-			$scope.totalPoints = 0;
-			$scope.maxPoints = 0;
-			
-			for(var i = 0; i < jsonAnswers.length; i++){
-				
-				if(jsonAnswers[i].points > 0){	
-					$scope.maxPoints += jsonAnswers[i].points;
-				}
+		var saveAnswer = function(question, jsonAnswer, htmlAnswer){
+			//add case for ranked if time
+			if(question.type==="radio" || question.type==="checkbox"){
+				jsonAnswer.checked = htmlAnswer.checked ? true : false;
 			}
-			
-			//check if correct answers
-			for(var j = 0; j < htmlAnswers.length; j++){
-				
-				//check if new question
-				if(currentQuestionIndex != $(htmlAnswers[j]).attr("name")){
-					//..and reset values
-					currentQuestionIndex = $(htmlAnswers[j]).attr("name");
-					currentQuestionBox = $(htmlAnswers[j]).parent().parent();
-					var allCorrect = true;
-				}
-				
-				
-				//checks correect answers and applies confirmation css
-				//if statements added in case we want other kinds of answer alternatives
-				
-				//räknar nåt fel på checkboxes
-				
-				if(htmlAnswers[j].type==="radio" || htmlAnswers[j].type==="checkbox"){
+		}
 
-					if(htmlAnswers[j].checked && (jsonAnswers[j].points > 0)){
-						$(htmlAnswers[j]).parent().css("background-color", "green");
-						points += jsonAnswers[j].points;
-					}
-					else if((htmlAnswers[j].checked && (jsonAnswers[j].points < 0)) || 
-							(!htmlAnswers[j].checked && (jsonAnswers[j].points > 0))){
-						
-						points--;
-						allCorrect = false;
-						
-						if(htmlAnswers[j].checked && (jsonAnswers[j].points < 0)){
-							$(htmlAnswers[j]).parent().css("background-color", "red");
-						}
-						else if(!htmlAnswers[j].checked && (jsonAnswers[j].points > 0)){
-							$(htmlAnswers[j]).parent().css("background-color", "yellow");
-						}
-					}
-				}
+		var correctQuestion = function(question, jsonAnswer, htmlAnswer){
+			//add case for ranked if time
+			if(question.type==="radio" || question.type==="checkbox"){
 				
-				//save values, must check one value in the future thus the cehck
-				if(htmlAnswers.length >= j+1){
-					
-					//save values, but ignore if the default start vallue
-					if(currentQuestionIndex != $(htmlAnswers[j+1]).attr("name") && currentQuestionIndex != -1){
-						
-						//set container css
-						$(currentQuestionBox).css("background-color", allCorrect ? "green" : "gray");
-						
-						//set points
-						if(points<0)
-							points=0;
-
-						$scope.totalPoints += points;
-					}
+				if(jsonAnswer.checked && (jsonAnswer.point > 0)){
+					$(htmlAnswer).parent().css("background-color", "green");
+					return jsonAnswer.point;
 				}
+				else if(jsonAnswer.checked && (jsonAnswer.point < 0)){
+					$(htmlAnswer).parent().css("background-color", "red");
+					return jsonAnswer.point;
+				}
+				else if(!jsonAnswer.checked && (jsonAnswer.point > 0)){
+					$(htmlAnswer).parent().css("background-color", "yellow");
+					return -1;
+				}
+				return 0;
 			}
-			$("#btn-submit").hide();
-			//här hade vi sparat resultatet i en databas och tickat det här inlägget som "done"
-			//activeExamIndex
-			$scope.user.exams[$scope.activeExamIndex].status = "done";
-		};
-		*/
+			return 0;
+		}
+		
+		var setGrade = function(){
+			var percentage = ($scope.totalPoints/$scope.maxPoints);
+			
+			if(percentage >= 0.8){
+				$scope.activeExam.grade = "VG";
+				return;
+			}
+			else if(percentage >= 0.6){
+				$scope.activeExam.grade = "G";
+			}
+			else{
+				$scope.activeExam.grade = "U";
+			}
+		}
     });    
 }());
