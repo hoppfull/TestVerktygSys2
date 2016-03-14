@@ -5,8 +5,9 @@
             $scope.students = dataService.getUsers().filter(user => user.type === 'student');
             $scope.admins = dataService.getUsers().filter(user => user.type === 'admin');
             $scope.teachers = dataService.getUsers().filter(user => user.type === 'teacher');
+            console.log(dataService.getUsers());
         }
-        
+
         $scope.closeTabs = function() {
             $scope.showStudents = false;
             $scope.showTeachers = false;
@@ -14,14 +15,27 @@
         };
 
         updateLists();
-                
+
         $scope.removeUser = function(userName) {
             dataService.removeUser(userName);
             updateLists();
         };
-        
-        $scope.addUserSubmit = function (x) {
-            console.log(x);
+
+        $scope.addUserSubmit = function() {
+            var newUser = {
+                username: $scope.newUserName,
+                firstName: $scope.newUserFirstName,
+                lastName: $scope.newUserLastName,
+                password: $scope.newUserPassword,
+                type: $scope.showStudents ? "student" : $scope.showTeachers ? "teacher" : $scope.showAdmins ? "admin" : "",
+                studentClass: $scope.showStudents ? $scope.newUserStudentClass : "",
+                subjects: []
+            };
+
+            if (dataService.addUser(newUser)) {
+                $("[data-dismiss=modal]").trigger({ type: "click" });
+                updateLists();
+            }
         };
 
         /*
