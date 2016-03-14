@@ -59,5 +59,14 @@
         $scope.showExam = function (exam) {
             $scope.examToShow = exam;
         };
+        
+        $scope.removeExam = function(examName) {
+            dataService.removeExam(examName);
+            updateLists();
+        }
+        
+        $scope.sendExamToUsers = function (exam) {
+            
+        };
     });
 } ());

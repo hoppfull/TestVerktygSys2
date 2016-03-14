@@ -23,7 +23,7 @@
                         <th>Efternamn</th>
                         <th>Username</th>
                         <th>Password</th>
-                        <th>Ta bort</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -45,7 +45,7 @@
                         <th>Efternamn</th>
                         <th>Username</th>
                         <th>Password</th>
-                        <th>Ta bort</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -67,7 +67,7 @@
                         <th>Efternamn</th>
                         <th>Username</th>
                         <th>Password</th>
-                        <th>Ta bort</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -126,17 +126,16 @@
                 <thead>
                     <tr>
                         <th>Namn</th>
-                        <th>Startdatum</th>
-                        <th>Slutdatum</th>
                     </tr>
                 </thead>
                 <tbody class="">
                     <tr ng-repeat="exam in exams | filter: {name: filterExamNames}">
                         <td>{{exam.name}}</td>
-                        <td>{{exam.startDate}}</td>
-                        <td>{{exam.endDate}}</td>
                         <td>
                             <button ng-click="showExam(exam)" data-toggle="modal" data-target="#showExamModal">Visa prov</button>
+                        </td>
+                        <td>
+                            <button ng-click="removeExam(exam.name)">Ta bort</button>
                         </td>
                         <section id="showExamModal" class="modal fade" role="dialog">
                             <main class="modal-dialog popupSize">
@@ -173,10 +172,30 @@
                                 </div>
                             </main>
                         </section>
+                        <td>
+                            <button ng-click="sendToStudents(exam)" data-toggle="modal" data-target="#sendToStudentsModal">Skicka till studenter</button>
+                        </td>
+                        <section id="sendToStudentsModal" class="modal fade" role="dialog">
+                            <main class="modal-dialog popupSize">
+                                <div class="modal-content">
+                                    <button type="button" class="close" data-dismiss="modal">x</button>
+                                    <h2 class="modal-title">Skicka prov till</h2>
+                                    <article class="modal-body">
+                                        <form ng-submit="sendExamToStudents()">
+                                            <ul>
+                                                <li ng-repeat="student in students">
+                                                    <input type="checkbox" value="{{student.username}}">{{student.firstName + ' ' + student.lastName}}
+                                                </li>
+                                            </ul>
+                                            <input type="submit" value="Skicka">
+                                        </form>
+                                    </article>
+                                </div>
+                            </main>
+                        </section>
                     </tr>
                 </tbody>
             </table>
-
         </article>
     </section>
 </main>
