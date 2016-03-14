@@ -96,21 +96,22 @@
                         <form ng-submit="addUserSubmit()">
                             <ul>
                                 <li>
-                                    <input type="text" placeholder="Användarnamn" ng-required="true">
+                                    <input ng-model="newUserName" name="tjena" type="text" placeholder="Användarnamn" ng-required="true">
                                 </li>
                                 <li>
-                                    <input type="text" placeholder="Förnamn" ng-required="true">
+                                    <input ng-model="newUserFirstName" type="text" placeholder="Förnamn" ng-required="true">
                                 </li>
                                 <li>
-                                    <input type="text" placeholder="Efternamn" ng-required="true">
+                                    <input ng-model="newUserLastName" type="text" placeholder="Efternamn" ng-required="true">
                                 </li>
                                 <li>
-                                    <input type="text" placeholder="Lösenord" ng-required="true">
+                                    <input ng-model="newUserPassword" type="text" placeholder="Lösenord" ng-required="true">
                                 </li>
                                 <li ng-if="showStudents">
-                                    <input type="text" placeholder="Klass" ng-required="showStudents">
+                                    <input ng-model="newUserClass" type="text" placeholder="Klass" ng-required="showStudents">
                                 </li>
                             </ul>
+                            <input class="btn btn-default" type="submit" value="Lägg till">
                         </form>
                     </article>
                 </div>

@@ -14,14 +14,14 @@
         };
 
         updateLists();
-        
-        $scope.editUser = function(userName) {
-            console.log("create logic for editing user!");
-        };
-        
+                
         $scope.removeUser = function(userName) {
             dataService.removeUser(userName);
             updateLists();
+        };
+        
+        $scope.addUserSubmit = function (x) {
+            console.log(x);
         };
 
         /*
