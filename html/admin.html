@@ -88,13 +88,13 @@
 
         <button ng-if="showStudents || showTeachers || showAdmins" data-toggle="modal" data-target="#addUserModal">Lägg till användare</button>
         <section id="addUserModal" class="modal fade" role="dialog">
-            <main class="modal-dialog">
+            <main class="modal-dialog popupSize">
                 <div class="modal-content">
                     <button type="button" class="close" data-dismiss="modal">x</button>
                     <h4 class="modal-title">Lägg till {{showStudents ? "student" : showTeachers ? "lärare" : showAdmins ? "administratör" : "användare"}}</h4>
                     <article class="modal-body">
-                        <form ng-submit="addUserSubmit()">
-                            <ul>
+                        <form class="form" ng-submit="addUserSubmit()">
+                            <ul class="ulSize">
                                 <li>
                                     <input ng-model="newUserName" name="tjena" type="text" placeholder="Användarnamn" ng-required="true">
                                 </li>
@@ -111,7 +111,7 @@
                                     <input ng-model="newUserStudentClass" type="text" placeholder="Klass" ng-required="showStudents">
                                 </li>
                             </ul>
-                            <input class="btn btn-default" type="submit" value="Lägg till">
+                            <input class="btn btn-default buttonS" type="submit" value="Lägg till">
                         </form>
                     </article>
                 </div>
