@@ -4,6 +4,7 @@
         if (loginService.user != null) {
             $scope.loggedIn = true;
             $scope.TeacherName = loginService.user.username;
+            $scope.newQuiz = [];
             updateQuizList();
 
             $scope.logout = function() {
@@ -14,9 +15,9 @@
                 dataService.removeQuiz(name, author);
                 updateQuizList();
             };
-
+            
             $scope.newQuizSubmit = function() {
-                var newQuiz = {
+                 newQuiz = {
                     author: $scope.TeacherName,
                     time: $scope.newQuizTime,
                     name: $scope.newQuizName,
@@ -56,7 +57,15 @@
                     ]
                 };
                 quiz.push(x);
+            };
+            $scope.addAnswerToQuestion = function () {
+                newQuiz = {
+                    question: "Hej"
+                }
+                
+                alert("TjaS");    
             }
+            
 
             function updateQuizList() {
                 $scope.quizzes = dataService.quizzes.filter(quiz => quiz.author === loginService.user.username);

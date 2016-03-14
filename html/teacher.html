@@ -3,6 +3,7 @@
 </div>
 
 <div ng-show="loggedIn">
+
     <section class="container">
         <article class="row">
             <h1 class="col-md-8">Welcome teacher {{TeacherName}}</h1>
@@ -46,19 +47,20 @@
                                     <form>
                                         <div class="jumbotron form-group" ng-repeat="question in testQuizes">
                                             <h1>Fråga:<input type="text" class="form-control" disabled placeholder="{{question.question}}"></h1>
-                                            <div class="form-group" >Typ
-                                                <select class="form-control"disabled>
-                                                    <option>{{question.type}}</option>                                                   >
+                                            <div class="form-group">Typ
+                                                <select class="form-control" disabled>
+                                                    <option>{{question.type}}</option> >
                                                 </select>
                                             </div>
-                                            <p ng-repeat="answers in question.answers">Svar:                                                
-                                                <input type="text" class="form-control" disabled placeholder="{{answers.answerText}}"><br>
+                                            <p ng-repeat="answers in question.answers">Svar:
+                                                <input type="text" class="form-control" disabled placeholder="{{answers.answerText}}">
+                                                <br>
                                             </p>
                                             <h6>Maxpoäng: <input type="number" class="form-control col-md-3" disabled placeholder="{{question.score}}"></h6>
                                             <button ng-click="removeQuestion(testName,testAuthor,question.question)" type="button" class="btn btn-primary">Ta bort</button>
-                                        </div>                         
+                                        </div>
                                     </form>
-                                    <form >
+                                    <form>
                                         <div class="jumbotron form-group">
                                             <h1>Fråga:<input type="text" class="form-control" ng-model="newQuestion"></h1>
                                             <div class="form-group">Typ
@@ -67,17 +69,18 @@
                                                     <option>MultiChoice</option>
                                                 </select>
                                             </div>
-                                            <p>Svar:                                                
-                                                <input type="text" class="form-control" ng-model="newAnswer"><br>
+                                            <p>Svar:
+                                                <input type="text" class="form-control" ng-model="newAnswer">
+                                                <br>
                                             </p>
-                                            <button type="button" class="btn btn-primary">Lägg till ett svar</button>
+                                            <button ng-click="addAnswerToQuestion()" type="button" class="btn btn-primary">Lägg till ett svar</button>
                                             <h6>Maxpoäng: <input type="number" class="form-control col-md-3" ng-model="newPoint"></h6>
                                             <button ng-click="saveQuestion(testQuizes)" type="button" class="btn btn-primary">Spara</button>
-                                        </div>                         
-                                    </form>                                    
+                                        </div>
+                                    </form>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-primary" >Lägg till en fråga</button>
+                                    <button type="button" class="btn btn-primary">Lägg till en fråga</button>
                                     <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
                                 </div>
                             </div>
