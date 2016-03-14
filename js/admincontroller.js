@@ -1,6 +1,10 @@
 (function() {
     angular.module("indexApp").controller("adminController", function($scope, dataService, loginService) {
         loginService.login(dataService.getUsers().find(user => user.type === 'admin'));
+        $scope.name = loginService.getUser().firstName + ' ' + loginService.getUser().lastName;
+        $scope.logout = function () {
+            loginService.logout();
+        };
         function updateLists() {
             $scope.subjects = dataService.getSubjects();
             $scope.students = dataService.getUsers().filter(user => user.type === 'student');

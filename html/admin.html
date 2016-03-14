@@ -1,5 +1,5 @@
 <main>
-    <h1 class="headercss"><img src="http://www.newton.se/content/themes/newton/assets/img/pngs/logo-footer.png" alt="Logo" />Välkommen : {{name}}  <button style="display: inline" ng-click="AdminLogout()" id="LogOut" type="button type" class="pull-right btn btn-info btn-lg"> Logout</button>
+    <h1 class="headercss"><img src="http://www.newton.se/content/themes/newton/assets/img/pngs/logo-footer.png" alt="Logo" />Välkommen : {{name}}  <button style="display: inline" ng-click="logout()" id="LogOut" type="button type" class="pull-right btn btn-info btn-lg"> Logout</button>
 </h1>
     <section class="col-md-6">
         <h2>Användare</h2>
@@ -19,7 +19,6 @@
                     <tr>
                         <th>Förnamn</th>
                         <th>Efternamn</th>
-                        <th>Klass</th>
                         <th>Username</th>
                         <th>Password</th>
                         <th>Ta bort</th>
@@ -29,7 +28,6 @@
                     <tr ng-repeat="student in students | filter: {lastName: searchName}">
                         <td>{{student.firstName}}</td>
                         <td>{{student.lastName}}</td>
-                        <td>{{student.studentClass}}</td>
                         <td>{{student.username}}</td>
                         <td>{{student.password}}</td>
                         <td>
@@ -43,7 +41,6 @@
                     <tr>
                         <th>Förnamn</th>
                         <th>Efternamn</th>
-                        <th>Ämnen</th>
                         <th>Username</th>
                         <th>Password</th>
                         <th>Ta bort</th>
@@ -53,7 +50,6 @@
                     <tr ng-repeat="teacher in teachers | filter: {lastName: searchName}" ng-click="selectUserName(teacher.username)">
                         <td>{{teacher.firstName}}</td>
                         <td>{{teacher.lastName}}</td>
-                        <td>{{teacher.subjects}}</td>
                         <td>{{teacher.username}}</td>
                         <td>{{teacher.password}}</td>
                         <td>
@@ -87,10 +83,6 @@
         </article>
 
         <button ng-if="showStudents || showTeachers || showAdmins" data-toggle="modal" data-target="#addUserModal">Lägg till användare</button>
-        <select ng-if="showTeachers">
-            <option ng-repeat="subject in subjects" value="{{subject}}">{{subject}}</option>
-        </select>
-        <button ng-if="showTeachers">Lägg till ämne</button>
         <section id="addUserModal" class="modal fade" role="dialog">
             <main class="modal-dialog popupSize">
                 <div class="modal-content">
@@ -110,9 +102,6 @@
                                 </li>
                                 <li>
                                     <input ng-model="newUserPassword" type="text" placeholder="Lösenord" ng-required="true">
-                                </li>
-                                <li ng-if="showStudents">
-                                    <input ng-model="newUserStudentClass" type="text" placeholder="Klass" ng-required="showStudents">
                                 </li>
                             </ul>
                             <input class="btn btn-default buttonS" type="submit" value="Lägg till">
