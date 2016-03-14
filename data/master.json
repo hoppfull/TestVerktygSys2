@@ -50,7 +50,7 @@
             "authorName": "teacher",
             "studentName": "",
             "status": "ready",
-            "sentToAdmin": false,
+            "sentToAdmin": true,
             "sentToStudent": false,
             "startDate": "2015-01-01",
             "endDate": "2017-01-01",

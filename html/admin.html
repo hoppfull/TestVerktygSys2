@@ -1,10 +1,12 @@
 <main>
-    <h1 class="headercss"><img src="http://www.newton.se/content/themes/newton/assets/img/pngs/logo-footer.png" alt="Logo" />Välkommen : {{name}}  <button style="display: inline" ng-click="logout()" id="LogOut" type="button type" class="pull-right btn btn-info btn-lg"> Logout</button>
+    <h1 class="headercss"><img src="http://www.newton.se/content/themes/newton/assets/img/pngs/logo-footer.png" alt="Logo" />
+    Välkommen {{name}} 
+    <button style="display: inline" ng-click="logout()" id="LogOut" type="button type" class="pull-right btn btn-info btn-lg"> Logout</button>
 </h1>
     <section class="col-md-6">
         <h2>Användare</h2>
         <p class="col-md-4">
-            <input type="text" placeholder="Filtrera efter efternamn" class="text-box" ng-model="searchName">
+            <input type="text" placeholder="Filtrera efter efternamn" class="text-box" ng-model="filterLastNames">
         </p>
 
         <ul class="nav nav-tabs">
@@ -25,7 +27,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="student in students | filter: {lastName: searchName}">
+                    <tr ng-repeat="student in students | filter: {lastName: filterLastNames}">
                         <td>{{student.firstName}}</td>
                         <td>{{student.lastName}}</td>
                         <td>{{student.username}}</td>
@@ -111,147 +113,12 @@
             </main>
         </section>
     </section>
-
-    <!--
-    <section class="col-md-6">
-
-        <h2>Användare</h2>
-        <article class="row">
-            <p class="col-md-4">
-                <input type="text" placeholder="Filtrera efter efternamn" class="text-box" ng-model="searchName">
-            </p>
-        </article>
-        
-        <!--
-        <ul class="nav nav-tabs">
-            <li><a data-toggle="tab" href="#studentTab">Student</a></li>
-            <li><a data-toggle="tab" href="#teacherTab">Lärare</a></li>
-            <li><a data-toggle="tab" href="#adminTab">Administratör</a></li>
-        </ul>
-        
-        
-        
-        <article class="tab-content table-max-height-300">
-
-            <article id="studentTab" class="tab-pane fade in active ">
-                <table class="table table-hover" id="userTable">
-                    <thead>
-                        <tr>
-                            <th>Förnamn</th>
-                            <th>Efternamn</th>
-                            <th>Class</th>
-                            <th>Username</th>
-                            <th>Password</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr ng-repeat="student in students | filter: {lastName: searchName}" ng-click="selectUserName(student.username)">
-                            <td>{{student.firstName}}</td>
-                            <td>{{student.lastName}}</td>
-                            <td>{{student.studentClass}}</td>
-                            <td>{{student.username}}</td>
-                            <td>{{student.password}}</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </article>
-            <article id="teacherTab" class="tab-pane fade">
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <th>Förnamn</th>
-                            <th>Efternamn</th>
-                            <th>Ämne</th>
-                            <th>Username</th>
-                            <th>Password</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr ng-repeat="teacher in teachers | filter: {lastName: searchName}" ng-click="selectUserName(teacher.username)">
-                            <td>{{teacher.firstName}}</td>
-                            <td>{{teacher.lastName}}</td>
-                            <td></td>
-                            <td>{{teacher.username}}</td>
-                            <td>{{teacher.password}}</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </article>
-            <article id="adminTab" class="tab-pane fade">
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <th>Förnamn</th>
-                            <th>Efternamn</th>
-                            <th>Username</th>
-                            <th>Password</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr ng-repeat="admin in admins | filter: {lastName: searchName}" ng-click="selectUserName(admin.username)">
-                            <td>{{admin.firstName}}</td>
-                            <td>{{admin.lastName}}</td>
-                            <td>{{admin.username}}</td>
-                            <td>{{admin.password}}</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </article>
-        </article>
-        
-        
-        <button type="button type" class="btn btn-info btn-lg" data-toggle="modal" data-target="#AddUser"> Lägg till användare</button>
-        <article class="modal" id="AddUser" role="dialog">
-            <article class="modal-dialog">
-                <article class="modal-content">
-                    <article class="modal-header">
-                        <h6>Skapa Användare</h6>
-                    </article>
-                    <article class="modal-body">
-                        <form>
-                            <select ng-model="_occupation">
-                                <option value="Student">Student</option>
-                                <option value="Teacher">Lärare</option>
-                                <option value="Admin">Administratör</option>
-                            </select>
-                            <br>
-                            <p>
-                                Förnamn :
-                            </p>
-                            <input ng-model="_firstName" type="text" required>
-                            <br>
-                            <p>
-                                Efternamn :
-                            </p>
-                            <input ng-model="_lastName" type="text">
-                            <br>
-                            <p>
-                                Användarnamn :
-                            </p>
-                            <input ng-model="_userName" type="text">
-                            <br>
-                            <p>
-                                Lösenord :
-                            </p>
-                            <input ng-model="_password" type="text">
-                        </form>
-                    </article>
-                    <article class="modal-footer">
-                        <button ng-click="addUser()" type="button" class="btn btn-default" data-dismiss="modal">Klar</button>
-                    </article>
-                </article>
-            </article>
-        </article>
-        <button ng-click="deleteSelectedUser()" id="button" type="button type" class="pull-right btn btn-info btn-lg"> Ta bort användare</button>
-    </section>
-    -->
-
     <section class="col-md-6 ">
         <h2>Prov att dela ut</h2>
 
         <article class="row">
             <p class="col-md-4">
-                <input type="text" placeholder="Filtrera på Namn" class="text-box" ng-model="searchTests">
+                <input type="text" placeholder="Filtrera på Namn" class="text-box" ng-model="filterExamNames">
             </p>
         </article>
         <article class="table-max-height-300">
@@ -261,30 +128,17 @@
                         <th>Namn</th>
                         <th>Startdatum</th>
                         <th>Slutdatum</th>
-                        <th>Klass</th>
-                        <th>Skicka ut</th>
                     </tr>
                 </thead>
                 <tbody class="">
-                    <tr ng-repeat="(testIndex, tests) in tests  | filter: {examName: searchTests }">
-                        <td>
-                            {{tests.examName}}
-                        </td>
-
-                        <td>
-                            <input ng-click="hej()" type="text" class="datepicker">
-                        </td>
-                        <td>
-                            <input ng-click="hej()" type="text" class="datepicker">
-                        </td>
-
-                        <td>
-                            {{tests.class}}
-                        </td>
+                    <tr ng-repeat="exam in exams | filter: {examName: filterExamNames }">
+                        <td>{{exam.name}}</td>
+                        <td>{{exam.startDate}}</td>
+                        <td>{{exam.endDate}}</td>
                         <td>
                             <!--TRIGGER MODAL HERE-->
-                            <button ng-click="startTest()" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#examModal">
-                                Provet
+                            <button ng-click="showExam(exam)" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#examModal">
+                                Visa prov
                             </button>
                         </td>
 
@@ -292,7 +146,6 @@
                         <!--role är det som gör att ett fönster öppnas upp, säger vad elementet ska behandlas som-->
                         <div id="examModal" class="modal fade" role="dialog">
                             <div class="modal-dialog">
-
                                 <!--MODAL CONTENT-->
                                 <div class="modal-content">
 
@@ -300,7 +153,7 @@
                                     <div class="modal-header">
                                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                                         <!--TODO. Hämta namn på prov. Bekräftar att det är rätt öppnat-->
-                                        <h1 class="modal-title">Prov</h1>
+                                        <h1 class="modal-title">Prov {{exam.name}}</h1>
 
                                     </div>
 
@@ -308,7 +161,7 @@
                                     <div class="modal-body">
                                         <!--QUESTION FORM-->
                                         <form id="question-form" ng-submit="submit()">
-                                            <div class="question-box" ng-repeat="question in questions">
+                                            <div class="question-box" ng-repeat="question in exam.questions">
                                                 <h1>{{question.questionText}}</h1>
                                                 <p ng-repeat="answers in question.answers">
 
