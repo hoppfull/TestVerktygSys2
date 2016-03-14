@@ -1,0 +1,217 @@
+{
+    "subjects": [
+        "Physics",
+        "Mathematics"
+    ],
+    "studentClasses": [
+        "7A-HT15",
+        "9B"
+    ],
+    "users": [
+        {
+            "username": "student",
+            "password": "abc",
+            "firstName": "Kalle",
+            "lastName": "Anka",
+            "type": "student",
+            "studentClass": "7A",
+            "subjects": [
+                {
+                    "name": "Physics",
+                    "startDate": "2015-03-20",
+                    "endDate": "2016-07-20"
+                }
+            ]
+        },
+        {
+            "username": "teacher",
+            "password": "abc",
+            "firstName": "Janne",
+            "lastName": "Långben",
+            "type": "teacher",
+            "studentClass": "",
+            "subjects": [
+                {
+                    "name": "Physics",
+                    "startDate": "2015-03-20",
+                    "endDate": "2016-07-20"
+                }
+            ]
+        },
+        {
+            "username": "admin",
+            "password": "abc",
+            "firstName": "Mimmi",
+            "lastName": "Pigg",
+            "type": "admin",
+            "studentClass": "",
+            "subjects": []
+        }
+    ],
+    "exams": [
+        {
+            "name": "mechanics",
+            "subject": "Physics",
+            "authorName": "teacher",
+            "studentName": "",
+            "status": "ready",
+            "sentToAdmin": false,
+            "sentToStudent": false,
+            "startDate": "2015-01-01",
+            "endDate": "2017-01-01",
+            "timeLimit": 10,
+            "grade": "",
+            "score": 0,
+            "questions": [
+                {
+                    "text": "Vilken är en färg?",
+                    "type": "radio",
+                    "answers": [
+                        {
+                            "text": "Hund",
+                            "point": -1,
+                            "checked": false,
+                            "rank": 0
+                        },
+                        {
+                            "text": "Blå",
+                            "point": 1,
+                            "checked": false,
+                            "rank": 0
+                        }
+                    ]
+                },
+                {
+                    "text": "Vad är sant?",
+                    "type": "checkbox",
+                    "answers": [
+                        {
+                            "text": "5 < 10",
+                            "point": 1,
+                            "checked": false,
+                            "rank": 0
+                        },
+                        {
+                            "text": "Grön är en färg",
+                            "point": 1,
+                            "checked": false,
+                            "rank": 0
+                        },
+                        {
+                            "text": "Himlen är röd",
+                            "point": -1,
+                            "checked": false,
+                            "rank": 0
+                        }
+                    ]
+                },
+                {
+                    "text": "Rangordna från högst till lägst",
+                    "type": "ranked",
+                    "answers": [
+                        {
+                            "text": "2",
+                            "point": 3,
+                            "checked": false,
+                            "rank": 0
+                        },
+                        {
+                            "text": "10",
+                            "point": 1,
+                            "checked": false,
+                            "rank": 0
+                        },
+                        {
+                            "text": "7",
+                            "point": 2,
+                            "checked": false,
+                            "rank": 0
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "math",
+            "subject": "Mathematics",
+            "authorName": "teacher",
+            "studentName": "student",
+            "status": "done",
+            "sentToAdmin": true,
+            "sentToStudent": true,
+            "startDate": "2015-01-01",
+            "endDate": "2017-01-01",
+            "timeLimit": 10,
+            "grade": "U",
+            "score": 3,
+            "questions": [
+                {
+                    "text": "Vilken är en färg?",
+                    "type": "radio",
+                    "answers": [
+                        {
+                            "text": "Hund",
+                            "point": -1,
+                            "checked": true,
+                            "rank": 0
+                        },
+                        {
+                            "text": "Blå",
+                            "point": 1,
+                            "checked": false,
+                            "rank": 0
+                        }
+                    ]
+                },
+                {
+                    "text": "Vad är sant?",
+                    "type": "checkbox",
+                    "answers": [
+                        {
+                            "text": "5 < 10",
+                            "point": 1,
+                            "checked": true,
+                            "rank": 0
+                        },
+                        {
+                            "text": "Grön är en färg",
+                            "point": 1,
+                            "checked": true,
+                            "rank": 0
+                        },
+                        {
+                            "text": "Himlen är röd",
+                            "point": -1,
+                            "checked": false,
+                            "rank": 0
+                        }
+                    ]
+                },
+                {
+                    "text": "Rangordna från högst till lägst",
+                    "type": "ranked",
+                    "answers": [
+                        {
+                            "text": "2",
+                            "point": 3,
+                            "checked": false,
+                            "rank": 3
+                        },
+                        {
+                            "text": "10",
+                            "point": 1,
+                            "checked": false,
+                            "rank": 1
+                        },
+                        {
+                            "text": "7",
+                            "point": 2,
+                            "checked": false,
+                            "rank": 3
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
