@@ -1,137 +1,137 @@
 /// <reference path="app.js" />
 (function() {
-	angular.module("indexApp").controller("studentController", function($scope, $http, $interval) {
+	angular.module("indexApp").controller("studentController", function($scope, $http, $interval, dataService, loginService) {
+		var timer = null;
+		$scope.student = dataService.getUsers()
+			.find(item => item.username === "student");
+		$scope.exams = dataService.getExams()
+			.filter(item => item.studentName === "student")
+			.filter(item => item.sentToStudent);
 		
-		/*
-		Would be great to be able to separate users and questionnaire data
-		--Eric
-		*/
+		console.log($scope.student);
+		console.log($scope.exams);
 		
+		$scope.studentLogout = function(){
+			loginService.logout();
+		}
+		
+		$scope.btnExamStatus = function (status) {
+			return status === "ready" ? "Starta" : "Fortsätt";
+		}
+		
+		$scope.startExam = function(exam){
+			$scope.isExamDone = false;
+			setActiveExam(exam);
+			startCountdown($scope.activeExam.timeLimit);
+		};
+		
+		//måste skrivas om helt för att returnera
+		//en korrekt "combobox"
+		$scope.questionType = function (type) {
+			return type !== "ranked" ? type : "combobox";
+		};
+		
+		var setActiveExam = function(exam){
+			$scope.activeExam = exam;
+			$scope.questions = $scope.activeExam.questions;
+			$scope.examTitle = $scope.activeExam.name;
+		}
+		
+		//TIMER
+		var startCountdown = function(timeLimit){
+			$scope.time = timeLimit;
+			timer = $interval(decrementTime, 1000, timeLimit+1);
+		}
+
 		var decrementTime = function(){
 			if($scope.time>0){
 				$scope.time-=1;
 			}
 			else{
-				$scope.time ="Time out";
-				$scope.submit();
-				$scope.isExamDone = true;
+				$scope.time = "Time out";
+				$scope.submit();	
 			}
-		};
-		
-		var startCountdown = function(){
-			$interval(decrementTime, 1000, $scope.time+1);
-		}
-		
-		var loadJson = function(array){
-			for(var i = 0; i < $scope.questions.length; i++){
-				for(var j = 0; j < $scope.questions[i].answers.length; j++){
-					array.push($scope.questions[i].answers[j]);
-				}
-			}
-		}
-		
-		$http.get('../data/students.json').success(function (response) {
-			$scope.user = response.students.find(item => item.username === "Sune");
-		});
-
-		$scope.questionType = function (type) {
-			return type === "SingleChoice" ? "radio" : "checkbox";
-		};
-
-		$scope.examStatus = function (status) {
-			return status === "ready" ? "Starta" : "Fortsätt";
-		}
-		
-		$scope.startExam = function(examIndex){
-			$scope.activeExamIndex = examIndex;
-			$scope.currentDate = new Date();
-			$scope.isExamDone = false;
-			$("#btn-submit").show(); //to make sure it gets visible again
-			
-			$http.get('../data/questioner.json').success(function(response) {
-				$scope.questions = response.questions;
-				$scope.time = 5;//response.time; //decomment after testing
-				startCountdown();
-			});
 		};
 		
 		$scope.submit = function() {
 			var htmlAnswers = document.getElementsByClassName("answer-alternative");
-			var jsonAnswers = [];
-			loadJson(jsonAnswers); //load questions to check against
-			var currentQuestionIndex = -1;
-			var currentQuestionBox = null;
-			var points = 0;
-			var allCorrect = false;
-			$scope.totalPoints = 0;
+			$interval.cancel(timer);
+			$scope.activeExam.status = "done";
+			updateExam(htmlAnswers);
+			setGrade();
+			$scope.activeExam = null;
+		}
+		
+		var updateExam = function(htmlAnswers){
+			var answerIndex = 0;
+			var htmlAnswerBox = null;
 			$scope.maxPoints = 0;
 			
-			for(var i = 0; i < jsonAnswers.length; i++){
+			for(var i = 0; i<$scope.activeExam.questions.length; i++){
+				var points = 0;
 				
-				if(jsonAnswers[i].points > 0){	
-					$scope.maxPoints += jsonAnswers[i].points;
-				}
-			}
-			
-			//check if correct answers
-			for(var j = 0; j < htmlAnswers.length; j++){
-				
-				//check if new question
-				if(currentQuestionIndex != $(htmlAnswers[j]).attr("name")){
-					//..and reset values
-					currentQuestionIndex = $(htmlAnswers[j]).attr("name");
-					currentQuestionBox = $(htmlAnswers[j]).parent().parent();
-					var allCorrect = true;
-				}
-				
-				/*
-				checks correect answers and applies confirmation css
-				if statements added in case we want other kinds of answer alternatives
-				
-				//räknar nåt fel på checkboxes
-				*/
-				if(htmlAnswers[j].type==="radio" || htmlAnswers[j].type==="checkbox"){
-
-					if(htmlAnswers[j].checked && (jsonAnswers[j].points > 0)){
-						$(htmlAnswers[j]).parent().css("background-color", "green");
-						points += jsonAnswers[j].points;
-					}
-					else if((htmlAnswers[j].checked && (jsonAnswers[j].points < 0)) || 
-							(!htmlAnswers[j].checked && (jsonAnswers[j].points > 0))){
-						
-						points--;
-						allCorrect = false;
-						
-						if(htmlAnswers[j].checked && (jsonAnswers[j].points < 0)){
-							$(htmlAnswers[j]).parent().css("background-color", "red");
-						}
-						else if(!htmlAnswers[j].checked && (jsonAnswers[j].points > 0)){
-							$(htmlAnswers[j]).parent().css("background-color", "yellow");
-						}
-					}
-				}
-				
-				//save values, must check one value in the future thus the cehck
-				if(htmlAnswers.length >= j+1){
+				for(var j = 0; j<$scope.activeExam.questions[i].answers.length; j++){
 					
-					//save values, but ignore if the default start vallue
-					if(currentQuestionIndex != $(htmlAnswers[j+1]).attr("name") && currentQuestionIndex != -1){
-						
-						//set container css
-						$(currentQuestionBox).css("background-color", allCorrect ? "green" : "gray");
-						
-						//set points
-						if(points<0)
-							points=0;
-
-						$scope.totalPoints += points;
-					}
+					var question = $scope.activeExam.questions[i];
+					var jsonAnswer = $scope.activeExam.questions[i].answers[j];
+					var htmlAnswer = htmlAnswers[answerIndex];
+					htmlAnswerBox = $(htmlAnswer).parent().parent();
+					
+					saveAnswer(question, jsonAnswer, htmlAnswer);
+					points += correctQuestion(question, jsonAnswer, htmlAnswer);
+					$scope.maxPoints += (jsonAnswer.point > 0 && question.type != "ranked") ? jsonAnswer.point : 0;
+					answerIndex++;
+				}
+				$scope.activeExam.score += points > 0 ? points : 0;
+				$scope.activeExam.questions[i].score = points > 0 ? points : 0;
+				if($scope.maxPoints === $scope.activeExam.questions[i].score){
+					$(htmlAnswerBox).css("background-color", "green");
 				}
 			}
-			$("#btn-submit").hide();
-			//här hade vi sparat resultatet i en databas och tickat det här inlägget som "done"
-			//activeExamIndex
-			$scope.user.exams[$scope.activeExamIndex].status = "done";
-		};
+			$scope.totalPoints = $scope.activeExam.score;
+		}
+		
+		var saveAnswer = function(question, jsonAnswer, htmlAnswer){
+			//add case for ranked if time
+			if(question.type==="radio" || question.type==="checkbox"){
+				jsonAnswer.checked = htmlAnswer.checked ? true : false;
+			}
+		}
+
+		var correctQuestion = function(question, jsonAnswer, htmlAnswer){
+			//add case for ranked if time
+			if(question.type==="radio" || question.type==="checkbox"){
+				
+				if(jsonAnswer.checked && (jsonAnswer.point > 0)){
+					$(htmlAnswer).parent().css("background-color", "green");
+					return jsonAnswer.point;
+				}
+				else if(jsonAnswer.checked && (jsonAnswer.point < 0)){
+					$(htmlAnswer).parent().css("background-color", "red");
+					return jsonAnswer.point;
+				}
+				else if(!jsonAnswer.checked && (jsonAnswer.point > 0)){
+					$(htmlAnswer).parent().css("background-color", "yellow");
+					return -1;
+				}
+				return 0;
+			}
+			return 0;
+		}
+		
+		var setGrade = function(){
+			var percentage = ($scope.totalPoints/$scope.maxPoints);
+			
+			if(percentage >= 0.8){
+				$scope.activeExam.grade = "VG";
+				return;
+			}
+			else if(percentage >= 0.6){
+				$scope.activeExam.grade = "G";
+			}
+			else{
+				$scope.activeExam.grade = "U";
+			}
+		}
     });    
 }());
