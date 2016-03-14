@@ -1,14 +1,11 @@
 (function() {
     var indexApp = angular.module("indexApp", ['ngRoute']);
-
+	
     indexApp.controller('mainController', function($scope, loginService, dataService) {
         setTimeout(function() { // TODO: ta bort!!!
 
-            var user = dataService.getUsers().find(user => user.username === 'admin');
+            var user = dataService.getUsers().find(user => user.username === 'student');
             loginService.login(user);
-
-            console.log(dataService.removeStudentClass('9B'));
-            console.log(dataService.getStudentClasses());
         }, 100);
     });
 
@@ -273,7 +270,7 @@
     });
 
     indexApp.config(function($routeProvider) {
-        /*$routeProvider
+        $routeProvider
             .when('/login', {
                 templateUrl: 'html/login.html',
                 controller: 'loginController'
@@ -302,6 +299,6 @@
                 templateUrl: 'html/teacher.html',
                 controller: 'teacherController'
             })
-            .otherwise({ redirectTo: '/login' });*/
+            .otherwise({ redirectTo: '/login' });
     });
 } ());
