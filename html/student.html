@@ -52,16 +52,33 @@
 										<form id="question-form" ng-submit="submit()">
 											<article class="question-box" ng-repeat="question in questions">
 												<h1>{{question.text}}</h1>
-												<p ng-repeat="answers in question.answers">
-													<!--ANSWERS-->
-													<input 
-														id="answerId{{$parent.$index}}{{$index}}" 
-														class="answer-alternative" 
-														type="{{questionType(question.type)}}" 
-														name="{{$parent.$index}}">
-													<label 
-														for="answerId{{$parent.$index}}{{$index}}">{{answers.text}}</label>
-												</p>
+												<!--ANSWERS-->
+												<section ng-repeat="answers in question.answers">
+												
+													<p ng-if="question.type === 'ranked'">
+														<select 
+																ng-model="selector"
+																class="answer-alternative"
+																name="{{$parent.$index}}">
+															<option 
+																ng-repeat="option in question.answers | orderBy:'-point'" 
+																value="{{option.point}}">
+																{{option.point}}</option>
+														</select>
+														{{answers.text}}
+													</p>
+												
+													<p ng-if="question.type !== 'ranked'">
+														<input 
+																id="answerId{{$parent.$index}}{{$index}}" 
+																class="answer-alternative" 
+																type="{{questionType(question.type)}}" 
+																name="{{$parent.$index}}">
+														<label 
+																for="answerId{{$parent.$index}}{{$index}}">{{answers.text}}</label>
+													</p>
+													
+												</section>
 												<h6 ng-if="activeExam.status === done">Poäng: {{question.score}}</h6>
 											</article>
 											<!--

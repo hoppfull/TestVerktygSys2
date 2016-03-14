@@ -17,6 +17,10 @@ main div, form input[type="submit"] {
     margin: auto;
 }
 
+section select, section input{
+	text-align: left;
+}
+
 .question-box {
     max-width: 300px;
     background-color: #dedede;

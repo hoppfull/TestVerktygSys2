@@ -25,8 +25,6 @@
 			startCountdown($scope.activeExam.timeLimit);
 		};
 		
-		//måste skrivas om helt för att returnera
-		//en korrekt "combobox"
 		$scope.questionType = function (type) {
 			return type !== "ranked" ? type : "combobox";
 		};
@@ -69,22 +67,21 @@
 			
 			for(var i = 0; i<$scope.activeExam.questions.length; i++){
 				var points = 0;
-				
+				var questionPointsMax = 0;
 				for(var j = 0; j<$scope.activeExam.questions[i].answers.length; j++){
-					
 					var question = $scope.activeExam.questions[i];
 					var jsonAnswer = $scope.activeExam.questions[i].answers[j];
 					var htmlAnswer = htmlAnswers[answerIndex];
-					htmlAnswerBox = $(htmlAnswer).parent().parent();
+					htmlAnswerBox = $(htmlAnswer).parent().parent().parent();
 					
-					saveAnswer(question, jsonAnswer, htmlAnswer);
-					points += correctQuestion(question, jsonAnswer, htmlAnswer);
-					$scope.maxPoints += (jsonAnswer.point > 0 && question.type != "ranked") ? jsonAnswer.point : 0;
+					saveAnswer(question, jsonAnswer, htmlAnswer);//check - done
+					points += correctQuestion(question, jsonAnswer, htmlAnswer);//check
+					$scope.maxPoints += (jsonAnswer.point > 0) ? 1 : 0;
+					questionPointsMax += (jsonAnswer.point > 0) ? 1 : 0;
 					answerIndex++;
 				}
-				$scope.activeExam.score += points > 0 ? points : 0;
-				$scope.activeExam.questions[i].score = points > 0 ? points : 0;
-				if($scope.maxPoints === $scope.activeExam.questions[i].score){
+				saveScores($scope.activeExam, $scope.activeExam.questions[i], points);
+				if(questionPointsMax === $scope.activeExam.questions[i].score){
 					$(htmlAnswerBox).css("background-color", "green");
 				}
 			}
@@ -96,12 +93,14 @@
 			if(question.type==="radio" || question.type==="checkbox"){
 				jsonAnswer.checked = htmlAnswer.checked ? true : false;
 			}
+			else if(question.type==="ranked"){
+				jsonAnswer.rank = htmlAnswer.value;
+			}
 		}
 
 		var correctQuestion = function(question, jsonAnswer, htmlAnswer){
 			//add case for ranked if time
 			if(question.type==="radio" || question.type==="checkbox"){
-				
 				if(jsonAnswer.checked && (jsonAnswer.point > 0)){
 					$(htmlAnswer).parent().css("background-color", "green");
 					return jsonAnswer.point;
@@ -116,7 +115,23 @@
 				}
 				return 0;
 			}
+			else if(question.type==="ranked"){
+				if(jsonAnswer.rank == jsonAnswer.point){
+					$(htmlAnswer).parent().css("background-color", "green");
+					return 1;
+				}
+				else{
+					$(htmlAnswer).parent().css("background-color", "red");
+					return -1;
+				}
+				return 0;
+			}
 			return 0;
+		}
+		
+		var saveScores = function(exam, question, points){
+			exam.score += points > 0 ? points : 0;
+			question.score = points > 0 ? points : 0;
 		}
 		
 		var setGrade = function(){
