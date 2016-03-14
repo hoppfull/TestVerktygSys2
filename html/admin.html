@@ -2,6 +2,124 @@
     <h1 class="headercss"><img src="http://www.newton.se/content/themes/newton/assets/img/pngs/logo-footer.png" alt="Logo" />Välkommen : {{name}}  <button style="display: inline" ng-click="AdminLogout()" id="LogOut" type="button type" class="pull-right btn btn-info btn-lg"> Logout</button>
 </h1>
     <section class="col-md-6">
+        <h2>Användare</h2>
+        <p class="col-md-4">
+            <input type="text" placeholder="Filtrera efter efternamn" class="text-box" ng-model="searchName">
+        </p>
+
+        <ul class="nav nav-tabs">
+            <li><a data-toggle="tab" ng-click="closeTabs(); showStudents = true;">Student</a></li>
+            <li><a data-toggle="tab" ng-click="closeTabs(); showTeachers = true;">Lärare</a></li>
+            <li><a data-toggle="tab" ng-click="closeTabs(); showAdmins = true;">Administratör</a></li>
+        </ul>
+
+        <article class="tab-content table-max-height-300">
+            <table ng-show="showStudents" class="table table-hover" id="userTable">
+                <thead>
+                    <tr>
+                        <th>Förnamn</th>
+                        <th>Efternamn</th>
+                        <th>Klass</th>
+                        <th>Username</th>
+                        <th>Password</th>
+                        <th>Ta bort</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="student in students | filter: {lastName: searchName}">
+                        <td>{{student.firstName}}</td>
+                        <td>{{student.lastName}}</td>
+                        <td>{{student.studentClass}}</td>
+                        <td>{{student.username}}</td>
+                        <td>{{student.password}}</td>
+                        <td>
+                            <button ng-click="removeUser(student.username)">Ta bort</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table ng-show="showTeachers" class="table table-hover" id="userTable">
+                <thead>
+                    <tr>
+                        <th>Förnamn</th>
+                        <th>Efternamn</th>
+                        <th>Ämnen</th>
+                        <th>Username</th>
+                        <th>Password</th>
+                        <th>Ta bort</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="teacher in teachers | filter: {lastName: searchName}" ng-click="selectUserName(teacher.username)">
+                        <td>{{teacher.firstName}}</td>
+                        <td>{{teacher.lastName}}</td>
+                        <td></td>
+                        <td>{{teacher.username}}</td>
+                        <td>{{teacher.password}}</td>
+                        <td>
+                            <button ng-click="removeUser(teacher.username)">Ta bort</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table ng-show="showAdmins" class="table table-hover" id="userTable">
+                <thead>
+                    <tr>
+                        <th>Förnamn</th>
+                        <th>Efternamn</th>
+                        <th>Username</th>
+                        <th>Password</th>
+                        <th>Ta bort</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="admin in admins | filter: {lastName: searchName}" ng-click="selectUserName(admin.username)">
+                        <td>{{admin.firstName}}</td>
+                        <td>{{admin.lastName}}</td>
+                        <td>{{admin.username}}</td>
+                        <td>{{admin.password}}</td>
+                        <td>
+                            <button ng-click="removeUser(admin.username)">Ta bort</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </article>
+
+        <button ng-if="showStudents || showTeachers || showAdmins" data-toggle="modal" data-target="#addUserModal">Lägg till användare</button>
+        <section id="addUserModal" class="modal fade" role="dialog">
+            <main class="modal-dialog">
+                <div class="modal-content">
+                    <button type="button" class="close" data-dismiss="modal">x</button>
+                    <h4 class="modal-title">Lägg till {{showStudents ? "student" : showTeachers ? "lärare" : showAdmins ? "administratör" : "användare"}}</h4>
+                    <article class="modal-body">
+                        <form ng-submit="addUserSubmit()">
+                            <ul>
+                                <li>
+                                    <input type="text" placeholder="Användarnamn" ng-required="true">
+                                </li>
+                                <li>
+                                    <input type="text" placeholder="Förnamn" ng-required="true">
+                                </li>
+                                <li>
+                                    <input type="text" placeholder="Efternamn" ng-required="true">
+                                </li>
+                                <li>
+                                    <input type="text" placeholder="Lösenord" ng-required="true">
+                                </li>
+                                <li ng-if="showStudents">
+                                    <input type="text" placeholder="Klass" ng-required="showStudents">
+                                </li>
+                            </ul>
+                        </form>
+                    </article>
+                </div>
+            </main>
+        </section>
+    </section>
+
+    <!--
+    <section class="col-md-6">
 
         <h2>Användare</h2>
         <article class="row">
@@ -9,13 +127,16 @@
                 <input type="text" placeholder="Filtrera efter efternamn" class="text-box" ng-model="searchName">
             </p>
         </article>
-
+        
+        <!--
         <ul class="nav nav-tabs">
-            <li class="active"><a data-toggle="tab" href="#studentTab">Student</a></li>
+            <li><a data-toggle="tab" href="#studentTab">Student</a></li>
             <li><a data-toggle="tab" href="#teacherTab">Lärare</a></li>
             <li><a data-toggle="tab" href="#adminTab">Administratör</a></li>
         </ul>
-
+        
+        
+        
         <article class="tab-content table-max-height-300">
 
             <article id="studentTab" class="tab-pane fade in active ">
@@ -30,10 +151,10 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="student in users | filter: {lastName: searchName }" ng-if="student.type === 'student'" ng-click="removeRowUser($index)">
+                        <tr ng-repeat="student in students | filter: {lastName: searchName}" ng-click="selectUserName(student.username)">
                             <td>{{student.firstName}}</td>
                             <td>{{student.lastName}}</td>
-                            <td></td>
+                            <td>{{student.studentClass}}</td>
                             <td>{{student.username}}</td>
                             <td>{{student.password}}</td>
                         </tr>
@@ -52,7 +173,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="teacher in users | filter: {lastName: searchName }" ng-if="teacher.type === 'teacher'" ng-click="removeRowUser($index)">
+                        <tr ng-repeat="teacher in teachers | filter: {lastName: searchName}" ng-click="selectUserName(teacher.username)">
                             <td>{{teacher.firstName}}</td>
                             <td>{{teacher.lastName}}</td>
                             <td></td>
@@ -73,7 +194,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="admin in users | filter: {lastName: searchName }" ng-if="admin.type === 'admin'" ng-click="removeRowUser($index)">
+                        <tr ng-repeat="admin in admins | filter: {lastName: searchName}" ng-click="selectUserName(admin.username)">
                             <td>{{admin.firstName}}</td>
                             <td>{{admin.lastName}}</td>
                             <td>{{admin.username}}</td>
@@ -83,6 +204,8 @@
                 </table>
             </article>
         </article>
+        
+        
         <button type="button type" class="btn btn-info btn-lg" data-toggle="modal" data-target="#AddUser"> Lägg till användare</button>
         <article class="modal" id="AddUser" role="dialog">
             <article class="modal-dialog">
@@ -125,8 +248,10 @@
                 </article>
             </article>
         </article>
-        <button ng-click="deleteUser()" id="button" type="button type" class="pull-right btn btn-info btn-lg"> Ta bort användare</button>
+        <button ng-click="deleteSelectedUser()" id="button" type="button type" class="pull-right btn btn-info btn-lg"> Ta bort användare</button>
     </section>
+    -->
+
     <section class="col-md-6 ">
         <h2>Prov att dela ut</h2>
 

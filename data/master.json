@@ -27,7 +27,7 @@
             "type": "teacher",
             "studentClass": "",
             "subjects": [
-                "Physics"
+                "Physics", "Chemistry"
             ]
         },
         {
