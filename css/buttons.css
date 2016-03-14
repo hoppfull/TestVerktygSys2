@@ -1,0 +1,11 @@
+button {
+    color: white !important;
+    background-color: teal !important;
+  
+    border: solid 1px black !important;
+    padding: 1px 5px !important;
+}
+
+button:hover {
+    background-color: #638F3A !important;
+}
