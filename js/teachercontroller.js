@@ -9,13 +9,14 @@
             { name: 'Flervalsfrågor', value: 'checkbox' },
             { namn: 'Ragnordning', value: 'ranked' }];
         $scope.selectedOption = $scope.options[0];
-
+       
         $scope.AddExamsToList = function() {
             var NewExams = {
                 author: $scope.TeacherName,
                 time: $scope.newQuizTime,
                 name: $scope.newQuizName,
                 subject: $scope.newQuizSubject,
+                sentToAdmin: false,
                 questions: [{
                     type: 'radio',
                     answers: [{
@@ -67,7 +68,17 @@
                 }]
             };
             $scope.currnetExamForEditing.questions.push(Question);
+<<<<<<< HEAD
         }     
+=======
+        }
+        $scope.SelectExamType = function() {
+        }
+         $scope.SendExam = function(Question){
+             $scope.ExamToSendToAdmin = Question;
+             $scope.ExamToSendToAdmin.sentToAdmin = true;
+         };
+>>>>>>> origin/master
 
         $scope.loggedIn = true;
         if (loginService.user != null) {
