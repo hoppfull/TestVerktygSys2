@@ -22,6 +22,8 @@
 		$scope.setActiveExam = function(exam){
 			$scope.activeExam = exam;
 			$scope.questions = $scope.activeExam.questions;
+			getMaxScore();
+			$scope.totalPoints = $scope.activeExam.score;
 			$scope.examTitle = $scope.activeExam.name;
 			showScoreToStudent = $scope.activeExam.showScoreToStudent;
 		}
@@ -54,6 +56,16 @@
 			$scope.activeExam = null;
 		}
 		
+		var getMaxScore = function(){
+			$scope.maxPoints = 0;
+			for(var i = 0; i<$scope.activeExam.questions.length; i++){
+				for(var j = 0; j<$scope.activeExam.questions[i].answers.length; j++){
+					var jsonAnswer = $scope.activeExam.questions[i].answers[j];
+					$scope.maxPoints += (jsonAnswer.point > 0) ? 1 : 0;
+				}
+			}
+		}
+		
 		$scope.getQuestionScore = function(questionScore){
 			if(showScoreToStudent){
 				return "Poäng: " + questionScore;
@@ -74,7 +86,7 @@
 		var updateExam = function(htmlAnswers){
 			var answerIndex = 0;
 			var htmlAnswerBox = null;
-			$scope.maxPoints = 0;
+			
 			
 			for(var i = 0; i<$scope.activeExam.questions.length; i++){
 				var points = 0;
@@ -87,7 +99,7 @@
 					
 					saveAnswer(question, jsonAnswer, htmlAnswer);
 					points += getPoints(question, jsonAnswer, htmlAnswer);
-					$scope.maxPoints += (jsonAnswer.point > 0) ? 1 : 0;
+					//$scope.maxPoints += (jsonAnswer.point > 0) ? 1 : 0;
 					questionPointsMax += (jsonAnswer.point > 0) ? 1 : 0;
 					answerIndex++;
 				}

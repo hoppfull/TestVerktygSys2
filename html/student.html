@@ -68,7 +68,7 @@
 														id="answerId{{$parent.$index}}{{$index}}" 
 														class="answer-alternative" 
 														type="{{question.type}}" 
-														name="{{$parent.$index}}"
+														name="{{question.text}}"
 													   	ng-disabled="examIsDone">
 													<!--LABEL FOR BOTH TYPES OF QUESTIONS-->
 													<label for="answerId{{$parent.$index}}{{$index}}">{{answers.text}}</label>
@@ -154,6 +154,7 @@
 											</section>
 											<h6>{{getQuestionScore(question.score)}}</h6>
 										</article>
+										<p>{{getExamScore()}}</p>
 									</div>
 									<div class="modal-footer">
 										<button type="button" class="btn btn-default" data-dismiss="modal">Stäng</button>
