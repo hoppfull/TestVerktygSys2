@@ -10,28 +10,54 @@
 
         $scope.options = [{ name: 'Envalsfråga', value: 'radio' },
             { name: 'Flervalsfrågor', value: 'checkbox' },
-            { namn: 'Ragnordning', value: 'ranked' }];
+            { name: 'Ragnordning', value: 'number' }];
         $scope.selectedOption = $scope.options[0];
 
-        $scope.AddExamsToList = function() {
-            var NewExams = {
-                author: $scope.TeacherName,
-                time: $scope.newQuizTime,
-                name: $scope.newQuizName,
-                subject: $scope.newQuizSubject,
+        function createDefaultExam() {
+            return {
+                name: "",
+                subject: "",
+                authorName: loginService.getUser().username,
+                studentName: "",
+                status: "ready",
                 sentToAdmin: false,
-                questions: [{
-                    type: 'radio',
-                    answers: [{
-                        text: "",
-                        point: -1,
-                        checked: false,
-                        rank: 0
-                    }]
-                }]
+                sentToStudent: false,
+                startDate: "2015-01-01",
+                endDate: "2017-01-01",
+                timeLimit: 0,
+                grade: "",
+                score: 0,
+                showScoreToStudent: true,
+                questions: []
             };
-            dataService.addExam(NewExams);
+        }
+
+        function createDefaultQuestion() {
+            return {
+                text: "",
+                type: "",
+                score: 0,
+                answers: []
+            };
+        }
+
+        function createDefaultAnswer() {
+            return {
+                text: "",
+                point: -1,
+                checked: false,
+                rank: 0
+            };
+        }
+
+        $scope.AddExamsToList = function() {
+            var newExam = createDefaultExam();
+            newExam.time = $scope.newQuizTime;
+            newExam.subject = $scope.newQuizSubject;
+            newExam.name = $scope.newQuizName;
+            dataService.addExam(newExam);
         };
+        
         $scope.removeQuiz = function(name) {
             dataService.removeExam(name);
         };
@@ -79,5 +105,9 @@
             $scope.ExamToSendToAdmin = Question;
             $scope.ExamToSendToAdmin.sentToAdmin = true;
         };
+        $scope.updateExamsList = function() {
+            var number = $scope.exams.indexOf($scope.currnetExamForEditing);
+            $scope.exams[number] = $scope.currnetExamForEditing;
+        }
     });
 } ());
