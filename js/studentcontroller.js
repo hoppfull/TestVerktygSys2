@@ -4,11 +4,9 @@
 		var timer;
 		var showScoreToStudent = true;
 		$scope.examIsDone = false;
-		$scope.student = dataService.getUsers()
-			.find(item => item.username.toLowerCase() === "student");
+		$scope.student = loginService.getUser();
 		$scope.exams = dataService.getExams()
-			.filter(item => item.studentName.toLowerCase() === "student")
-			.filter(item => item.sentToStudent);
+			.filter(exam => exam.studentName === loginService.getUser().username && exam.sentToStudent);
 		
 		console.log($scope.student);
 		console.log($scope.exams);

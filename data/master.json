@@ -51,7 +51,7 @@
             "studentName": "student",
             "status": "ready",
             "sentToAdmin": true,
-            "sentToStudent": false,
+            "sentToStudent": true,
             "startDate": "2015-01-01",
             "endDate": "2017-01-01",
             "timeLimit": 10,
