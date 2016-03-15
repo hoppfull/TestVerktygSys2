@@ -67,9 +67,7 @@
                 }]
             };
             $scope.currnetExamForEditing.questions.push(Question);
-        }
-        $scope.SelectExamType = function() {
-        }
+        }     
 
         $scope.loggedIn = true;
         if (loginService.user != null) {

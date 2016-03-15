@@ -1,3 +1,9 @@
 * {
     font-family: 'Open Sans', sans-serif !important;
 }
+.headercss{
+    color:white;
+}
+.textbox-max-width{
+    width:100%;
+}

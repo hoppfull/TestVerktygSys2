@@ -31,3 +31,16 @@ section select, section input{
     margin-left: auto;
     margin-right: auto;
 }
+.teacher-question-box{
+    width: 70%;
+    background-color: #dedede;
+    padding: 5px 20px;
+    margin-bottom: 10px;
+    text-align: left;
+    /*centers the element*/
+    margin-left: auto;
+    margin-right: auto;
+}
+.answer-text{
+    margin:5px 0 5px 0;
+}
