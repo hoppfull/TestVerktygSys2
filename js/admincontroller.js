@@ -52,6 +52,8 @@
                 $scope.newUserStudentClass = "";
 
                 updateLists();
+            } else {
+                alert("Användarnamn finns redan!");
             }
         };
 
