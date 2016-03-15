@@ -50,14 +50,11 @@
                                         <article ng-repeat="x in editQuestions">
                                             <input type="text" name="" value="{{x.text}}" class="teacher-question-box form-control">
                                             <br>
-<<<<<<< HEAD
-                                            <select ng-model="selectedOption" ng-options="option.name for option in options" class="form-control"> </select>
-=======
+
                                             <form action="demo_form.asp">
                                                 <input type="file" name="pic" accept="image/*">
                                             </form>
                                             <select ng-model="selectedOption" ng-options="option.name for option in options"> </select>
->>>>>>> origin/master
                                             <article ng-repeat="y in x.answers">
                                                 <article>
                                                     <form class="answer-text row">
@@ -76,12 +73,7 @@
                                                     </form>
                                                 </article>
                                             </article>
-<<<<<<< HEAD
                                             <button ng-click="addAnswer(x)" class="add-btn">Lägg Till svar</button>
-
-=======
-                                            <button ng-click="addAnswer(x)">Lägg Till svar</button>
->>>>>>> origin/master
                                             <p>==================</p>
                                         </article>
                                         <button ng-click="AddNewQuestion()" type="button" class="btn btn-default">Lägg till fråga</button>

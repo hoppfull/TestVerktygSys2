@@ -68,9 +68,7 @@
                 }]
             };
             $scope.currnetExamForEditing.questions.push(Question);
-<<<<<<< HEAD
-        }     
-=======
+
         }
         $scope.SelectExamType = function() {
         }
@@ -78,7 +76,7 @@
              $scope.ExamToSendToAdmin = Question;
              $scope.ExamToSendToAdmin.sentToAdmin = true;
          };
->>>>>>> origin/master
+
 
         $scope.loggedIn = true;
         if (loginService.user != null) {
