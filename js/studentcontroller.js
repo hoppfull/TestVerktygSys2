@@ -82,11 +82,9 @@
 			}
 		}
 		
-		//Looks horrible but works
 		var updateExam = function(htmlAnswers){
 			var answerIndex = 0;
 			var htmlAnswerBox = null;
-			
 			
 			for(var i = 0; i<$scope.activeExam.questions.length; i++){
 				var points = 0;
@@ -99,7 +97,6 @@
 					
 					saveAnswer(question, jsonAnswer, htmlAnswer);
 					points += getPoints(question, jsonAnswer, htmlAnswer);
-					//$scope.maxPoints += (jsonAnswer.point > 0) ? 1 : 0;
 					questionPointsMax += (jsonAnswer.point > 0) ? 1 : 0;
 					answerIndex++;
 				}
