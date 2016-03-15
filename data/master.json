@@ -45,18 +45,19 @@
     ],
     "exams": [
         {
-            "name": "mechanics",
+            "name": "Mechanics",
             "subject": "Physics",
             "authorName": "teacher",
             "studentName": "student",
             "status": "ready",
             "sentToAdmin": true,
-            "sentToStudent": false,
+            "sentToStudent": true,
             "startDate": "2015-01-01",
             "endDate": "2017-01-01",
             "timeLimit": 10,
             "grade": "",
             "score": 0,
+			"showScoreToStudent": true,
             "questions": [
                 {
                     "text": "Vilken är en färg?",
@@ -142,6 +143,7 @@
             "timeLimit": 10,
             "grade": "U",
             "score": 4,
+			"showScoreToStudent": true,
             "questions": [
                 {
                     "text": "Vilken är en färg?",
