@@ -8,8 +8,7 @@
                 if (!user) {
                     $scope.error = "Användaren finns inte eller felaktigt lösenord";
                 } else {
-                    loginService.user = user;
-                    location.href = '#/' + user.type;
+                    loginService.login(user);
                 }
             }
         };

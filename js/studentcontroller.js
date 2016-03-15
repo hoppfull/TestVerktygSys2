@@ -2,6 +2,7 @@
 (function() {
 	angular.module("indexApp").controller("studentController", function($scope, $http, $interval, dataService, loginService) {
 		var timer;
+        console.log(loginService.getUser().username);
 		$scope.student = dataService.getUsers()
 			.find(item => item.username === "student");
 		$scope.exams = dataService.getExams()
