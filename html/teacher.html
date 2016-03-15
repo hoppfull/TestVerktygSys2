@@ -5,9 +5,14 @@
 <div ng-show="loggedIn">
     <section class="container">
         <article class="row headercss">
-            <h1 class="col-md-8 ">Welcome teacher {{TeacherName}}</h1>
             <div class="col-md-4">
-            <button type="button" class="logout-button" ng-click="logout()">Log out</button>
+                <img src="http://www.newton.se/content/themes/newton/assets/img/pngs/logo-footer.png" alt="Logo" />
+            </div>
+            <div class="col-md-4 ">
+                <h1 class="welcome-teacher">Welcome {{TeacherName}}</h1>
+            </div>
+            <div class="col-md-4">
+                <button type="button" class="logout-button" ng-click="logout()">Log out</button>
             </div>
     </section>
 
@@ -59,27 +64,28 @@
                                                 <article>
                                                     <form class="answer-text row">
                                                         <div class="col-xs-1">
-                                                            <input name="{{$index}}" type="{{ selectedOption.value }}" >
+                                                            <input name="{{$index}}" type="{{ selectedOption.value }}">
                                                         </div>
                                                         <div class="col-xs-5">
-                                                            <input type="text" value=" {{y.text}}" >
+                                                            <input type="text" value=" {{y.text}}">
                                                         </div>
                                                         <div class="col-xs-3">
-                                                            <button class="btn" ng-click="RemoveAnswer(x,y)" >Ta bort</button>
+                                                            <button class="btn" ng-click="RemoveAnswer(x,y)">Ta bort</button>
                                                         </div>
                                                         <div class="col-xs-3">
-                                                            <input type="checkbox" value="right answer" > Rätt svar
+                                                            <input type="checkbox" value="right answer"> Rätt svar
                                                         </div>
                                                     </form>
                                                 </article>
                                             </article>
                                             <button ng-click="addAnswer(x)" class="add-btn">Lägg Till svar</button>
+                                            <button ng-click="updateAnswer(x)">Spara</button>
                                             <p>==================</p>
                                         </article>
                                         <button ng-click="AddNewQuestion()" type="button" class="btn btn-default">Lägg till fråga</button>
                                     </article>
                                     <article class="modal-footer">
-                                        <button type="button" class="btn btn-default" data-dismiss="modal">Stäng</button>
+                                        <button type="button" ng-click="updateQuiz()" class="btn btn-default" data-dismiss="modal">Stäng</button>
                                     </article>
                                 </div>
                             </div>
@@ -98,10 +104,11 @@
         </article>
 
         <article>
-            <form ng-submit="newQuizSubmit()" class="row ">
-                <input class="col-md-3 col-xs-3" type="text" ng-required="true" ng-model="newQuizName" placeholder="Namn">
-                <input class="col-md-3 col-xs-3"ng-required="true" ng-model="newQuizSubject" list="Courses"> 
-                <datalist id="Courses">
+            <form ng-submit="newQuizSubmit() " class="row ">
+                <input class="col-md-3 col-xs-3 " type="text " ng-required="true " ng-model="newQuizName
+                        " placeholder="Namn ">
+                <input class="col-md-3 col-xs-3 "ng-required="true " ng-model="newQuizSubject " list="Courses "> 
+                <datalist id="Courses ">
                     <option value="Fysik ">
                     <option value="Datorkunskap "> 
                     <option value="Svenska ">
@@ -109,8 +116,9 @@
                     <option value="Matematik ">
                     <option value="Idrott ">
                 </datalist> 
-                <input class="col-md-3 col-xs-3" type="number " ng-required="true " ng-model="newQuizTime" placeholder="Tid ">
-                <input class="col-md-3 col-xs-3" ng-click="AddExamsToList()" type="button" value="Lägg till nytt prov ">
+                <input class="col-md-3 col-xs-3 " type="number " ng-required="true " ng-model="newQuizTime
+                        " placeholder="Tid ">
+                <input class="col-md-3 col-xs-3 " ng-click="AddExamsToList() " type="button " value="Lägg till nytt prov ">
             </form>
         </article>
     </section>
