@@ -75,13 +75,51 @@
             $scope.currnetExamForEditing.questions.push(Question);
         };
 
+
         $scope.SendExam = function(Question) {
             $scope.ExamToSendToAdmin = Question;
             $scope.ExamToSendToAdmin.sentToAdmin = true;
         };
-        $scope.updateExamsList = function() {           
-            var number = $scope.exams.indexOf($scope.currnetExamForEditing);
-            $scope.exams[number] = $scope.currnetExamForEditing;
+
+
+        $scope.loggedIn = true;
+        if (loginService.user != null) {
+            $scope.loggedIn = true;
+            $scope.TeacherName = loginService.user.username;
+            updateQuizList();
+
+            $scope.logout = function() {
+                loginService.logout();
+            };
+
+            $scope.removeQuiz = function(name, author) {
+                dataService.removeQuiz(name, author);
+                updateQuizList();
+            };
+
+            $scope.newQuizSubmit = function() {
+                var newQuiz = {
+                    author: $scope.TeacherName,
+                    time: $scope.newQuizTime,
+                    name: $scope.newQuizName,
+                    subject: $scope.newQuizSubject,
+                    questions: []
+                };
+                $scope.addQuizMsg =
+                    dataService.addQuiz(newQuiz)
+                        ? ''
+                        : 'Namn finns redan!';
+                updateQuizList();
+            };
+
+            dataService.getExams().find().questions.push();
+            function updateQuizList() {
+                $scope.quizzes = dataService.quizzes.filter(quiz => quiz.author === loginService.user.username);
+            }
+
+        };
+        $scope.updateAnswer = function(x) {
+            $scope.currnetExamForEditing.questions = x;
         }
     });
 } ());

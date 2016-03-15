@@ -6,7 +6,7 @@
     <section class="col-md-12">
         <h2>Användare</h2>
         <p class="col-md-4">
-            <input type="text" placeholder="Filtrera efter efternamn" class="text-box" ng-model="filterLastNames">
+            <input type="text" placeholder="Filtrera efter efternamn" class="text-box" ng-model="filterLastNames"/>
         </p>
 
         <ul class="nav nav-tabs">
@@ -94,16 +94,16 @@
                         <form class="form" ng-submit="addUserSubmit()">
                             <ul class="ulSize">
                                 <li>
-                                    <input ng-model="newUserLastName" type="text" placeholder="Efternamn" ng-required="true">
+                                    <input ng-model="newUserLastName" type="text" placeholder="Efternamn" ng-required="true"/>
                                 </li>
                                 <li>
-                                    <input ng-model="newUserFirstName" type="text" placeholder="Förnamn" ng-required="true">
+                                    <input ng-model="newUserFirstName" type="text" placeholder="Förnamn" ng-required="true"/>
                                 </li>
                                 <li>                                    
-                                    <input ng-model="newUserName" name="tjena" type="text" placeholder="Användarnamn" ng-required="true">
+                                    <input ng-model="newUserName" name="tjena" type="text" placeholder="Användarnamn" ng-required="true"/>
                                 </li>
                                 <li>
-                                    <input ng-model="newUserPassword" type="text" placeholder="Lösenord" ng-required="true">
+                                    <input ng-model="newUserPassword" type="text" placeholder="Lösenord" ng-required="true"/>
                                 </li>
                             </ul>
                             <input class="btn btn-default buttonS" type="submit" value="Lägg till">
@@ -154,7 +154,7 @@
                                                     <form>
                                                         <ul>
                                                             <li ng-repeat="answer in question.answers">
-                                                                <input type="{{question.type}}" name="question.text">{{answer.text}}
+                                                                <input type="{{question.type}}" name="question.text"/>{{answer.text}}
                                                             </li>
                                                         </ul>
                                                     </form>
@@ -188,7 +188,7 @@
                                         <form ng-submit="sendExamToStudents()" id="sendExamToStudentsForm">
                                             <ul>
                                                 <li class=" question-box" ng-repeat="student in students">
-                                                    <input type="checkbox" value="{{student.username}}">{{student.firstName + ' ' + student.lastName}}
+                                                    <input type="checkbox" value="{{student.username}}"/>{{student.firstName + ' ' + student.lastName}}
                                                 </li>
                                             </ul>
                                             <button ng-click="" data-toggle="modal" data-target="">Skicka</button>

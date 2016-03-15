@@ -69,11 +69,11 @@
 														class="answer-alternative" 
 														type="{{question.type}}" 
 														name="{{question.text}}"
-													   	ng-disabled="examIsDone">
+													   	ng-disabled="examIsDone"/>
 													<!--LABEL FOR BOTH TYPES OF QUESTIONS-->
 													<label for="answerId{{$parent.$index}}{{$index}}">{{answers.text}}</label>
 												</section>
-												<h6 ng-if="activeExam.status === done">{{getQuestionScore(question.score)}}</h6>
+												<p ng-if="activeExam.status === done">{{getQuestionScore(question.score)}}</p>
 											</article>
 											<!--SUBMIT BUTTON OR RESULTS-->
 											<p ng-if="activeExam.status === done">{{getExamScore()}}</p>
@@ -82,7 +82,7 @@
 												id="btn-submit" 
 												type="submit" 
 												value="Skicka in" 
-												form="question-form">
+												form="question-form"/>
 										</form>
 									</div>
 									<!--FOOTER-->
@@ -149,10 +149,10 @@
 												   		type="{{question.type}}" 
 												   		name="{{$parent.$index}}"
 												   		ng-checked="answers.checked"
-												   		ng-disabled="true">
+												   		ng-disabled="true"/>
 												<label for="answerId{{$parent.$index}}{{$index}}">{{answers.text}}</label>
 											</section>
-											<h6>{{getQuestionScore(question.score)}}</h6>
+											<p>{{getQuestionScore(question.score)}}</p>
 										</article>
 										<p>{{getExamScore()}}</p>
 									</div>
