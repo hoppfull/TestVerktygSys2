@@ -1,8 +1,3 @@
-<div ng-show="!loggedIn">
-    <h1>Error! Not logged in!</h1>
-</div>
-
-<div ng-show="loggedIn">
     <section class="container">
         <article class="row">
             <h1 class="col-md-8">Welcome teacher {{TeacherName}}</h1>
@@ -87,20 +82,19 @@
         </article>
 
         <article>
-            <form ng-submit="newQuizSubmit()" class="row ">
+            <form ng-submit="newQuizSubmit()" class="row">
                 <input class="col-md-3 col-xs-3" type="text" ng-required="true" ng-model="newQuizName" placeholder="Namn">
                 <input class="col-md-3 col-xs-3"ng-required="true" ng-model="newQuizSubject" list="Courses"> 
                 <datalist id="Courses">
-                    <option value="Fysik ">
-                    <option value="Datorkunskap "> 
-                    <option value="Svenska ">
-                    <option value="Bild ">
-                    <option value="Matematik ">
-                    <option value="Idrott ">
+                    <option value="Fysik">
+                    <option value="Datorkunskap"> 
+                    <option value="Svenska">
+                    <option value="Bild">
+                    <option value="Matematik">
+                    <option value="Idrott">
                 </datalist> 
-                <input class="col-md-3 col-xs-3" type="number " ng-required="true " ng-model="newQuizTime" placeholder="Tid ">
+                <input class="col-md-3 col-xs-3" type="number " ng-required="true" ng-model="newQuizTime" placeholder="Tid">
                 <input class="col-md-3 col-xs-3" ng-click="AddExamsToList()" type="button" value="Lägg till nytt prov ">
             </form>
         </article>
     </section>
-</div>

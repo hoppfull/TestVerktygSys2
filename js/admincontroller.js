@@ -16,7 +16,7 @@
                     password: user.password,
                     firstName: user.firstName,
                     lastName: user.lastName,
-                    subjects: user.subjects.length === 0 ? "" : user.subjects.reduce((a, b) => a + ', ' + b)
+                    //subjects: user.subjects.length === 0 ? "" : user.subjects.reduce((a, b) => a + ', ' + b)
                 }));
         }
 
