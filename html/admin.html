@@ -133,8 +133,8 @@
                 <tbody class="">
                     <tr ng-repeat="exam in exams | filter: {name: filterExamNames}">
                         <td>{{exam.name}}</td> 
-                        <td><input type="date" placeholder="Start datum"  ng-model="startDate"></td>
-                        <td><input type="date" placeholder="Slut datum" ng-model="endDate"></td>
+                        <td><input type="date" ng-model="startDate"></td>
+                        <td><input type="date" ng-model="endDate"></td>
                         <td>
                             <button ng-click="showExam(exam)" data-toggle="modal" data-target="#showExamModal">Visa prov</button>
                         </td>
