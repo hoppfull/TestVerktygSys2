@@ -5,7 +5,7 @@
         $scope.logout = function() {
             loginService.logout();
         };
-        $scope.TeacherName = loginService.getUser().firstName;
+        $scope.TeacherName = loginService.getUser().firstName + ' ' + loginService.getUser().lastName;
         $scope.exams = dataService.getExams();
 
         $scope.options = [{ name: 'Envalsfråga', value: 'radio' },
