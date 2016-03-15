@@ -34,7 +34,7 @@
         };
 
         var addUser = function(newUser) {
-            if (loginService.user.type !== 'admin') {
+            if (loginService.getUser().type !== 'admin') {
                 console.log('Error: only admins can add users!');
                 return false;
             }
@@ -47,7 +47,7 @@
         };
 
         var addExam = function(newExam) {
-            if (loginService.user.type !== 'teacher') {
+            if (loginService.getUser().type !== 'teacher') {
                 console.log('Error: only teachers can add exams!');
                 return false;
             }
@@ -60,7 +60,7 @@
         };
 
         var addSubject = function(newSubject) {
-            if (loginService.user.type !== 'admin') {
+                if (loginService.getUser().type !== 'admin') {
                 console.log('Error: only admin can add subjects!');
                 return false;
             }
@@ -73,7 +73,7 @@
         };
 
         var addStudentClass = function(newStudentClas) {
-            if (loginService.user.type !== 'admin') {
+            if (loginService.getUser().type !== 'admin') {
                 console.log('Error: only admin can add student classes!');
                 return false;
             }
@@ -86,7 +86,7 @@
         };
 
         var removeUser = function(username) {
-            if (loginService.user.type !== 'admin') {
+            if (loginService.getUser().type !== 'admin') {
                 console.log('Error: only admin can remove users!');
                 return false;
             }
@@ -106,17 +106,17 @@
                 console.log("Error: exam could not be found for removal.");
                 return false;
             }
-            if (loginService.user.type === 'admin') {
+            if (loginService.getUser().type === 'admin') {
                 if (currentExam.sentToAdmin && !currentExam.sentToStudent) {
-                    exams.splice(indexOf(currentExam), 1); // no need to check for validity of index???
+                    exams.splice(exams.indexOf(currentExam), 1); // no need to check for validity of index???
                     return true;
                 } else {
                     console.log("Error: admin can only remove exam if exam is sent to admin and not sent to student!");
                     return false;
                 }
-            } else if (loginService.user.type === 'teacher') {
+            } else if (loginService.getUser().type === 'teacher') {
                 if (!currentExam.sentToAdmin) {
-                    exams.splice(indexOf(currentExam), 1); // no need to check for validity of index???
+                    exams.splice(exams.indexOf(currentExam), 1); // no need to check for validity of index???
                     return true;
                 } else {
                     console.log("Error: teacher can only remove exam if exam is not sent to admin!");
@@ -134,7 +134,7 @@
                 console.log("Error: no such subject exists!");
                 return false;
             }
-            if (loginService.user.type === 'admin') {
+            if (loginService.getUser().type === 'admin') {
                 subjects.splice(indexOf(currentSubject), 1);
                 return true;
             } else {
@@ -149,7 +149,7 @@
                 console.log("Error: no such student class exists!");
                 return false;
             }
-            if (loginService.user.type === 'admin') {
+            if (loginService.getUser().type === 'admin') {
                 studentClasses.splice(indexOf(currentStudentClass), 1);
                 return true;
             } else {
@@ -157,6 +157,7 @@
                 return false;
             }
         };
+        
 
         return {
             getUsers: getUsers,
@@ -174,14 +175,19 @@
         };
     });
 
-    indexApp.service('loginService', function(dataService) {
+    indexApp.service('loginService', function() {
         var user = null;
 
         var getUser = function() {
             return user;
         };
 
-        var login = function(username, password) {
+        var login = function(loginUser){
+          user = loginUser;
+          location.href = '#/' + loginUser.type;
+          return true;  
+        };
+      /*  var login = function(username, password) {
             user = dataService.getUsers().find(user => user.username === username && user.password === password);
             if (!user) {
                 return false;
@@ -189,7 +195,7 @@
                 location.href = '#/' + user.type;
                 return true;
             }
-        };
+        };*/
 
         var logout = function() {
             user = null;
