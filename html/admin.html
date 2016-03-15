@@ -126,11 +126,15 @@
                 <thead>
                     <tr>
                         <th>Namn</th>
+                        <th>Startdatum</th>
+                        <th>Slutdatum</th>
                     </tr>
                 </thead>
                 <tbody class="">
                     <tr ng-repeat="exam in exams | filter: {name: filterExamNames}">
                         <td>{{exam.name}}</td>
+                        <td>{{exam.startDate}}</td>
+                        <td>{{exam.endDate}}</td>
                         <td>
                             <button ng-click="showExam(exam)" data-toggle="modal" data-target="#showExamModal">Visa prov</button>
                         </td>
