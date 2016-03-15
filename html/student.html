@@ -49,13 +49,14 @@
 											<article class="question-box" ng-repeat="question in questions">
 												<h1>{{question.text}}</h1>
 												<!--ANSWERS-->
-												<section ng-repeat="answers in question.answers">
+												<section class="answer-box" ng-repeat="answers in question.answers">
 													<!--RANKED-->
 													<select 
-															ng-if="question.type === 'ranked'" 
-															id="answerId{{$parent.$index}}{{$index}}"
-															class="answer-alternative"
-															name="{{$parent.$index}}">
+														ng-if="question.type === 'ranked'" 
+														id="answerId{{$parent.$index}}{{$index}}"
+														class="answer-alternative"
+														name="{{$parent.$index}}"
+														ng-disabled="examIsDone">
 														<option 
 															ng-repeat="option in question.answers | orderBy:'-point'" 
 															value="{{option.point}}">
@@ -63,19 +64,25 @@
 													</select>
 													<!--CHECKED-->
 													<input 
-															ng-if="question.type !== 'ranked'"
-															id="answerId{{$parent.$index}}{{$index}}" 
-															class="answer-alternative" 
-													   		type="{{question.type}}" 
-															name="{{$parent.$index}}">
+														ng-if="question.type !== 'ranked'"
+														id="answerId{{$parent.$index}}{{$index}}" 
+														class="answer-alternative" 
+														type="{{question.type}}" 
+														name="{{question.text}}"
+													   	ng-disabled="examIsDone">
 													<!--LABEL FOR BOTH TYPES OF QUESTIONS-->
 													<label for="answerId{{$parent.$index}}{{$index}}">{{answers.text}}</label>
 												</section>
-												<h6 ng-if="activeExam.status === done">Poäng: {{question.score}}</h6>
+												<h6 ng-if="activeExam.status === done">{{getQuestionScore(question.score)}}</h6>
 											</article>
 											<!--SUBMIT BUTTON OR RESULTS-->
-											<p ng-if="activeExam.status === done">Poäng: {{totalPoints}} / {{maxPoints}} ({{(totalPoints/maxPoints)*100 | number:2}}%)</p>
-											<input ng-if="activeExam.status !== done" id="btn-submit" type="submit" value="Skicka in" form="question-form">
+											<p ng-if="activeExam.status === done">{{getExamScore()}}</p>
+											<input 
+												ng-if="activeExam.status !== done" 
+												id="btn-submit" 
+												type="submit" 
+												value="Skicka in" 
+												form="question-form">
 										</form>
 									</div>
 									<!--FOOTER-->
@@ -104,7 +111,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr ng-repeat="exam in exams | filter: {name: searchExam}" ng-if="exam.status === 'done'">
+					<tr ng-repeat="exam in exams | filter: {name: searchExam}" ng-if="exam.status === 'done' && exam.showScoreToStudent">
 						<td>{{exam.name}}</td>
 						<td>{{exam.grade}}</td>
 						<td>{{exam.name}}</td>
@@ -121,7 +128,6 @@
 										<h1 class="modal-title">Prov</h1>
 									</div>
 									<div class="modal-body">
-										<!--Add ng-reapet och fyll i med frågor-->
 										<article class="question-box" ng-repeat="question in questions">
 											<h1>{{question.text}}</h1>
 											<!--ANSWERS-->
@@ -144,11 +150,11 @@
 												   		name="{{$parent.$index}}"
 												   		ng-checked="answers.checked"
 												   		ng-disabled="true">
-												<!--LABEL FOR BOTH TYPES OF QUESTIONS-->
 												<label for="answerId{{$parent.$index}}{{$index}}">{{answers.text}}</label>
 											</section>
-											<h6 ng-if="activeExam.status === 'done'">Poäng: {{question.score}}</h6>
+											<h6>{{getQuestionScore(question.score)}}</h6>
 										</article>
+										<p>{{getExamScore()}}</p>
 									</div>
 									<div class="modal-footer">
 										<button type="button" class="btn btn-default" data-dismiss="modal">Stäng</button>

@@ -2,9 +2,11 @@
 (function() {
 	angular.module("indexApp").controller("studentController", function($scope, $http, $interval, dataService, loginService) {
 		var timer;
+		var showScoreToStudent = true;
+		$scope.examIsDone = false;
 		$scope.student = loginService.getUser();
 		$scope.exams = dataService.getExams()
-			.filter(exam => exam.studentName === loginService.getUser().username && exam.sentToStudent)
+			.filter(exam => exam.studentName === loginService.getUser().username && exam.sentToStudent);
 		
 		console.log($scope.student);
 		console.log($scope.exams);
@@ -17,74 +19,74 @@
 			return status === "ready" ? "Starta" : "Fortsätt";
 		}
 		
-		//FUNKA DÅ!
-		$("#myModal").on('show.bs.modal', function () {
-			alert('The modal is about to be shown.');
-		});
-		
-		$("#myModal").on('hide.bs.modal', function () {
-			alert('The modal is about to be hidden.');
-		});
-		
-		/*
-		$('#myModal').on('hidden', function () {
-			console.log("closing modal");
-			$interval.cancel(timer);
-		})*/
-		
 		$scope.setActiveExam = function(exam){
 			$scope.activeExam = exam;
 			$scope.questions = $scope.activeExam.questions;
+			getMaxScore();
+			$scope.totalPoints = $scope.activeExam.score;
 			$scope.examTitle = $scope.activeExam.name;
+			showScoreToStudent = $scope.activeExam.showScoreToStudent;
 		}
 		
 		$scope.startExam = function(exam){
 			$scope.setActiveExam(exam);
-			//startCountdown($scope.activeExam.timeLimit);
-			
+			countdownTimer();
+		};
+		
+		var countdownTimer = function(){
 			timer = $interval(function(){
-				if(exam.timeLimit>=0){
-					console.log(exam.timeLimit);
-					exam.timeLimit--;
-					$scope.time = exam.timeLimit;
+				if($scope.activeExam.timeLimit>0){
+					$scope.activeExam.timeLimit--;
+					$scope.time = $scope.activeExam.timeLimit;
 				}
 				else{
-					$interval.cancel(timer);
-					console.log("exit timer");
 					$scope.time = "Time out";
 					$scope.submit();
 				}
-			}, 1000);
-		};
-		
-		//TIMER
-		var startCountdown = function(timeLimit){
-			$scope.time = timeLimit;
-			
+			}, 1000, $scope.activeExam.timeLimit+1);
 		}
-
-		var decrementTime = function(){
-			if($scope.time>0){
-				$scope.time-=1;
-			}
-			else{
-					
-			}
-		};
 		
 		$scope.submit = function() {
 			var htmlAnswers = document.getElementsByClassName("answer-alternative");
-			$interval.cancel(timer);
 			$scope.activeExam.status = "done";
+			$scope.examIsDone = true;
+			$interval.cancel(timer);
 			updateExam(htmlAnswers);
-			setGrade();
+			saveGrade();
 			$scope.activeExam = null;
 		}
 		
+		var getMaxScore = function(){
+			$scope.maxPoints = 0;
+			for(var i = 0; i<$scope.activeExam.questions.length; i++){
+				for(var j = 0; j<$scope.activeExam.questions[i].answers.length; j++){
+					var jsonAnswer = $scope.activeExam.questions[i].answers[j];
+					$scope.maxPoints += (jsonAnswer.point > 0) ? 1 : 0;
+				}
+			}
+		}
+		
+		$scope.getQuestionScore = function(questionScore){
+			if(showScoreToStudent){
+				return "Poäng: " + questionScore;
+			}
+		}
+		
+		$scope.getExamScore = function(){
+			if(showScoreToStudent){
+				var totalPoints = $scope.totalPoints;
+				var maxPoints = $scope.maxPoints;
+				var percentage = ((totalPoints/maxPoints)*100).toFixed(2);
+				
+				return "Poäng: " + totalPoints + "/" + maxPoints + " (" + percentage + "%)";
+			}
+		}
+		
+		//Looks horrible but works
 		var updateExam = function(htmlAnswers){
 			var answerIndex = 0;
 			var htmlAnswerBox = null;
-			$scope.maxPoints = 0;
+			
 			
 			for(var i = 0; i<$scope.activeExam.questions.length; i++){
 				var points = 0;
@@ -97,15 +99,13 @@
 					
 					saveAnswer(question, jsonAnswer, htmlAnswer);
 					points += getPoints(question, jsonAnswer, htmlAnswer);
-					$scope.maxPoints += (jsonAnswer.point > 0) ? 1 : 0;
+					//$scope.maxPoints += (jsonAnswer.point > 0) ? 1 : 0;
 					questionPointsMax += (jsonAnswer.point > 0) ? 1 : 0;
 					answerIndex++;
 				}
 				saveScores($scope.activeExam, $scope.activeExam.questions[i], points);
 				if(questionPointsMax === $scope.activeExam.questions[i].score){
-					$( htmlAnswer )
-						.closest( ".question-box" ) //searches upwards DOM tree 
-						.css( "background-color", "green" );
+					setContainerColor(htmlAnswer, ".question-box", "background-color", "green");
 				}
 			}
 			$scope.totalPoints = $scope.activeExam.score;
@@ -121,34 +121,35 @@
 		}
 
 		var getPoints = function(question, jsonAnswer, htmlAnswer){
-			//add case for ranked if time
+			var boxColor = null;
+			var point = 0;
+			
 			if(question.type==="radio" || question.type==="checkbox"){
-				if(jsonAnswer.checked && (jsonAnswer.point > 0)){
-					$(htmlAnswer).parent().css("background-color", "green");
-					return jsonAnswer.point;
-				}
-				else if(jsonAnswer.checked && (jsonAnswer.point < 0)){
-					$(htmlAnswer).parent().css("background-color", "red");
-					return jsonAnswer.point;
-				}
-				else if(!jsonAnswer.checked && (jsonAnswer.point > 0)){
-					$(htmlAnswer).parent().css("background-color", "yellow");
-					return -1;
-				}
-				return 0;
-			}
-			else if(question.type==="ranked"){
-				if(jsonAnswer.rank == jsonAnswer.point){
-					$(htmlAnswer).parent().css("background-color", "green");
-					return 1;
+				if(jsonAnswer.checked){
+					boxColor = jsonAnswer.point > 0 ? "green" : "red";
+					point = jsonAnswer.point;
 				}
 				else{
-					$(htmlAnswer).parent().css("background-color", "red");
-					return -1;
+					if(jsonAnswer.point > 0){
+						point = -1;
+						boxColor = "blue";
+					}
 				}
-				return 0;
 			}
-			return 0;
+			else if(question.type==="ranked"){
+				point = jsonAnswer.rank == jsonAnswer.point ? 1 : -1;
+				boxColor = jsonAnswer.rank == jsonAnswer.point ? "green" : "red";
+			}
+			setContainerColor(htmlAnswer, ".answer-box", "background-color", boxColor);
+			return point;
+		}
+		
+		var setContainerColor = function(htmlOrigin, searchItem, valueToColor, color){
+			if($scope.activeExam.showScoreToStudent){
+				$( htmlOrigin )
+					.closest( searchItem ) //searches upwards DOM tree 
+					.css( valueToColor, color );	
+			}
 		}
 		
 		var saveScores = function(exam, question, points){
@@ -156,7 +157,7 @@
 			question.score = points > 0 ? points : 0;
 		}
 		
-		var setGrade = function(){
+		var saveGrade = function(){
 			var percentage = ($scope.totalPoints/$scope.maxPoints);
 			
 			if(percentage >= 0.8){

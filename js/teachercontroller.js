@@ -1,13 +1,16 @@
 (function() {
     angular.module("indexApp").controller("teacherController", function($scope, dataService, loginService) {
 
-        loginService.login(dataService.getUsers().find(user => user.username === 'teacher'));
+        //loginService.login(dataService.getUsers().find(user => user.username === 'teacher'));
+        $scope.logout = function() {
+            loginService.logout();
+        };
         $scope.TeacherName = loginService.getUser().firstName;
         $scope.exams = dataService.getExams();
 
         $scope.options = [{ name: 'Envalsfråga', value: 'radio' },
             { name: 'Flervalsfrågor', value: 'checkbox' },
-            { namn: 'Ragnordning', value: 'ranked' }];
+            { name: 'Ragnordning', value: 'number' }];
         $scope.selectedOption = $scope.options[0];
 
         $scope.AddExamsToList = function() {
@@ -30,17 +33,18 @@
             dataService.addExam(NewExams);
         };
         $scope.removeQuiz = function(name) {
-            console.log(dataService.getExams());
             dataService.removeExam(name);
-
         };
+
         $scope.editExam = function(quiz) {
             $scope.currnetExamForEditing = quiz;
             $scope.editQuestions = $scope.currnetExamForEditing.questions;
-        }
+        };
+
         $scope.Test = function(asd) {
             alert(asd);
         };
+
         $scope.addAnswer = function(Question) {
             var newAnswer = {
                 text: "",
@@ -69,9 +73,9 @@
                 }]
             };
             $scope.currnetExamForEditing.questions.push(Question);
-
         };
-        
+
+
         $scope.SendExam = function(Question) {
             $scope.ExamToSendToAdmin = Question;
             $scope.ExamToSendToAdmin.sentToAdmin = true;

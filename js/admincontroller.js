@@ -16,7 +16,7 @@
                     password: user.password,
                     firstName: user.firstName,
                     lastName: user.lastName,
-                    subjects: user.subjects.length === 0 ? "" : user.subjects.reduce((a, b) => a + ', ' + b)
+                    //subjects: user.subjects.length === 0 ? "" : user.subjects.reduce((a, b) => a + ', ' + b)
                 }));
         }
 
@@ -52,6 +52,8 @@
                 $scope.newUserStudentClass = "";
 
                 updateLists();
+            } else {
+                alert("Användarnamn finns redan!");
             }
         };
 
