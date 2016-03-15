@@ -147,10 +147,10 @@
                                     <button type="button" class="close" data-dismiss="modal">x</button>
                                     <h2 class="modal-title">{{examToShow.name}}</h2>
                                     <article class="modal-body">
-                                        <main ng-repeat="question in examToShow.questions">
+                                        <main class="question-head" ng-repeat="question in examToShow.questions">
                                             <section>
-                                                <h4>{{question.text}}</h4>
-                                                <div ng-if="question.type !== 'ranked'">
+                                                <h4 >{{question.text}}</h4>
+                                                <div class="question-box" ng-if="question.type !== 'ranked'">
                                                     <form>
                                                         <ul>
                                                             <li ng-repeat="answer in question.answers">
@@ -159,7 +159,7 @@
                                                         </ul>
                                                     </form>
                                                 </div>
-                                                <div ng-if="question.type === 'ranked'">
+                                                <div class="question-box" ng-if="question.type === 'ranked'">
                                                     <ul>
                                                         <li ng-repeat="answer in question.answers">
                                                             <select>
@@ -187,11 +187,11 @@
                                     <article class="modal-body">
                                         <form ng-submit="sendExamToStudents()" id="sendExamToStudentsForm">
                                             <ul>
-                                                <li ng-repeat="student in students">
+                                                <li class=" question-box" ng-repeat="student in students">
                                                     <input type="checkbox" value="{{student.username}}">{{student.firstName + ' ' + student.lastName}}
                                                 </li>
                                             </ul>
-                                            <input type="submit" value="Skicka">
+                                            <button ng-click="" data-toggle="modal" data-target="">Skicka</button>
                                         </form>
                                     </article>
                                 </div>

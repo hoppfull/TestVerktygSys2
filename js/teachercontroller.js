@@ -75,9 +75,6 @@
             $scope.currnetExamForEditing.questions.push(Question);
         };
 
-        $scope.SelectExamType = function() {
-        };
-
         $scope.SendExam = function(Question) {
             $scope.ExamToSendToAdmin = Question;
             $scope.ExamToSendToAdmin.sentToAdmin = true;
