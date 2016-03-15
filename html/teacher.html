@@ -55,14 +55,17 @@
                                                 <input type="file" name="pic" accept="image/*"/>
                                             </form>
                                             <select ng-model="selectedOption" ng-options="option.name for option in options"> </select>
+                                            
                                             <article ng-repeat="y in x.answers">
                                                 <article>
+                                                    
                                                     <form class="answer-text row">
                                                         <div class="col-xs-1">
                                                             <input name="{{$index}}" type="{{ selectedOption.value }}" />
                                                         </div>
                                                         <div class="col-xs-5">
                                                             <input type="text" value=" {{y.text}}" />
+                                                            <input class="examScore" type="number" placeholder="{{y.point}}" ng-model="score" />
                                                         </div>
                                                         <div class="col-xs-3">
                                                             <button class="btn" ng-click="RemoveAnswer(x,y)" >Ta bort</button>
