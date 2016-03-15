@@ -49,7 +49,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="teacher in teachers | filter: {lastName: searchName}" ng-click="selectUserName(teacher.username)">
+                    <tr ng-repeat="teacher in teachers | filter: {lastName: filterLastNames}" ng-click="selectUserName(teacher.username)">
                         <td>{{teacher.firstName}}</td>
                         <td>{{teacher.lastName}}</td>
                         <td>{{teacher.username}}</td>
@@ -71,7 +71,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="admin in admins | filter: {lastName: searchName}" ng-click="selectUserName(admin.username)">
+                    <tr ng-repeat="admin in admins | filter: {lastName: filterLastNames}" ng-click="selectUserName(admin.username)">
                         <td>{{admin.firstName}}</td>
                         <td>{{admin.lastName}}</td>
                         <td>{{admin.username}}</td>
@@ -94,13 +94,13 @@
                         <form class="form" ng-submit="addUserSubmit()">
                             <ul class="ulSize">
                                 <li>
-                                    <input ng-model="newUserName" name="tjena" type="text" placeholder="Användarnamn" ng-required="true">
+                                    <input ng-model="newUserLastName" type="text" placeholder="Efternamn" ng-required="true">
                                 </li>
                                 <li>
                                     <input ng-model="newUserFirstName" type="text" placeholder="Förnamn" ng-required="true">
                                 </li>
-                                <li>
-                                    <input ng-model="newUserLastName" type="text" placeholder="Efternamn" ng-required="true">
+                                <li>                                    
+                                    <input ng-model="newUserName" name="tjena" type="text" placeholder="Användarnamn" ng-required="true">
                                 </li>
                                 <li>
                                     <input ng-model="newUserPassword" type="text" placeholder="Lösenord" ng-required="true">
