@@ -34,10 +34,7 @@
 						<!--role är det som gör att ett fönster öppnas upp, säger vad elementet ska behandlas som-->
 						<div id="myModal" class="modal fade" role="dialog">
 							<div class="modal-dialog">
-
-								<!--MODAL CONTENT-->
 								<div class="modal-content">
-
 									<!--HEADER-->
 									<div class="modal-header">
 										<button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -45,7 +42,6 @@
 										<h1 class="modal-title">{{examTitle}}</h1>
 										<p>Time left: {{time}}</p>
 									</div>
-
 									<!--BODY-->
 									<div class="modal-body">
 										<!--QUESTION FORM-->
@@ -54,38 +50,30 @@
 												<h1>{{question.text}}</h1>
 												<!--ANSWERS-->
 												<section ng-repeat="answers in question.answers">
-												
-													<p ng-if="question.type === 'ranked'">
-														<select 
-																ng-model="selector"
-																class="answer-alternative"
-																name="{{$parent.$index}}">
-															<option 
-																ng-repeat="option in question.answers | orderBy:'-point'" 
-																value="{{option.point}}">
-																{{option.point}}</option>
-														</select>
-														{{answers.text}}
-													</p>
-												
-													<p ng-if="question.type !== 'ranked'">
-														<input 
-																id="answerId{{$parent.$index}}{{$index}}" 
-																class="answer-alternative" 
-																type="{{questionType(question.type)}}" 
-																name="{{$parent.$index}}">
-														<label 
-																for="answerId{{$parent.$index}}{{$index}}">{{answers.text}}</label>
-													</p>
-													
+													<!--RANKED-->
+													<select 
+															ng-if="question.type === 'ranked'" 
+															id="answerId{{$parent.$index}}{{$index}}"
+															class="answer-alternative"
+															name="{{$parent.$index}}">
+														<option 
+															ng-repeat="option in question.answers | orderBy:'-point'" 
+															value="{{option.point}}">
+															{{option.point}}</option>
+													</select>
+													<!--CHECKED-->
+													<input 
+															ng-if="question.type !== 'ranked'"
+															id="answerId{{$parent.$index}}{{$index}}" 
+															class="answer-alternative" 
+													   		type="{{question.type}}" 
+															name="{{$parent.$index}}">
+													<!--LABEL FOR BOTH TYPES OF QUESTIONS-->
+													<label for="answerId{{$parent.$index}}{{$index}}">{{answers.text}}</label>
 												</section>
 												<h6 ng-if="activeExam.status === done">Poäng: {{question.score}}</h6>
 											</article>
-											<!--
-											I was forced to do the submit this way,
-											don't know why don't care anymore.
-											Can at least be moved outside of form if wanted
-											-->
+											<!--SUBMIT BUTTON OR RESULTS-->
 											<p ng-if="activeExam.status === done">Poäng: {{totalPoints}} / {{maxPoints}} ({{(totalPoints/maxPoints)*100 | number:2}}%)</p>
 											<input ng-if="activeExam.status !== done" id="btn-submit" type="submit" value="Skicka in" form="question-form">
 										</form>
@@ -123,7 +111,7 @@
 						<td>{{exam.endDate}}</td>
 						<td>{{exam.authorName}}</td>
 						<td>
-							<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#ExamComp">See prov</button>
+							<button ng-click="setActiveExam(exam)" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#ExamComp">Se prov</button>
 						</td>
 						<div id="ExamComp" class="modal fade" role="dialog">
 							<div class="modal-dialog">
@@ -134,6 +122,33 @@
 									</div>
 									<div class="modal-body">
 										<!--Add ng-reapet och fyll i med frågor-->
+										<article class="question-box" ng-repeat="question in questions">
+											<h1>{{question.text}}</h1>
+											<!--ANSWERS-->
+											<section ng-repeat="answers in question.answers">
+												<!--RANKED-->
+												<select 
+														ng-if="question.type === 'ranked'" 
+														id="answerId{{$parent.$index}}{{$index}}"
+														class="answer-alternative"
+														name="{{$parent.$index}}"
+														ng-disabled="true">
+													<option value="{{answers.rank}}">{{answers.rank}}</option>
+												</select>
+												<!--CHECKED-->
+												<input 
+												   		ng-if="question.type !== 'ranked'"
+												   		id="answerId{{$parent.$index}}{{$index}}" 
+												   		class="answer-alternative" 
+												   		type="{{question.type}}" 
+												   		name="{{$parent.$index}}"
+												   		ng-checked="answers.checked"
+												   		ng-disabled="true">
+												<!--LABEL FOR BOTH TYPES OF QUESTIONS-->
+												<label for="answerId{{$parent.$index}}{{$index}}">{{answers.text}}</label>
+											</section>
+											<h6 ng-if="activeExam.status === 'done'">Poäng: {{question.score}}</h6>
+										</article>
 									</div>
 									<div class="modal-footer">
 										<button type="button" class="btn btn-default" data-dismiss="modal">Stäng</button>

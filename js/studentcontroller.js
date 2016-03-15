@@ -1,7 +1,7 @@
 /// <reference path="app.js" />
 (function() {
 	angular.module("indexApp").controller("studentController", function($scope, $http, $interval, dataService, loginService) {
-		var timer = null;
+		var timer;
 		$scope.student = dataService.getUsers()
 			.find(item => item.username === "student");
 		$scope.exams = dataService.getExams()
@@ -19,26 +19,50 @@
 			return status === "ready" ? "Starta" : "Fortsätt";
 		}
 		
-		$scope.startExam = function(exam){
-			$scope.isExamDone = false;
-			setActiveExam(exam);
-			startCountdown($scope.activeExam.timeLimit);
-		};
+		//FUNKA DÅ!
+		$("#myModal").on('show.bs.modal', function () {
+			alert('The modal is about to be shown.');
+		});
 		
-		$scope.questionType = function (type) {
-			return type !== "ranked" ? type : "combobox";
-		};
+		$("#myModal").on('hide.bs.modal', function () {
+			alert('The modal is about to be hidden.');
+		});
 		
-		var setActiveExam = function(exam){
+		/*
+		$('#myModal').on('hidden', function () {
+			console.log("closing modal");
+			$interval.cancel(timer);
+		})*/
+		
+		$scope.setActiveExam = function(exam){
 			$scope.activeExam = exam;
 			$scope.questions = $scope.activeExam.questions;
 			$scope.examTitle = $scope.activeExam.name;
 		}
 		
+		$scope.startExam = function(exam){
+			$scope.setActiveExam(exam);
+			//startCountdown($scope.activeExam.timeLimit);
+			
+			timer = $interval(function(){
+				if(exam.timeLimit>=0){
+					console.log(exam.timeLimit);
+					exam.timeLimit--;
+					$scope.time = exam.timeLimit;
+				}
+				else{
+					$interval.cancel(timer);
+					console.log("exit timer");
+					$scope.time = "Time out";
+					$scope.submit();
+				}
+			}, 1000);
+		};
+		
 		//TIMER
 		var startCountdown = function(timeLimit){
 			$scope.time = timeLimit;
-			timer = $interval(decrementTime, 1000, timeLimit+1);
+			
 		}
 
 		var decrementTime = function(){
@@ -46,8 +70,7 @@
 				$scope.time-=1;
 			}
 			else{
-				$scope.time = "Time out";
-				$scope.submit();	
+					
 			}
 		};
 		
@@ -72,24 +95,25 @@
 					var question = $scope.activeExam.questions[i];
 					var jsonAnswer = $scope.activeExam.questions[i].answers[j];
 					var htmlAnswer = htmlAnswers[answerIndex];
-					htmlAnswerBox = $(htmlAnswer).parent().parent().parent();
+					htmlAnswerBox = $(htmlAnswer).parent().parent();
 					
-					saveAnswer(question, jsonAnswer, htmlAnswer);//check - done
-					points += correctQuestion(question, jsonAnswer, htmlAnswer);//check
+					saveAnswer(question, jsonAnswer, htmlAnswer);
+					points += getPoints(question, jsonAnswer, htmlAnswer);
 					$scope.maxPoints += (jsonAnswer.point > 0) ? 1 : 0;
 					questionPointsMax += (jsonAnswer.point > 0) ? 1 : 0;
 					answerIndex++;
 				}
 				saveScores($scope.activeExam, $scope.activeExam.questions[i], points);
 				if(questionPointsMax === $scope.activeExam.questions[i].score){
-					$(htmlAnswerBox).css("background-color", "green");
+					$( htmlAnswer )
+						.closest( ".question-box" ) //searches upwards DOM tree 
+						.css( "background-color", "green" );
 				}
 			}
 			$scope.totalPoints = $scope.activeExam.score;
 		}
 		
 		var saveAnswer = function(question, jsonAnswer, htmlAnswer){
-			//add case for ranked if time
 			if(question.type==="radio" || question.type==="checkbox"){
 				jsonAnswer.checked = htmlAnswer.checked ? true : false;
 			}
@@ -98,7 +122,7 @@
 			}
 		}
 
-		var correctQuestion = function(question, jsonAnswer, htmlAnswer){
+		var getPoints = function(question, jsonAnswer, htmlAnswer){
 			//add case for ranked if time
 			if(question.type==="radio" || question.type==="checkbox"){
 				if(jsonAnswer.checked && (jsonAnswer.point > 0)){
