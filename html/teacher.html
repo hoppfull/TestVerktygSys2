@@ -29,13 +29,49 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="row" ng-repeat="quiz in quizzes | filter: {name: searchQuiz} | filter: {subject: searchSubject}">
+                    <tr class="row" ng-repeat="quiz in exams | filter: {name: searchQuiz} | filter: {subject: searchSubject}">
+
                         <td class="col-md-3 col-xs-3">{{quiz.name}}</td>
                         <td class="col-md-3 col-xs-3">{{quiz.subject}}</td>
                         <td class="col-md-3 col-xs-3">{{quiz.time + ' sekunder'}}</td>
                         <td class="col-md-1 col-xs-1">
-                            <button>Redigera</button>
+                            <button ng-click="editExam(quiz)" data-toggle="modal" data-target="#ExamComp">Redigera</button>
                         </td>
+                        <div id="ExamComp" class="modal fade" role="dialog">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <article class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        <h1 class="modal-title">{{currnetExamForEditing.name}}</h1>
+                                    </article>
+                                    <article class="modal-body">
+                                        <article ng-repeat="x in editQuestions">
+                                            <input type="text" name="" value="{{x.text}}">
+                                            <br>
+                                            <select ng-model="selectedOption" ng-options="option.name for option in options"> </select>
+                                            <article ng-repeat="y in x.answers">
+                                                <article>
+                                                    <form>
+                                                        <input name="{{$index}}" type="{{ selectedOption.value }}">
+                                                        <input type="text" value=" {{y.text}}">
+                                                        <button class="btn" ng-click="RemoveAnswer(x,y)">Ta bort</button>
+                                                        <input type="checkbox" value="right answer"> Rätt svar
+                                                    </form>
+                                                </article>
+                                            </article>
+                                            <button ng-click="addAnswer(x)">Lägg Till svar</button>
+
+                                            <p>==================</p>
+                                        </article>
+                                        <button ng-click="AddNewQuestion()" type="button" class="btn btn-default">Lägg till fråga</button>
+                                    </article>
+                                    <article class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Stäng</button>
+                                    </article>
+                                </div>
+                            </div>
+                        </div>
+
                         <td class="col-md-1 col-xs-1">
                             <button ng-click="removeQuiz(quiz.name, quiz.author);">X</button>
                         </td>
@@ -52,7 +88,7 @@
                 <input class="col-md-3 col-xs-3" type="text" ng-required="true" ng-model="newQuizName" placeholder="Namn">
                 <input class="col-md-3 col-xs-3" type="text" ng-required="true" ng-model="newQuizSubject" placeholder="Ämne">
                 <input class="col-md-3 col-xs-3" type="number" ng-required="true" ng-model="newQuizTime" placeholder="Tid">
-                <input class="col-md-3 col-xs-3" type="submit" value="Lägg till nytt prov">
+                <input class="col-md-3 col-xs-3" ng-click="AddExamsToList()" type="button" value="Lägg till nytt prov">
                 <p>{{addQuizMsg}}</p>
             </form>
         </article>
