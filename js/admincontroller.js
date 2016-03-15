@@ -1,6 +1,5 @@
 (function() {
     angular.module("indexApp").controller("adminController", function($scope, dataService, loginService) {
-        loginService.login(dataService.getUsers().find(user => user.type === 'admin'));
         $scope.name = loginService.getUser().firstName + ' ' + loginService.getUser().lastName;
         $scope.logout = function() {
             loginService.logout();
@@ -63,9 +62,13 @@
         $scope.removeExam = function(examName) {
             dataService.removeExam(examName);
             updateLists();
-        }
+        };
         
-        $scope.sendExamToUsers = function (exam) {
+        $scope.openSendExamForm = function (exam) { // TODO: implement or remove
+            
+        };
+        
+        $scope.sendExamToStudents = function () { // TODO: implement or remove
             
         };
     });

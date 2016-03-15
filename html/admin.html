@@ -126,11 +126,15 @@
                 <thead>
                     <tr>
                         <th>Namn</th>
+                        <th>Startdatum</th>
+                        <th>Slutdatum</th>
                     </tr>
                 </thead>
                 <tbody class="">
                     <tr ng-repeat="exam in exams | filter: {name: filterExamNames}">
                         <td>{{exam.name}}</td>
+                        <td>{{exam.startDate}}</td>
+                        <td>{{exam.endDate}}</td>
                         <td>
                             <button ng-click="showExam(exam)" data-toggle="modal" data-target="#showExamModal">Visa prov</button>
                         </td>
@@ -173,7 +177,7 @@
                             </main>
                         </section>
                         <td>
-                            <button ng-click="sendToStudents(exam)" data-toggle="modal" data-target="#sendToStudentsModal">Skicka till studenter</button>
+                            <button ng-click="openSendExamForm(exam)" data-toggle="modal" data-target="#sendToStudentsModal">Skicka till studenter</button>
                         </td>
                         <section id="sendToStudentsModal" class="modal fade" role="dialog">
                             <main class="modal-dialog popupSize">
@@ -181,7 +185,7 @@
                                     <button type="button" class="close" data-dismiss="modal">x</button>
                                     <h2 class="modal-title">Skicka prov till</h2>
                                     <article class="modal-body">
-                                        <form ng-submit="sendExamToStudents()">
+                                        <form ng-submit="sendExamToStudents()" id="sendExamToStudentsForm">
                                             <ul>
                                                 <li ng-repeat="student in students">
                                                     <input type="checkbox" value="{{student.username}}">{{student.firstName + ' ' + student.lastName}}

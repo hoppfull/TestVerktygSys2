@@ -2,12 +2,9 @@
 (function() {
 	angular.module("indexApp").controller("studentController", function($scope, $http, $interval, dataService, loginService) {
 		var timer;
-        console.log(loginService.getUser().username);
-		$scope.student = dataService.getUsers()
-			.find(item => item.username === "student");
+		$scope.student = loginService.getUser();
 		$scope.exams = dataService.getExams()
-			.filter(item => item.studentName === "student")
-			.filter(item => item.sentToStudent);
+			.filter(exam => exam.studentName === loginService.getUser().username && exam.sentToStudent)
 		
 		console.log($scope.student);
 		console.log($scope.exams);

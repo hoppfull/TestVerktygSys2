@@ -8,3 +8,12 @@ button, .buttonS{
 button:hover, .buttonS:hover{
     background-color: #638F3A !important;
 }
+.grayButton{
+    background-color: gray !important;
+    border: solid 1px black !important;
+}
+.grayButton:hover{
+    background-color: gray !important;
+    border: solid 1px black !important;
+    cursor: default !important;
+}
