@@ -57,21 +57,52 @@
             }
         };
 
-        $scope.showExam = function (exam) {
+        $scope.showExam = function(exam) {
             $scope.examToShow = exam;
         };
-        
+
         $scope.removeExam = function(examName) {
             dataService.removeExam(examName);
             updateLists();
         };
-        
-        $scope.openSendExamForm = function (exam) { // TODO: implement or remove
-            
+        $scope.examToSend;
+        $scope.openSendExamForm = function(exam) { // TODO: implement or remove
+            $scope.examToSend = exam;
         };
-        
-        $scope.sendExamToStudents = function () { // TODO: implement or remove
-            
+
+        $scope.sendExamToStudents = function() { // TODO: implement or remove
+            console.log($scope.examToSend);
+            dataService.getUsers()
+                .filter(user => user.type === 'student')
+                .forEach(user => {
+                    dataService.addExam({
+                        name: $scope.examToSend.name,
+                        subject: $scope.examToSend.name,
+                        authorName: $scope.examToSend.authorName,
+                        studentName: user.username,
+                        status: "ready",
+                        sentToAdmin: $scope.examToSend.sentToAdmin,
+                        sentToStudent: true,
+                        startDate: "2014-01-23",
+                        endDate: "2017-02-04",
+                        timeLimit: $scope.examToSend.timeLimit,
+                        grade: $scope.examToSend.grade,
+                        score: $scope.examToSend.score,
+                        showScoreToStudent: $scope.examToSend.showScoreToStudent,
+                        questions: $scope.examToSend.questions.map(question => ({
+                            text: question.text,
+                            type: question.type,
+                            score: question.score,
+                            answers: question.answers.map(answer => ({
+                                text: answer.text,
+                                point: answer.point,
+                                checked: answer.checked,
+                                rank: answer.rank
+                            }))
+                        }))
+                    });
+                });
+            $("[data-dismiss=modal]").trigger({ type: "click" });
         };
     });
 } ());

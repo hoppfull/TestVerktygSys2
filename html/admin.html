@@ -94,12 +94,12 @@
                         <form class="form" ng-submit="addUserSubmit()">
                             <ul class="ulSize">
                                 <li>
+                                    <input ng-model="newUserFirstName" type="text" placeholder="Förnamn" ng-required="true">
+                                </li>
+                                <li>
                                     <input ng-model="newUserLastName" type="text" placeholder="Efternamn" ng-required="true">
                                 </li>
                                 <li>
-                                    <input ng-model="newUserFirstName" type="text" placeholder="Förnamn" ng-required="true">
-                                </li>
-                                <li>                                    
                                     <input ng-model="newUserName" name="tjena" type="text" placeholder="Användarnamn" ng-required="true">
                                 </li>
                                 <li>
@@ -132,9 +132,13 @@
                 </thead>
                 <tbody class="">
                     <tr ng-repeat="exam in exams | filter: {name: filterExamNames}">
-                        <td>{{exam.name}}</td> 
-                        <td><input type="date" ng-model="startDate"></td>
-                        <td><input type="date" ng-model="endDate"></td>
+                        <td>{{exam.name}}</td>
+                        <td>
+                            <input type="date" ng-model="startDate">
+                        </td>
+                        <td>
+                            <input type="date" ng-model="endDate">
+                        </td>
                         <td>
                             <button ng-click="showExam(exam)" data-toggle="modal" data-target="#showExamModal">Visa prov</button>
                         </td>
@@ -149,7 +153,7 @@
                                     <article class="modal-body">
                                         <main class="question-head" ng-repeat="question in examToShow.questions">
                                             <section>
-                                                <h4 >{{question.text}}</h4>
+                                                <h4>{{question.text}}</h4>
                                                 <div class="question-box" ng-if="question.type !== 'ranked'">
                                                     <form>
                                                         <ul>
@@ -185,14 +189,12 @@
                                     <button type="button" class="close" data-dismiss="modal">x</button>
                                     <h2 class="modal-title">Skicka prov till</h2>
                                     <article class="modal-body">
-                                        <form ng-submit="sendExamToStudents()" id="sendExamToStudentsForm">
-                                            <ul>
-                                                <li class=" question-box" ng-repeat="student in students">
-                                                    <input type="checkbox" value="{{student.username}}">{{student.firstName + ' ' + student.lastName}}
-                                                </li>
-                                            </ul>
-                                            <button ng-click="" data-toggle="modal" data-target="">Skicka</button>
-                                        </form>
+                                        <ul>
+                                            <li class=" question-box" ng-repeat="student in students">
+                                                <input type="checkbox" value="{{student.username}}">{{student.firstName + ' ' + student.lastName}}
+                                            </li>
+                                        </ul>
+                                        <button ng-click="sendExamToStudents();" data-toggle="modal" data-target="">Skicka</button>
                                     </article>
                                 </div>
                             </main>
