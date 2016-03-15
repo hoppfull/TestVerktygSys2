@@ -5,7 +5,7 @@
         $scope.logout = function() {
             loginService.logout();
         };
-        $scope.TeacherName = loginService.getUser().firstName;
+        $scope.TeacherName = loginService.getUser().firstName + ' ' + loginService.getUser().lastName;
         $scope.exams = dataService.getExams();
 
         $scope.options = [{ name: 'Envalsfråga', value: 'radio' },
@@ -101,13 +101,15 @@
             $scope.currnetExamForEditing.questions.push(Question);
         };
 
+
         $scope.SendExam = function(Question) {
             $scope.ExamToSendToAdmin = Question;
             $scope.ExamToSendToAdmin.sentToAdmin = true;
         };
+        
         $scope.updateExamsList = function() {
             var number = $scope.exams.indexOf($scope.currnetExamForEditing);
             $scope.exams[number] = $scope.currnetExamForEditing;
-        }
+        };
     });
 } ());

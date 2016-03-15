@@ -1,5 +1,4 @@
-html{
-	font-family: sans-serif, serif;
+html{	
     padding:0;
     margin:0;
 }
@@ -21,27 +20,7 @@ section select, section input{
 	text-align: left;
 }
 
-.question-box {
-    max-width: 300px;
-    background-color: #dedede;
-    padding: 25px 20px;
-    margin-bottom: 10px;
-    text-align: left;
-    /*centers the element*/
-    margin-left: auto;
-    margin-right: auto;
-}
 
-.teacher-question-box{
-    width: 70%;
-    background-color: #dedede;
-    padding: 5px 20px;
-    margin-bottom: 10px;
-    text-align: left;
-    /*centers the element*/
-    margin-left: auto;
-    margin-right: auto;
-}
 .answer-text{
     margin:5px 0 5px 0;
 }

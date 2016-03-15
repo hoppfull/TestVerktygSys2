@@ -1,3 +1,4 @@
+/*Inställningar för hur höga och breda våra tables ska vara (bootstrap) */
 .table-max-height-250 {
     height: 250px;
     overflow-y: scroll;

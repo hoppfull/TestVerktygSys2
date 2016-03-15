@@ -1,19 +1,14 @@
+/*Inställningar för sidhuvudet */
 .headercss {
     background-color: #EE7202 !important;
     margin-top: 0px;
     height: 150px;
 }
 
+/*Inställningar för loggut knappen i sidhuvudet */
 .headercss button {
     margin-top: 50px;
     margin-right: 100px;
     height: 50px;
     width: 100px;
-}
-
-.ulSize li {
-    width: 200px !important;
-}
-.popupSize{
-    width: 300px !important;
 }
