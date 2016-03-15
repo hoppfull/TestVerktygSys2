@@ -16,7 +16,7 @@
             </p>
             <p class="col-md-4">
                 <input type="text" placeholder="Filtrera efter ämne" class="text-box" ng-model="searchSubject">
-            </p>            
+            </p>
         </article>
 
         <article class="row">
@@ -29,13 +29,19 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr  class="row" ng-repeat="quiz in quizzes | filter: {name: searchQuiz} | filter: {subject: searchSubject}">
-                        <td class="col-md-3 col-xs-3" >{{quiz.name}}</td>
-                        <td class="col-md-3 col-xs-3" >{{quiz.subject}}</td>
-                        <td class="col-md-3 col-xs-3" >{{quiz.time + ' sekunder'}}</td>
-                        <td class="col-md-1 col-xs-1" ><button>Redigera</button></td>
-                        <td class="col-md-1 col-xs-1" ><button ng-click="removeQuiz(quiz.name, quiz.author);">X</button></td>
-                        <td class="col-md-1 col-xs-1" ><button>Skicka</button></td>
+                    <tr class="row" ng-repeat="quiz in quizzes | filter: {name: searchQuiz} | filter: {subject: searchSubject}">
+                        <td class="col-md-3 col-xs-3">{{quiz.name}}</td>
+                        <td class="col-md-3 col-xs-3">{{quiz.subject}}</td>
+                        <td class="col-md-3 col-xs-3">{{quiz.time + ' sekunder'}}</td>
+                        <td class="col-md-1 col-xs-1">
+                            <button>Redigera</button>
+                        </td>
+                        <td class="col-md-1 col-xs-1">
+                            <button ng-click="removeQuiz(quiz.name, quiz.author);">X</button>
+                        </td>
+                        <td class="col-md-1 col-xs-1">
+                            <button>Skicka</button>
+                        </td>
                     </tr>
                 </tbody>
             </table>

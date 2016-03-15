@@ -1,11 +1,10 @@
-button {
+button, .buttonS{
     color: white !important;
     background-color: teal !important;
-  
     border: solid 1px black !important;
     padding: 1px 5px !important;
 }
 
-button:hover {
+button:hover, .buttonS:hover{
     background-color: #638F3A !important;
 }

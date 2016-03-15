@@ -1,7 +1,9 @@
 {
     "subjects": [
         "Physics",
-        "Mathematics"
+        "Mathematics",
+        "Biology",
+        "Chemistry"
     ],
     "studentClasses": [
         "7A-HT15",
@@ -27,7 +29,8 @@
             "type": "teacher",
             "studentClass": "",
             "subjects": [
-                "Physics"
+                "Physics",
+                "Mathematics"
             ]
         },
         {
@@ -48,7 +51,7 @@
             "studentName": "student",
             "status": "ready",
             "sentToAdmin": true,
-            "sentToStudent": true,
+            "sentToStudent": false,
             "startDate": "2015-01-01",
             "endDate": "2017-01-01",
             "timeLimit": 10,
