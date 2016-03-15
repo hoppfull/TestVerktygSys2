@@ -48,6 +48,9 @@
                                         <article ng-repeat="x in editQuestions">
                                             <input type="text" name="" value="{{x.text}}">
                                             <br>
+                                            <form action="demo_form.asp">
+                                                <input type="file" name="pic" accept="image/*">
+                                            </form>
                                             <select ng-model="selectedOption" ng-options="option.name for option in options"> </select>
                                             <article ng-repeat="y in x.answers">
                                                 <article>
@@ -60,7 +63,6 @@
                                                 </article>
                                             </article>
                                             <button ng-click="addAnswer(x)">Lägg Till svar</button>
-
                                             <p>==================</p>
                                         </article>
                                         <button ng-click="AddNewQuestion()" type="button" class="btn btn-default">Lägg till fråga</button>
@@ -75,8 +77,9 @@
                         <td class="col-md-1 col-xs-1">
                             <button ng-click="removeQuiz(quiz.name, quiz.author);">X</button>
                         </td>
-                        <td class="col-md-1 col-xs-1">
-                            <button>Skicka</button>
+                        <td class="col-md-1 col-xs-1" ">
+                           <button ng-if="quiz.sentToAdmin===true " class="grayButton ">Skicka</button>
+                            <button ng-if="quiz.sentToAdmin===false " ng-click="SendExam(quiz) ">Skicka</button>
                         </td>
                     </tr>
                 </tbody>
@@ -84,12 +87,19 @@
         </article>
 
         <article>
-            <form ng-submit="newQuizSubmit();" class="row">
+            <form ng-submit="newQuizSubmit()" class="row ">
                 <input class="col-md-3 col-xs-3" type="text" ng-required="true" ng-model="newQuizName" placeholder="Namn">
-                <input class="col-md-3 col-xs-3" type="text" ng-required="true" ng-model="newQuizSubject" placeholder="Ämne">
-                <input class="col-md-3 col-xs-3" type="number" ng-required="true" ng-model="newQuizTime" placeholder="Tid">
-                <input class="col-md-3 col-xs-3" ng-click="AddExamsToList()" type="button" value="Lägg till nytt prov">
-                <p>{{addQuizMsg}}</p>
+                <input class="col-md-3 col-xs-3"ng-required="true" ng-model="newQuizSubject" list="Courses"> 
+                <datalist id="Courses">
+                    <option value="Fysik ">
+                    <option value="Datorkunskap "> 
+                    <option value="Svenska ">
+                    <option value="Bild ">
+                    <option value="Matematik ">
+                    <option value="Idrott ">
+                </datalist> 
+                <input class="col-md-3 col-xs-3" type="number " ng-required="true " ng-model="newQuizTime" placeholder="Tid ">
+                <input class="col-md-3 col-xs-3" ng-click="AddExamsToList()" type="button" value="Lägg till nytt prov ">
             </form>
         </article>
     </section>
