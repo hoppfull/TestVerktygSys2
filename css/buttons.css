@@ -1,11 +1,19 @@
-button {
+button, .buttonS{
     color: white !important;
     background-color: teal !important;
-  
     border: solid 1px black !important;
     padding: 1px 5px !important;
 }
 
-button:hover {
+button:hover, .buttonS:hover{
     background-color: #638F3A !important;
+}
+.grayButton{
+    background-color: gray !important;
+    border: solid 1px black !important;
+}
+.grayButton:hover{
+    background-color: gray !important;
+    border: solid 1px black !important;
+    cursor: default !important;
 }

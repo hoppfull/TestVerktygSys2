@@ -1,8 +1,12 @@
 .logout-button{
-    margin:25px 0 10px 0 ;
+    float:right;
     font-size: 14px;
+    border-radius:10px;
 }
 .text-box{
     width:100%;
     line-height: 27px;
+}
+.add-btn{
+    margin: 5px 0 5px 0;
 }

@@ -2,11 +2,6 @@
     var indexApp = angular.module("indexApp", ['ngRoute']);
 	
     indexApp.controller('mainController', function($scope, loginService, dataService) {
-        setTimeout(function() { // TODO: ta bort!!!
-
-            var user = dataService.getUsers().find(user => user.username === 'student');
-            loginService.login(user);
-        }, 100);
     });
 
     indexApp.service('dataService', function($http, loginService) {
@@ -38,6 +33,7 @@
             return studentClasses;
         };
 
+
         var addUser = function(newUser) { // tested: works
             if (loginService.getUser() === null) {
                 console.log("Error: addUser code 1");
@@ -45,6 +41,7 @@
             }
             if (loginService.getUser().type !== 'admin') {
                 console.log("Error: addUser code 2");
+
                 return false;
             }
             if (users.find(user => user.username.toLowerCase() === newUser.username.toLowerCase())) {
@@ -57,6 +54,7 @@
             }
         };
 
+
         var addExam = function(newExam) { // tested: works
             if (loginService.getUser() === null) {
                 console.log("Error: addExam code 1");
@@ -64,6 +62,7 @@
             }
             if (loginService.getUser().type !== 'teacher') {
                 console.log("Error: addExam code 2");
+
                 return false;
             }
             if (exams.find(exam => exam.name.toLowerCase() === newExam.name.toLowerCase())) {
@@ -76,6 +75,7 @@
             }
         };
 
+
         var addSubject = function(newSubject) { // tested: works
             if (loginService.getUser() === null) {
                 console.log("Error: addSubject code 1");
@@ -83,6 +83,7 @@
             }
             if (loginService.getUser().type !== 'admin') {
                 console.log("Error: addSubject code 2");
+
                 return false;
             }
             if (subjects.find(subject => subject.toLowerCase() === newSubject.toLowerCase())) {
@@ -94,6 +95,7 @@
                 return true;
             }
         };
+
 
         var addStudentClass = function(newStudentClass) { // tested: works
             if (loginService.getUser() === null) {
@@ -144,7 +146,7 @@
                 console.log("Error: removeExam code 2");
                 return false;
             }
-            
+
             var currentExam = exams.find(exam => exam.name === examName);
             if (!currentExam) {
                 console.log("Error: exam could not be found for removal.");
@@ -183,7 +185,7 @@
                 console.log("Error: removeSubject code 2");
                 return false;
             }
-            
+
             var currentSubject = subjects.find(subject => subject === subjectName);
             if (!currentSubject) {
                 console.log("Error: no such subject exists!");
@@ -208,7 +210,7 @@
                 console.log("Error: removeStudentClass code 2");
                 return false;
             }
-            
+
             var currentStudentClass = studentClasses.find(studentClass => studentClass === studentClassName);
             if (!currentStudentClass) {
                 console.log("Error: no such student class exists!");
@@ -223,6 +225,7 @@
                 return false;
             }
         };
+        
 
         return {
             getUsers: getUsers,
@@ -240,7 +243,7 @@
         };
     });
 
-    indexApp.service('loginService', function() {
+    indexApp.service('loginService', function() { // tested: works
         var user = null;
 
         var getUser = function() {
@@ -282,18 +285,6 @@
             .when('/student', {
                 templateUrl: 'html/student.html',
                 controller: 'studentController'
-            })
-            .when('/studentTab', {
-                templateUrl: 'html/admin.html',
-                controller: 'adminController'
-            })
-            .when('/teacherTab', {
-                templateUrl: 'html/admin.html',
-                controller: 'adminController'
-            })
-            .when('/adminTab', {
-                templateUrl: 'html/admin.html',
-                controller: 'adminController'
             })
             .when('/teacher', {
                 templateUrl: 'html/teacher.html',
