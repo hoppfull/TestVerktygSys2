@@ -24,7 +24,7 @@ section select, section input{
 .question-box {
     max-width: 300px;
     background-color: #dedede;
-    padding: 5px 20px;
+    padding: 25px 20px;
     margin-bottom: 10px;
     text-align: left;
     /*centers the element*/

@@ -42,7 +42,7 @@
     ],
     "exams": [
         {
-            "name": "mechanics",
+            "name": "Mechanics",
             "subject": "Physics",
             "authorName": "teacher",
             "studentName": "student",
@@ -54,6 +54,7 @@
             "timeLimit": 10,
             "grade": "",
             "score": 0,
+			"showScoreToStudent": true,
             "questions": [
                 {
                     "text": "Vilken är en färg?",
@@ -139,6 +140,7 @@
             "timeLimit": 10,
             "grade": "U",
             "score": 4,
+			"showScoreToStudent": true,
             "questions": [
                 {
                     "text": "Vilken är en färg?",
