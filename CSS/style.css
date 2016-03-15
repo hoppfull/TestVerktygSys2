@@ -1,12 +1,7 @@
-<<<<<<< HEAD
 html{
 	font-family: sans-serif, serif;
     padding:0;
     margin:0;
-=======
-body {
-    margin: 0px;
->>>>>>> origin/master
 }
 
 header {
@@ -20,6 +15,10 @@ main {
 main div, form input[type="submit"] {
     text-align: center;
     margin: auto;
+}
+
+section select, section input{
+	text-align: left;
 }
 
 .question-box {

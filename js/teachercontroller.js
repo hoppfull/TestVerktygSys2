@@ -5,7 +5,9 @@
         $scope.TeacherName = loginService.getUser().firstName;
         $scope.exams = dataService.getExams();
 
-        $scope.options = [{ name: 'Envalsfråga', value: 'radio' }, { name: 'Flervalsfrågor', value: 'checkbox' },{namn: 'Ragnordning', value:'ranked'}];
+        $scope.options = [{ name: 'Envalsfråga', value: 'radio' },
+            { name: 'Flervalsfrågor', value: 'checkbox' },
+            { namn: 'Ragnordning', value: 'ranked' }];
         $scope.selectedOption = $scope.options[0];
 
         $scope.AddExamsToList = function() {

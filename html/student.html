@@ -1,134 +1,164 @@
 <main>
-    <h1 class="headercss"><img src="http://www.newton.se/content/themes/newton/assets/img/pngs/logo-footer.png" alt="Logo" />Välkommen : {{name}}  <button style="display: inline" ng-click="StudentLogout()" id="LogOut" type="button type" class="pull-right btn btn-info btn-lg"> Logout</button>
-</h1>
-    <article class="row">
-        <p class="col-md-4">
-            <input type="text" placeholder="Filtrera efter testnamn" class="text-box" ng-model="searchExam">
-        </p>
-    </article>
-    <section class="col-md-6">
-        <h1>Aktuella prov</h1>
-        <article class="tab-content table-max-height-300">
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th>Provnamn</th>
-                        <th>Tillgängligt</th>
-                        <th>Slutdatum</th>
-                        <th>Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr ng-repeat="exam in user.exams | filter: {name: searchExam }" ng-if="exam.status !=='done'">
-                        <td>{{exam.name}}</td>
-                        <td>{{exam.availableFrom}}</td>
-                        <td>{{exam.availableUntil}}</td>
-                        <td>
-                            <!--TRIGGER MODAL HERE-->
-                            <button ng-click="startExam($index)" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">
-					{{examStatus(exam.status)}}
-					</button>
-                        </td>
-
-
-                        <!--MODAL-->
-                        <!--role är det som gör att ett fönster öppnas upp, säger vad elementet ska behandlas som-->
-                        <div id="myModal" class="modal fade" role="dialog">
-                            <div class="modal-dialog">
-
-                                <!--MODAL CONTENT-->
-                                <div class="modal-content">
-
-                                    <!--HEADER-->
-                                    <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                        <!--TODO. Hämta namn på prov. Bekräftar att det är rätt öppnat-->
-                                        <h1 class="modal-title">Prov</h1>
-                                        <!--date, just for testing-->
-                                        <p>{{currentDate | date:'dd/MM/yyyy'}}</p>
-                                        <p>{{time}}</p>
-                                    </div>
-
-                                    <!--BODY-->
-                                    <div class="modal-body">
-                                        <!--QUESTION FORM-->
-                                        <form id="question-form" ng-submit="submit()">
-                                            <div class="question-box" ng-repeat="question in questions">
-                                                <h1>{{question.questionText}}</h1>
-                                                <p ng-repeat="answers in question.answers">
-
-                                                    <input id="answerId{{$parent.$index}}{{$index}}" class="answer-alternative" type="{{questionType(question.type)}}" name="{{$parent.$index}}">
-                                                    <label for="answerId{{$parent.$index}}{{$index}}">{{answers.answerText}}</label>
-
-                                                </p>
-                                                <h6>Maxpoäng: {{question.score}}</h6>
-                                            </div>
-                                            <!--
-									I was forced to do the submit this way,
-									don't know why don't care anymore.
-									Can at least be moved outside of form if wanted
-									-->
-                                            <p ng-if="isExamDone">Poäng: {{totalPoints}} / {{maxPoints}} ({{(totalPoints/maxPoints)*100 | number:2}}%)</p>
-                                            <input id="btn-submit" type="submit" value="Skicka in" form="question-form">
-                                        </form>
-
-                                    </div>
-
-                                    <!--FOOTER-->
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </tr>
-                </tbody>
-
-            </table>
-        </article>
-    </section>
-    <section class="col-md-6">
-        <h1>Historik</h1>
-        <article class="tab-content table-max-height-300">
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th>Provnamn</th>
-                        <th>Betyg</th>
-                        <th>Kurs</th>
-                        <th>Slutdatum</th>
-                        <th>Lärare</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr ng-repeat="exam in user.exams | filter: {name: searchExam}" ng-if="exam.status === 'done'">
-                        <td>{{exam.name}}</td>
-                        <td>{{exam.grade}}</td>
-                        <td>{{exam.name}}</td>
-                        <td>{{exam.availableUntil}}</td>
-                        <td>{{exam.teacher}}</td>
-                        <td>
-                            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#ExamComp">See prov</button>
-                        </td>
-                        <div id="ExamComp" class="modal fade" role="dialog">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                        <h1 class="modal-title">Prov</h1>
-                                    </div>
-                                    <div class="modal-body">
-                                        <!--Add ng-reapet och fyll i med frågor-->
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-default" data-dismiss="modal">Stäng</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </tr>
-                </tbody>
-        </article>
-        </table>
-    </section>
+	<h1 class="headercss"><img src="http://www.newton.se/content/themes/newton/assets/img/pngs/logo-footer.png" alt="Logo" />Välkommen : {{student.firstName}} {{student.lastName}}<button style="display: inline" ng-click="studentLogout()" id="LogOut" type="button type" class="pull-right btn btn-info btn-lg"> Logout</button></h1>
+	
+	<article class="row">
+		<p class="col-md-4">
+			<input type="text" placeholder="Filtrera efter testnamn" class="text-box" ng-model="searchExam">
+		</p>
+	</article>
+	<section class="col-md-6">
+		<h1>Aktuella prov</h1>
+		<article class="tab-content table-max-height-300">
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th>Provnamn</th>
+						<th>Tillgängligt</th>
+						<th>Slutdatum</th>
+						<th>Status</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="exam in exams | filter: {name: searchExam }" ng-if="exam.status !=='done'">
+						<td>{{exam.name}}</td>
+						<td>{{exam.startDate}}</td>
+						<td>{{exam.endDate}}</td>
+						<td>
+							<!--TRIGGER MODAL HERE-->
+							<button ng-click="startExam(exam)" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">
+								{{btnExamStatus(exam.status)}}
+							</button>
+						</td>
+						
+						<!--MODAL-->
+						<!--role är det som gör att ett fönster öppnas upp, säger vad elementet ska behandlas som-->
+						<div id="myModal" class="modal fade" role="dialog">
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<!--HEADER-->
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal">&times;</button>
+										<!--TODO. Hämta namn på prov. Bekräftar att det är rätt öppnat-->
+										<h1 class="modal-title">{{examTitle}}</h1>
+										<p>Time left: {{time}}</p>
+									</div>
+									<!--BODY-->
+									<div class="modal-body">
+										<!--QUESTION FORM-->
+										<form id="question-form" ng-submit="submit()">
+											<article class="question-box" ng-repeat="question in questions">
+												<h1>{{question.text}}</h1>
+												<!--ANSWERS-->
+												<section ng-repeat="answers in question.answers">
+													<!--RANKED-->
+													<select 
+															ng-if="question.type === 'ranked'" 
+															id="answerId{{$parent.$index}}{{$index}}"
+															class="answer-alternative"
+															name="{{$parent.$index}}">
+														<option 
+															ng-repeat="option in question.answers | orderBy:'-point'" 
+															value="{{option.point}}">
+															{{option.point}}</option>
+													</select>
+													<!--CHECKED-->
+													<input 
+															ng-if="question.type !== 'ranked'"
+															id="answerId{{$parent.$index}}{{$index}}" 
+															class="answer-alternative" 
+													   		type="{{question.type}}" 
+															name="{{$parent.$index}}">
+													<!--LABEL FOR BOTH TYPES OF QUESTIONS-->
+													<label for="answerId{{$parent.$index}}{{$index}}">{{answers.text}}</label>
+												</section>
+												<h6 ng-if="activeExam.status === done">Poäng: {{question.score}}</h6>
+											</article>
+											<!--SUBMIT BUTTON OR RESULTS-->
+											<p ng-if="activeExam.status === done">Poäng: {{totalPoints}} / {{maxPoints}} ({{(totalPoints/maxPoints)*100 | number:2}}%)</p>
+											<input ng-if="activeExam.status !== done" id="btn-submit" type="submit" value="Skicka in" form="question-form">
+										</form>
+									</div>
+									<!--FOOTER-->
+									<div class="modal-footer">
+										<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</tr>
+				</tbody>
+			</table>
+		</article>
+	</section>
+	<section class="col-md-6">
+		<h1>Historik</h1>
+		<article class="tab-content table-max-height-300">
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th>Provnamn</th>
+						<th>Betyg</th>
+						<th>Kurs</th>
+						<th>Slutdatum</th>
+						<th>Lärare</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="exam in exams | filter: {name: searchExam}" ng-if="exam.status === 'done'">
+						<td>{{exam.name}}</td>
+						<td>{{exam.grade}}</td>
+						<td>{{exam.name}}</td>
+						<td>{{exam.endDate}}</td>
+						<td>{{exam.authorName}}</td>
+						<td>
+							<button ng-click="setActiveExam(exam)" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#ExamComp">Se prov</button>
+						</td>
+						<div id="ExamComp" class="modal fade" role="dialog">
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal">&times;</button>
+										<h1 class="modal-title">Prov</h1>
+									</div>
+									<div class="modal-body">
+										<!--Add ng-reapet och fyll i med frågor-->
+										<article class="question-box" ng-repeat="question in questions">
+											<h1>{{question.text}}</h1>
+											<!--ANSWERS-->
+											<section ng-repeat="answers in question.answers">
+												<!--RANKED-->
+												<select 
+														ng-if="question.type === 'ranked'" 
+														id="answerId{{$parent.$index}}{{$index}}"
+														class="answer-alternative"
+														name="{{$parent.$index}}"
+														ng-disabled="true">
+													<option value="{{answers.rank}}">{{answers.rank}}</option>
+												</select>
+												<!--CHECKED-->
+												<input 
+												   		ng-if="question.type !== 'ranked'"
+												   		id="answerId{{$parent.$index}}{{$index}}" 
+												   		class="answer-alternative" 
+												   		type="{{question.type}}" 
+												   		name="{{$parent.$index}}"
+												   		ng-checked="answers.checked"
+												   		ng-disabled="true">
+												<!--LABEL FOR BOTH TYPES OF QUESTIONS-->
+												<label for="answerId{{$parent.$index}}{{$index}}">{{answers.text}}</label>
+											</section>
+											<h6 ng-if="activeExam.status === 'done'">Poäng: {{question.score}}</h6>
+										</article>
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-default" data-dismiss="modal">Stäng</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</tr>
+				</tbody>
+			</table>
+		</article>
+	</section>
 </main>
