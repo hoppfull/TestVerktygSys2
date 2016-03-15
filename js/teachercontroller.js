@@ -10,7 +10,7 @@
 
         $scope.options = [{ name: 'Envalsfråga', value: 'radio' },
             { name: 'Flervalsfrågor', value: 'checkbox' },
-            { namn: 'Ragnordning', value: 'ranked' }];
+            { name: 'Ragnordning', value: 'number' }];
         $scope.selectedOption = $scope.options[0];
 
         $scope.AddExamsToList = function() {
@@ -79,5 +79,9 @@
             $scope.ExamToSendToAdmin = Question;
             $scope.ExamToSendToAdmin.sentToAdmin = true;
         };
+        $scope.updateExamsList = function() {           
+            var number = $scope.exams.indexOf($scope.currnetExamForEditing);
+            $scope.exams[number] = $scope.currnetExamForEditing;
+        }
     });
 } ());

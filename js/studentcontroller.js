@@ -129,7 +129,7 @@
 				else{
 					if(jsonAnswer.point > 0){
 						point = -1;
-						boxColor = "yellow";
+						boxColor = "blue";
 					}
 				}
 			}
