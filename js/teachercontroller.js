@@ -67,10 +67,6 @@
             $scope.editQuestions = $scope.currnetExamForEditing.questions;
         };
 
-        $scope.Test = function(asd) {
-            alert(asd);
-        };
-
         $scope.addAnswer = function(Question) {
             var newAnswer = {
                 text: "",
