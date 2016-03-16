@@ -133,6 +133,7 @@
                 <tbody class="">
                     <tr ng-repeat="exam in exams | filter: {name: filterExamNames}">
                         <td>{{exam.name}}</td>
+                        <p>tjosan {{exam.timeLimit}}</p>
                         <td>
                             <input type="date" ng-model="startDate">
                         </td>

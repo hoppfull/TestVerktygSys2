@@ -32,27 +32,9 @@
             };
         }
 
-        function createDefaultQuestion() {
-            return {
-                text: "",
-                type: "",
-                score: 0,
-                answers: []
-            };
-        }
-
-        function createDefaultAnswer() {
-            return {
-                text: "",
-                point: -1,
-                checked: false,
-                rank: 0
-            };
-        }
-
         $scope.AddExamsToList = function() {
             var newExam = createDefaultExam();
-            newExam.time = $scope.newQuizTime;
+            newExam.timeLimit = $scope.newQuizTime;
             newExam.subject = $scope.newQuizSubject;
             newExam.name = $scope.newQuizName;
             dataService.addExam(newExam);
