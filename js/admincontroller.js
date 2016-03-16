@@ -7,7 +7,6 @@
 
         function updateLists() {
             $scope.exams = dataService.getExams().filter(exam => exam.sentToAdmin && !exam.sentToStudent);
-            console.log($scope.exams.find(exam => exam.name === 'as').timeLimit);
             $scope.students = dataService.getUsers().filter(user => user.type === 'student');
             $scope.admins = dataService.getUsers().filter(user => user.type === 'admin');
             $scope.teachers = dataService.getUsers()

@@ -1,13 +1,16 @@
+<p>adminlogin: admin, pw: abc</p>
+<p>teacherlogin: teacher, pw: abc</p>
+<p>studentlogin: student, pw: abc</p>
 <div class="container">
     <div class="loginpage">
         <form class="form" action="/">
             <label>Username :</label>
-            <input type="text" id="username" ng-model="username"/>
+            <input type="text" id="username" ng-model="username" />
             <label>Password :</label>
-            <input type="password" id="password" ng-model="password"/>
+            <input type="password" id="password" ng-model="password" />
             <label class="error">{{ error }}</label>
 
-            <input id="login" type="button" value="Login" ng-click="login();"/>
+            <input id="login" type="button" value="Login" ng-click="login();" />
         </form>
     </div>
 </div>
