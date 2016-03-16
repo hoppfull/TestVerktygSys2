@@ -28,3 +28,6 @@ section select, section input{
     background-color: #dedede;
 
 }
+.score-box{
+    text-align: right;
+}
