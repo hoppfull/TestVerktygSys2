@@ -13,11 +13,11 @@
 		
 		$scope.studentLogout = function(){
 			loginService.logout();
-		}
+		};
 		
 		$scope.btnExamStatus = function (status) {
 			return status === "ready" ? "Starta" : "Fortsätt";
-		}
+		};
 		
 		$scope.setActiveExam = function(exam){
 			$scope.activeExam = exam;
@@ -26,7 +26,7 @@
 			$scope.totalPoints = $scope.activeExam.score;
 			$scope.examTitle = $scope.activeExam.name;
 			showScoreToStudent = $scope.activeExam.showScoreToStudent;
-		}
+		};
 		
 		$scope.startExam = function(exam){
 			$scope.setActiveExam(exam);
@@ -44,7 +44,7 @@
 					$scope.submit();
 				}
 			}, 1000, $scope.activeExam.timeLimit+1);
-		}
+		};
 		
 		$scope.submit = function() {
 			var htmlAnswers = document.getElementsByClassName("answer-alternative");
@@ -54,7 +54,7 @@
 			updateExam(htmlAnswers);
 			saveGrade();
 			$scope.activeExam = null;
-		}
+		};
 		
 		var getMaxScore = function(){
 			$scope.maxPoints = 0;
@@ -64,13 +64,13 @@
 					$scope.maxPoints += (jsonAnswer.point > 0) ? 1 : 0;
 				}
 			}
-		}
+		};
 		
 		$scope.getQuestionScore = function(questionScore){
 			if(showScoreToStudent){
 				return "Poäng: " + questionScore;
 			}
-		}
+		};
 		
 		$scope.getExamScore = function(){
 			if(showScoreToStudent){
@@ -80,7 +80,7 @@
 				
 				return "Poäng: " + totalPoints + "/" + maxPoints + " (" + percentage + "%)";
 			}
-		}
+		};
 		
 		var updateExam = function(htmlAnswers){
 			var answerIndex = 0;
@@ -106,7 +106,7 @@
 				}
 			}
 			$scope.totalPoints = $scope.activeExam.score;
-		}
+		};
 		
 		var saveAnswer = function(question, jsonAnswer, htmlAnswer){
 			if(question.type==="radio" || question.type==="checkbox"){
@@ -115,7 +115,7 @@
 			else if(question.type==="ranked"){
 				jsonAnswer.rank = htmlAnswer.value;
 			}
-		}
+		};
 
 		var getPoints = function(question, jsonAnswer, htmlAnswer){
 			var boxColor = null;
@@ -139,7 +139,7 @@
 			}
 			setContainerColor(htmlAnswer, ".answer-box", "background-color", boxColor);
 			return point;
-		}
+		};
 		
 		var setContainerColor = function(htmlOrigin, searchItem, valueToColor, color){
 			if($scope.activeExam.showScoreToStudent){
@@ -147,12 +147,12 @@
 					.closest( searchItem ) //searches upwards DOM tree 
 					.css( valueToColor, color );	
 			}
-		}
+		};
 		
 		var saveScores = function(exam, question, points){
 			exam.score += points > 0 ? points : 0;
 			question.score = points > 0 ? points : 0;
-		}
+		};
 		
 		var saveGrade = function(){
 			var percentage = ($scope.totalPoints/$scope.maxPoints);
@@ -167,6 +167,6 @@
 			else{
 				$scope.activeExam.grade = "U";
 			}
-		}
+		};
     });    
 }());
