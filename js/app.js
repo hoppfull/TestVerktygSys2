@@ -1,6 +1,6 @@
 (function() {
     var indexApp = angular.module("indexApp", ['ngRoute']);
-	
+
     indexApp.controller('mainController', function($scope, loginService, dataService) {
     });
 
@@ -41,7 +41,6 @@
             }
             if (loginService.getUser().type !== 'admin') {
                 console.log("Error: addUser code 2");
-
                 return false;
             }
             if (users.find(user => user.username.toLowerCase() === newUser.username.toLowerCase())) {
@@ -60,14 +59,14 @@
                 console.log("Error: addExam code 1");
                 return false;
             }
-            if (loginService.getUser().type !== 'teacher') {
+            if (loginService.getUser().type !== 'teacher' && loginService.getUser().type !== 'admin') {
                 console.log("Error: addExam code 2");
-
                 return false;
             }
-            if (exams.find(exam => exam.name.toLowerCase() === newExam.name.toLowerCase())) {
-                console.log("Error: addExam code 3");
-                return false;
+            //if (exams.find(exam => exam.name.toLowerCase() === newExam.name.toLowerCase())) {
+            if (false) { // bypass because reasons
+                //console.log("Error: addExam code 3");
+                //return false;
             } else {
                 console.log("success! addExam code 1");
                 exams.push(newExam);
@@ -83,7 +82,6 @@
             }
             if (loginService.getUser().type !== 'admin') {
                 console.log("Error: addSubject code 2");
-
                 return false;
             }
             if (subjects.find(subject => subject.toLowerCase() === newSubject.toLowerCase())) {
@@ -225,7 +223,7 @@
                 return false;
             }
         };
-        
+
 
         return {
             getUsers: getUsers,

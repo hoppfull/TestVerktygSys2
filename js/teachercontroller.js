@@ -5,7 +5,7 @@
         $scope.logout = function() {
             loginService.logout();
         };
-        $scope.TeacherName = loginService.getUser().firstName;
+        $scope.TeacherName = loginService.getUser().firstName + ' ' + loginService.getUser().lastName;
         $scope.exams = dataService.getExams();
 
         $scope.options = [{ name: 'Envalsfråga', value: 'radio' },
@@ -13,25 +13,51 @@
             { name: 'Ragnordning', value: 'number' }];
         $scope.selectedOption = $scope.options[0];
 
-        $scope.AddExamsToList = function() {
-            var NewExams = {
-                author: $scope.TeacherName,
-                time: $scope.newQuizTime,
-                name: $scope.newQuizName,
-                subject: $scope.newQuizSubject,
+        function createDefaultExam() {
+            return {
+                name: "",
+                subject: "",
+                authorName: loginService.getUser().username,
+                studentName: "",
+                status: "ready",
                 sentToAdmin: false,
-                questions: [{
-                    type: 'radio',
-                    answers: [{
-                        text: "",
-                        point: -1,
-                        checked: false,
-                        rank: 0
-                    }]
-                }]
+                sentToStudent: false,
+                startDate: "2015-01-01",
+                endDate: "2017-01-01",
+                timeLimit: 0,
+                grade: "",
+                score: 0,
+                showScoreToStudent: true,
+                questions: []
             };
-            dataService.addExam(NewExams);
+        }
+
+        function createDefaultQuestion() {
+            return {
+                text: "",
+                type: "",
+                score: 0,
+                answers: []
+            };
+        }
+
+        function createDefaultAnswer() {
+            return {
+                text: "",
+                point: -1,
+                checked: false,
+                rank: 0
+            };
+        }
+
+        $scope.AddExamsToList = function() {
+            var newExam = createDefaultExam();
+            newExam.time = $scope.newQuizTime;
+            newExam.subject = $scope.newQuizSubject;
+            newExam.name = $scope.newQuizName;
+            dataService.addExam(newExam);
         };
+        
         $scope.removeQuiz = function(name) {
             dataService.removeExam(name);
         };
@@ -80,46 +106,10 @@
             $scope.ExamToSendToAdmin = Question;
             $scope.ExamToSendToAdmin.sentToAdmin = true;
         };
-
-
-        $scope.loggedIn = true;
-        if (loginService.user != null) {
-            $scope.loggedIn = true;
-            $scope.TeacherName = loginService.user.username;
-            updateQuizList();
-
-            $scope.logout = function() {
-                loginService.logout();
-            };
-
-            $scope.removeQuiz = function(name, author) {
-                dataService.removeQuiz(name, author);
-                updateQuizList();
-            };
-
-            $scope.newQuizSubmit = function() {
-                var newQuiz = {
-                    author: $scope.TeacherName,
-                    time: $scope.newQuizTime,
-                    name: $scope.newQuizName,
-                    subject: $scope.newQuizSubject,
-                    questions: []
-                };
-                $scope.addQuizMsg =
-                    dataService.addQuiz(newQuiz)
-                        ? ''
-                        : 'Namn finns redan!';
-                updateQuizList();
-            };
-
-            dataService.getExams().find().questions.push();
-            function updateQuizList() {
-                $scope.quizzes = dataService.quizzes.filter(quiz => quiz.author === loginService.user.username);
-            }
-
+        
+        $scope.updateExamsList = function() {
+            var number = $scope.exams.indexOf($scope.currnetExamForEditing);
+            $scope.exams[number] = $scope.currnetExamForEditing;
         };
-        $scope.updateAnswer = function(x) {
-            $scope.currnetExamForEditing.questions = x;
-        }
     });
 } ());

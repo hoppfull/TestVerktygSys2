@@ -1,8 +1,10 @@
+
+/* Hur texten ska se ut på sidan */
 * {
     font-family: 'Open Sans', sans-serif !important;
 }
 .headercss{
-    color:white;
+    color:black;
 }
 .textbox-max-width{
     width:100%;

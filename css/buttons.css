@@ -1,13 +1,15 @@
+/*Inställningar för knappar */
 button, .buttonS{
     color: white !important;
     background-color: teal !important;
     border: solid 1px black !important;
     padding: 1px 5px !important;
 }
-
+/*Mus över knapp gör knappen grön */
 button:hover, .buttonS:hover{
     background-color: #638F3A !important;
 }
+/*Gör knapparna som skickar prov till admin gråa */
 .grayButton{
     background-color: gray !important;
     border: solid 1px black !important;
@@ -16,4 +18,16 @@ button:hover, .buttonS:hover{
     background-color: gray !important;
     border: solid 1px black !important;
     cursor: default !important;
+}
+.logout-button{
+    float:right;
+    font-size: 14px;
+    border-radius:10px;
+}
+.text-box{
+    width:100%;
+    line-height: 27px;
+}
+.add-btn{
+    margin: 5px 0 5px 0;
 }
